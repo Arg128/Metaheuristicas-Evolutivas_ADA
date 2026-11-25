@@ -14,10 +14,10 @@ export interface SlideProps {
 const STORAGE_KEY = 'metaheuristicas_grupo7_members';
 
 const DEFAULT_MEMBERS = [
-  'Integrante 1 — Ing. de Sistemas',
-  'Integrante 2 — Ing. de Sistemas',
-  'Integrante 3 — Ing. de Sistemas',
-  'Integrante 4 — Ing. de Sistemas',
+  'Fredy José Aragón Carpio',
+  'Maritza Claudia Marron Puma',
+  'Ángel Julio Retamozo Calatayud',
+  'Jhoans Anthony Huanca Lupaca',
 ];
 
 const THEMATIC_BLOCKS: { block: ThematicBlock; range: string; label: string }[] = [
@@ -42,7 +42,11 @@ function loadSavedMembers(): string[] {
     if (!raw) return DEFAULT_MEMBERS;
     const parsed: unknown = JSON.parse(raw);
     if (Array.isArray(parsed) && parsed.every((item) => typeof item === 'string')) {
-      return parsed.length > 0 ? parsed : DEFAULT_MEMBERS;
+      if (parsed.length === 0) return DEFAULT_MEMBERS;
+      return parsed.map((member) => {
+        const placeholder = /^Integrante ([1-4]) — Ing\. de Sistemas$/.exec(member);
+        return placeholder ? DEFAULT_MEMBERS[Number(placeholder[1]) - 1] : member;
+      });
     }
   } catch {
     // Ignore storage read errors
