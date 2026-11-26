@@ -166,7 +166,7 @@ export function ExplorationBalanceSVG({
           <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="48" fill="rgba(225,29,72,0.07)" stroke="rgba(225,29,72,0.35)" strokeDasharray="4 4" />
           <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="25" fill="rgba(225,29,72,0.13)" stroke="rgba(225,29,72,0.48)" />
           <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="4" fill="#e11d48" />
-          <text x={LOCAL_TRAP_1.x} y={LOCAL_TRAP_1.y + 62} textAnchor="middle" fill="#be123c" fontSize="10.5" fontWeight="700">
+          <text x={LOCAL_TRAP_1.x} y={LOCAL_TRAP_1.y + 62} textAnchor="middle" fill="#be123c" fontSize="12" fontWeight="700">
             Trampa Local 1
           </text>
 
@@ -174,7 +174,7 @@ export function ExplorationBalanceSVG({
           <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="36" fill="rgba(217,119,6,0.08)" stroke="rgba(217,119,6,0.35)" strokeDasharray="4 4" />
           <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="17" fill="rgba(217,119,6,0.16)" />
           <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="3.5" fill="#d97706" />
-          <text x={LOCAL_TRAP_2.x} y={LOCAL_TRAP_2.y - 42} textAnchor="middle" fill="#b45309" fontSize="10.5" fontWeight="700">
+          <text x={LOCAL_TRAP_2.x} y={LOCAL_TRAP_2.y - 42} textAnchor="middle" fill="#b45309" fontSize="12" fontWeight="700">
             Trampa Local 2
           </text>
 
@@ -183,7 +183,7 @@ export function ExplorationBalanceSVG({
           <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="42" fill="rgba(5,150,105,0.12)" stroke="rgba(5,150,105,0.46)" />
           <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="18" fill="rgba(5,150,105,0.22)" />
           <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="5.5" fill="#059669" />
-          <text x={GLOBAL_OPT.x} y={GLOBAL_OPT.y + 82} textAnchor="middle" fill="#047857" fontSize="11.5" fontWeight="700">
+          <text x={GLOBAL_OPT.x} y={GLOBAL_OPT.y + 82} textAnchor="middle" fill="#047857" fontSize="13" fontWeight="700">
             Óptimo Global x*
           </text>
 
@@ -218,7 +218,7 @@ export function ExplorationBalanceSVG({
           }
           onChange={onBalanceChange}
         />
-        <p className="rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-700">
+        <p className="rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm font-medium text-[#1B365D]">
           {regime.desc}
         </p>
       </div>

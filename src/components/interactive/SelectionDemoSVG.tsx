@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play, RotateCcw } from 'lucide-react';
+import { useSlideKeyboard } from '../../hooks/useSlideKeyboard';
 import { ParameterSlider } from '../ui/ParameterSlider';
 import { createMulberry32 } from '../../utils/prng';
 
@@ -135,6 +136,13 @@ export function SelectionDemoSVG({
     setTourneyCounts({ A: 0, B: 0, C: 0, D: 0, E: 0 });
   };
 
+  useSlideKeyboard({
+    onAction: sampleParent,
+    onKey: (k) => {
+      if (k === 'r') resetCounts();
+    },
+  });
+
   const totalRouletteSamples = Object.values(rouletteCounts).reduce((a, b) => a + b, 0) || 1;
   const totalTourneySamples = Object.values(tourneyCounts).reduce((a, b) => a + b, 0) || 1;
 
@@ -143,10 +151,10 @@ export function SelectionDemoSVG({
       {/* Header + Action Buttons */}
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-violet-700">
+          <span className="text-xs font-bold uppercase tracking-wider text-violet-700">
             Simulador Dual en Vivo
           </span>
-          <h3 className="text-base font-bold text-slate-900">
+          <h3 className="text-lg font-bold text-black">
             Ruleta Proporcional vs. Torneo (k = {tournamentK})
           </h3>
         </div>
@@ -156,7 +164,7 @@ export function SelectionDemoSVG({
             type="button"
             onClick={sampleParent}
             onKeyDown={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-600 bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-violet-700 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-600 bg-violet-600 px-3.5 py-2 text-xs font-bold text-white shadow-xs hover:bg-violet-700 cursor-pointer"
           >
             <Play className="h-3.5 w-3.5" />
             Muestrear Padre
@@ -184,45 +192,50 @@ export function SelectionDemoSVG({
               : 'border-slate-200 bg-slate-50'
           }`}
         >
-          <div className="flex w-full items-center justify-between text-[11px]">
-            <span className="font-semibold text-amber-800">Ruleta fᵢ / Σfⱼ</span>
-            <span className="font-mono font-semibold text-slate-700">Ganador: {rouletteWinner}</span>
+          <div className="flex w-full items-center justify-between text-xs">
+            <span className="font-bold text-amber-800">Ruleta fᵢ / Σfⱼ</span>
+            <span className="font-mono font-bold text-slate-800">Ganador: {rouletteWinner}</span>
           </div>
 
-          <svg viewBox="0 0 180 164" className="w-full max-h-[148px]">
+          <svg viewBox="0 0 180 168" className="my-auto w-full flex-1 max-h-[240px]">
             {/* Pointer at top */}
-            <polygon points="90,14 84,3 96,3" fill="#d97706" />
-            <motion.g
-              animate={{ rotate: wheelAngle }}
-              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              style={{ originX: '90px', originY: '88px' }}
-            >
-              {sectors.map((s) => {
-                const labelPos = polarToCartesian(90, 88, 44, s.mid);
-                return (
-                  <g key={s.id}>
-                    <path
-                      d={describeSector(90, 88, 68, s.start, s.end)}
-                      fill={s.color}
-                      fillOpacity={rouletteWinner === s.id ? 0.95 : 0.75}
-                      stroke="#ffffff"
-                      strokeWidth="2"
-                    />
-                    <text
-                      x={labelPos.x}
-                      y={labelPos.y + 3}
-                      textAnchor="middle"
-                      fill="#ffffff"
-                      fontSize="10.5"
-                      fontWeight="800"
-                    >
-                      {s.id}
-                    </text>
-                  </g>
-                );
-              })}
-              <circle cx="90" cy="88" r="14" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.8" />
-            </motion.g>
+            <polygon points="90,18 84,5 96,5" fill="#d97706" />
+            {/* Translate to exact center (90, 92) so rotation pivots strictly around local (0, 0) */}
+            <g transform="translate(90, 92)">
+              <g
+                style={{
+                  transform: `rotate(${wheelAngle}deg)`,
+                  transformOrigin: '0px 0px',
+                  transition: 'transform 0.75s cubic-bezier(0.22, 1, 0.36, 1)',
+                }}
+              >
+                {sectors.map((s) => {
+                  const labelPos = polarToCartesian(0, 0, 44, s.mid);
+                  return (
+                    <g key={s.id}>
+                      <path
+                        d={describeSector(0, 0, 68, s.start, s.end)}
+                        fill={s.color}
+                        fillOpacity={rouletteWinner === s.id ? 0.95 : 0.78}
+                        stroke="#ffffff"
+                        strokeWidth="2"
+                      />
+                      <text
+                        x={labelPos.x}
+                        y={labelPos.y + 4}
+                        textAnchor="middle"
+                        fill="#ffffff"
+                        fontSize="11.5"
+                        fontWeight="800"
+                      >
+                        {s.id}
+                      </text>
+                    </g>
+                  );
+                })}
+                <circle cx="0" cy="0" r="14" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.8" />
+              </g>
+            </g>
           </svg>
         </div>
 
@@ -235,12 +248,12 @@ export function SelectionDemoSVG({
               : 'border-slate-200 bg-slate-50'
           }`}
         >
-          <div className="flex w-full items-center justify-between text-[11px]">
-            <span className="font-semibold text-violet-800">Torneo k = {tournamentK}</span>
-            <span className="font-mono font-semibold text-slate-700">Ganador: {tourneyWinner}</span>
+          <div className="flex w-full items-center justify-between text-xs">
+            <span className="font-bold text-violet-800">Torneo k = {tournamentK}</span>
+            <span className="font-mono font-bold text-slate-800">Ganador: {tourneyWinner}</span>
           </div>
 
-          <svg viewBox="0 0 190 164" className="w-full max-h-[148px]">
+          <svg viewBox="0 0 190 168" className="my-auto w-full flex-1 max-h-[240px]">
             {tourneyContenders.slice(0, tournamentK).map((cid, idx) => {
               const cand = candidates.find((c) => c.id === cid) ?? candidates[0];
               const total = Math.max(1, Math.min(tournamentK, tourneyContenders.length));
@@ -310,9 +323,9 @@ export function SelectionDemoSVG({
 
       {/* Empirical Selection Frequency Bars */}
       <div className="rounded-xl border border-slate-200 bg-slate-50 p-2.5">
-        <div className="mb-1.5 flex items-center justify-between text-[11px] text-slate-600">
+        <div className="mb-1.5 flex items-center justify-between text-xs font-medium text-slate-700">
           <span>Conteo Empírico Acumulado (Ruleta vs. Torneo)</span>
-          <span className="font-mono font-semibold text-slate-700">
+          <span className="font-mono font-bold text-slate-800">
             Muestras: {Object.values(tourneyCounts).reduce((a, b) => a + b, 0)}
           </span>
         </div>
@@ -322,9 +335,9 @@ export function SelectionDemoSVG({
             const tPct = ((tourneyCounts[c.id] ?? 0) / totalTourneySamples) * 100;
             return (
               <div key={c.id} className="rounded-lg border border-slate-200 bg-white p-1.5">
-                <div className="mb-1 flex items-center justify-between font-mono text-[10.5px]">
+                <div className="mb-1 flex items-center justify-between font-mono text-xs">
                   <span className="font-bold text-slate-900">{c.id}</span>
-                  <span className="text-slate-500">f={c.fitness}</span>
+                  <span className="text-slate-600">f={c.fitness}</span>
                 </div>
                 <div className="space-y-1">
                   <div className="h-1.5 overflow-hidden rounded-full bg-slate-200">
@@ -340,7 +353,7 @@ export function SelectionDemoSVG({
                     />
                   </div>
                 </div>
-                <div className="mt-1 flex justify-between font-mono text-[9.5px] font-semibold">
+                <div className="mt-1 flex justify-between font-mono text-[11px] font-bold">
                   <span className="text-amber-700">R:{rouletteCounts[c.id] ?? 0}</span>
                   <span className="text-violet-700">T:{tourneyCounts[c.id] ?? 0}</span>
                 </div>

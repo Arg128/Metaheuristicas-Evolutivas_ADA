@@ -5,13 +5,17 @@ export interface DeckNavigationState {
   direction: 1 | -1;
   isIndexOpen: boolean;
   isNotesOpen: boolean;
+  isShortcutsOpen: boolean;
   isFullscreen: boolean;
+  isHudVisible: boolean;
   goNext: () => void;
   goPrev: () => void;
   goToSlide: (index: number) => void;
   toggleIndex: () => void;
   toggleNotes: () => void;
+  toggleShortcuts: () => void;
   toggleFullscreen: () => void;
+  toggleHud: () => void;
   closeOverlays: () => void;
 }
 
@@ -20,7 +24,9 @@ export function useDeckNavigation(totalSlides: number): DeckNavigationState {
   const [direction, setDirection] = useState<1 | -1>(1);
   const [isIndexOpen, setIsIndexOpen] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
+  const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isHudVisible, setIsHudVisible] = useState(true);
 
   const clampIndex = useCallback(
     (index: number) => Math.max(0, Math.min(totalSlides - 1, index)),
@@ -63,9 +69,18 @@ export function useDeckNavigation(totalSlides: number): DeckNavigationState {
     setIsNotesOpen((prev) => !prev);
   }, []);
 
+  const toggleShortcuts = useCallback(() => {
+    setIsShortcutsOpen((prev) => !prev);
+  }, []);
+
+  const toggleHud = useCallback(() => {
+    setIsHudVisible((prev) => !prev);
+  }, []);
+
   const closeOverlays = useCallback(() => {
     setIsIndexOpen(false);
     setIsNotesOpen(false);
+    setIsShortcutsOpen(false);
   }, []);
 
   const toggleFullscreen = useCallback(() => {
@@ -148,6 +163,17 @@ export function useDeckNavigation(totalSlides: number): DeckNavigationState {
           event.preventDefault();
           toggleIndex();
           break;
+        case 'h':
+        case 'H':
+          event.preventDefault();
+          toggleHud();
+          break;
+        case 'k':
+        case 'K':
+        case '?':
+          event.preventDefault();
+          toggleShortcuts();
+          break;
         case 'Escape':
           closeOverlays();
           break;
@@ -164,8 +190,10 @@ export function useDeckNavigation(totalSlides: number): DeckNavigationState {
     goPrev,
     goToSlide,
     toggleFullscreen,
+    toggleHud,
     toggleIndex,
     toggleNotes,
+    toggleShortcuts,
     totalSlides,
   ]);
 
@@ -174,13 +202,17 @@ export function useDeckNavigation(totalSlides: number): DeckNavigationState {
     direction,
     isIndexOpen,
     isNotesOpen,
+    isShortcutsOpen,
     isFullscreen,
+    isHudVisible,
     goNext,
     goPrev,
     goToSlide,
     toggleIndex,
     toggleNotes,
+    toggleShortcuts,
     toggleFullscreen,
+    toggleHud,
     closeOverlays,
   };
 }

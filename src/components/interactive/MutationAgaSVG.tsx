@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
+import { useSlideKeyboard } from '../../hooks/useSlideKeyboard';
 import { ParameterSlider } from '../ui/ParameterSlider';
 import { createMulberry32 } from '../../utils/prng';
 
@@ -79,16 +80,20 @@ export function MutationAgaSVG({
     setSampleOffset(z * sigma);
   };
 
+  useSlideKeyboard({
+    onAction: executeMutation,
+  });
+
   return (
     <div className="flex h-full min-h-0 flex-col justify-between gap-2.5">
       {/* Header + Action */}
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-violet-700">
+          <span className="text-xs font-bold uppercase tracking-wider text-violet-700">
             Bit-Flip · Gaussiana N(0, σ²) · Modo AGA
           </span>
-          <h3 className="text-base font-bold text-slate-900">
-            Perturbación &amp; Control Adaptativo de Parámetros
+          <h3 className="text-lg font-bold text-black">
+            Perturbación &amp; Control Adaptativo
           </h3>
         </div>
 
@@ -97,33 +102,33 @@ export function MutationAgaSVG({
             type="button"
             onClick={onToggleAga}
             onKeyDown={(e) => e.stopPropagation()}
-            className={`rounded-xl border px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
+            className={`rounded-xl border px-3 py-1.5 text-xs font-bold transition-colors cursor-pointer ${
               agaEnabled
                 ? 'border-amber-500 bg-amber-50 text-amber-800 shadow-xs'
                 : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
-            Modo AGA: {agaEnabled ? 'ON' : 'OFF'}
+            AGA: {agaEnabled ? 'ON' : 'OFF'}
           </button>
           <button
             type="button"
             onClick={executeMutation}
             onKeyDown={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-600 bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-violet-700 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-600 bg-violet-600 px-3 py-1.5 text-xs font-bold text-white shadow-xs hover:bg-violet-700 cursor-pointer"
           >
             <Zap className="h-3.5 w-3.5" />
-            Ejecutar Mutación
+            Mutar
           </button>
         </div>
       </div>
 
       {/* Bit-flip Row */}
-      <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-        <div className="mb-2 flex items-center justify-between text-[11px]">
-          <span className="font-semibold text-violet-700">
-            1. Bit-Flip Discreto (p_m efectivo = {effectivePm.toFixed(2)})
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+        <div className="mb-1.5 flex items-center justify-between text-xs">
+          <span className="font-bold text-violet-700">
+            1. Bit-Flip (p_m = {effectivePm.toFixed(2)})
           </span>
-          <span className="font-mono text-slate-600">
+          <span className="font-mono font-semibold text-slate-700">
             Mutados: {flippedIndices.length > 0 ? flippedIndices.map((i) => `b${i}`).join(', ') : 'ninguno'}
           </span>
         </div>
@@ -136,10 +141,10 @@ export function MutationAgaSVG({
                 initial={wasFlipped ? { scale: 1.18 } : false}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.22 }}
-                className={`flex h-9 items-center justify-center rounded-lg border font-mono text-sm font-bold ${
+                className={`flex h-10 items-center justify-center rounded-lg border font-mono text-base font-bold ${
                   wasFlipped
                     ? 'border-violet-600 bg-violet-600 text-white shadow-xs'
-                    : 'border-slate-200 bg-white text-slate-700'
+                    : 'border-slate-200 bg-white text-slate-800'
                 }`}
               >
                 {b}
@@ -181,7 +186,7 @@ export function MutationAgaSVG({
             strokeWidth="1.2"
             animate={{ cx: sampleX }}
           />
-          <text x="210" y="130" textAnchor="middle" fill="#475569" fontSize="10.5" fontWeight="600">
+          <text x="210" y="130" textAnchor="middle" fill="#334155" fontSize="12" fontWeight="700">
             ε ~ N(0, σ²) · muestra actual ε = {sampleOffset.toFixed(2)}
           </text>
         </svg>
@@ -227,13 +232,13 @@ export function MutationAgaSVG({
             onChange={setPopVariance}
           />
         </div>
-        <div className="col-span-5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-[11px]">
+        <div className="col-span-5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs">
           <div className="flex justify-between">
-            <span className="text-slate-600">p_c adaptado:</span>
+            <span className="font-medium text-slate-700">p_c adaptado:</span>
             <span className="font-mono font-bold text-cyan-700">{effectivePc.toFixed(2)}</span>
           </div>
           <div className="mt-1 flex justify-between">
-            <span className="text-slate-600">p_m adaptado:</span>
+            <span className="font-medium text-slate-700">p_m adaptado:</span>
             <span className="font-mono font-bold text-amber-700">{effectivePm.toFixed(2)}</span>
           </div>
         </div>

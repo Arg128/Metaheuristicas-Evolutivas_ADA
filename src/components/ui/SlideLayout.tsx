@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { Sparkles } from 'lucide-react';
+import { BookOpen, Sparkles } from 'lucide-react';
+import { getCitationsForSlide } from '../../data/references';
 import type { SlideMeta } from '../../types/presentation';
 import { getAccentStyle, getBlockAccent } from '../../utils/accentStyles';
 
@@ -22,94 +23,89 @@ export function SlideLayout({
   const accentStyle = getAccentStyle(accent);
   const slideNumber = String(meta.id).padStart(2, '0');
   const totalNumber = String(totalSlides).padStart(2, '0');
+  const citations = getCitationsForSlide(meta.id, meta.citationIds);
 
   const isCover = variant === 'cover';
   const isFullInteractive = variant === 'full-interactive';
 
-  const containerPadding = isFullInteractive
-    ? 'px-10 pt-14 pb-12'
-    : 'px-14 pt-20 pb-16';
+  const containerPadding = isCover
+    ? 'px-12 pt-14 pb-11'
+    : 'px-12 pt-13 pb-10';
 
   return (
     <div className={`relative flex h-full w-full flex-col ${containerPadding}`}>
-      {!isCover && isFullInteractive ? (
-        <header className="mb-3 shrink-0 border-b border-slate-200 pb-2.5">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex min-w-0 items-center gap-3">
-              <span
-                className={`inline-flex shrink-0 items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold tracking-wide uppercase ${accentStyle.badge}`}
-              >
-                {meta.block}
-              </span>
-              <span className="shrink-0 font-mono text-[11px] font-semibold tracking-widest text-slate-500">
-                DIAPOSITIVA {slideNumber} / {totalNumber}
-              </span>
-              <span className="text-slate-300">·</span>
-              <h1 className="truncate text-2xl font-bold tracking-tight text-slate-900 leading-tight">
-                {meta.title}
-              </h1>
-            </div>
-            <p className="hidden max-w-md shrink-0 truncate text-xs text-slate-600 xl:block">
-              {meta.subtitle}
-            </p>
+      {!isCover ? (
+        <header className={`${isFullInteractive ? 'mb-2.5' : 'mb-3.5'} shrink-0`}>
+          <div className="mb-1.5 flex items-center gap-2.5">
+            <span
+              className={`inline-flex items-center rounded-full border px-3 py-0.5 text-xs font-bold tracking-wide uppercase ${accentStyle.badge}`}
+            >
+              {meta.block}
+            </span>
+            <span className="font-mono text-xs font-semibold tracking-wider text-slate-600">
+              DIAPOSITIVA {slideNumber} / {totalNumber}
+            </span>
           </div>
-        </header>
-      ) : null}
-
-      {!isCover && !isFullInteractive ? (
-        <header className="mb-5 flex shrink-0 items-start justify-between gap-6">
-          <div className="min-w-0 flex-1">
-            <div className="mb-2 flex items-center gap-3">
-              <span
-                className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold tracking-wide uppercase ${accentStyle.badge}`}
-              >
-                {meta.block}
-              </span>
-              <span className="font-mono text-xs font-semibold tracking-widest text-slate-500">
-                DIAPOSITIVA {slideNumber} / {totalNumber}
-              </span>
-            </div>
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900 leading-tight">
-              {meta.title}
-            </h1>
-            <p className="mt-1.5 max-w-5xl text-base text-slate-600 leading-snug">
-              {meta.subtitle}
-            </p>
-          </div>
+          <h1 className="text-[38px] font-extrabold tracking-tight text-black leading-[1.08]">
+            {meta.title}
+          </h1>
+          <p className="mt-1 truncate text-[18px] font-medium text-[#1B365D] leading-snug">
+            {meta.subtitle}
+          </p>
         </header>
       ) : null}
 
       <main
         className={`min-h-0 flex-1 ${
           variant === 'split'
-            ? 'grid grid-cols-12 gap-6 items-stretch'
+            ? 'grid grid-cols-12 gap-5 items-stretch'
             : isFullInteractive
-              ? 'flex flex-col gap-3'
-              : 'flex flex-col gap-5'
+              ? 'flex flex-col gap-2.5'
+              : 'flex flex-col gap-4'
         }`}
       >
         {children}
       </main>
 
-      {keyTakeaway ? (
+      {!isCover && (keyTakeaway || citations.length > 0) ? (
         <footer
           className={`${
-            isFullInteractive ? 'mt-2.5' : 'mt-4'
-          } flex shrink-0 items-center pr-52`}
+            isFullInteractive ? 'mt-2' : 'mt-2.5'
+          } flex shrink-0 flex-col gap-1 border-t border-slate-200/80 pt-2 pr-44`}
         >
-          <div
-            className={`inline-flex max-w-5xl items-center gap-3 rounded-xl border ${
-              isFullInteractive ? 'px-3.5 py-2' : 'px-4 py-2.5'
-            } bg-white/95 shadow-sm shadow-slate-900/5 backdrop-blur-md ${accentStyle.border}`}
-          >
-            <Sparkles className={`h-4 w-4 shrink-0 ${accentStyle.text}`} />
-            <p className="text-sm font-medium text-slate-700 leading-snug">
-              <span className={`mr-1.5 font-semibold ${accentStyle.text}`}>
-                Idea clave:
-              </span>
-              {keyTakeaway}
-            </p>
-          </div>
+          {keyTakeaway ? (
+            <div className="flex min-w-0 items-center gap-2">
+              <Sparkles className={`h-4 w-4 shrink-0 ${accentStyle.text}`} />
+              <p className="truncate text-[14.5px] font-medium text-[#1B365D] leading-snug">
+                <span className={`mr-1.5 font-bold ${accentStyle.text}`}>
+                  Idea clave:
+                </span>
+                {keyTakeaway}
+              </p>
+            </div>
+          ) : null}
+
+          {citations.length > 0 ? (
+            <div className="flex min-w-0 items-center gap-1.5 text-[12.5px] leading-tight text-slate-600">
+              <BookOpen className="h-3.5 w-3.5 shrink-0 text-[#2E64B5]" />
+              <p className="truncate">
+                <span className="mr-1 font-bold text-slate-800">Fuente:</span>
+                {citations.map((c, idx) => (
+                  <span key={c.id}>
+                    {idx > 0 ? <span className="mx-1.5 text-slate-300">·</span> : null}
+                    <span className="font-mono font-bold text-[#2E64B5]">[{c.id}]</span>{' '}
+                    <span className="font-medium text-slate-800">{c.shortCite}</span>,{' '}
+                    <span className="italic">{c.venue}</span>
+                    {c.doi ? (
+                      <span className="text-slate-500"> (doi:{c.doi})</span>
+                    ) : c.url ? (
+                      <span className="text-slate-500"> ({c.url})</span>
+                    ) : null}
+                  </span>
+                ))}
+              </p>
+            </div>
+          ) : null}
         </footer>
       ) : null}
     </div>

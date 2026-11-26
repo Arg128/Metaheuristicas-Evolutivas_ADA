@@ -16,44 +16,44 @@ export function Slide15Complexity({ meta, totalSlides }: SlideProps) {
       meta={meta}
       totalSlides={totalSlides}
       variant="split"
-      keyTakeaway="Aunque memoria y operadores genéticos escalan linealmente en O(N·L), en ingeniería real la evaluación C_fit (CFD/FEA) supera el 90% del tiempo total."
+      keyTakeaway="Memoria y operadores escalan linealmente en O(N·L), pero en ingeniería real la evaluación C_fit (CFD/FEA) supera el 90% del tiempo."
     >
       {/* Left 6 Cols: Space & Time Complexity */}
       <div className="col-span-6 flex flex-col justify-between gap-3">
         <InteractiveCard
           title="Complejidad Espacial: O(N · L)"
-          subtitle="Almacenamiento de población y búfer descendiente"
+          subtitle="Almacenamiento lineal de población"
           badge="Memoria Lineal"
           icon={<HardDrive className="h-5 w-5" />}
           accent="cyan"
         >
-          <p className="text-xs text-slate-700 leading-relaxed">
-            Solo mantiene <MathFormula tex="N" /> cromosomas de longitud <MathFormula tex="L" /> y su vector de aptitud: muy liviano frente a árboles de búsqueda exponenciales.
+          <p className="text-[15.5px] leading-snug text-[#1B365D]">
+            Solo guarda <MathFormula tex="N" /> cromosomas de longitud <MathFormula tex="L" /> y su aptitud, sin árboles exponenciales.
           </p>
         </InteractiveCard>
 
         <InteractiveCard
           title="Complejidad Temporal por Generación"
-          subtitle="Operadores genéticos vs. Función de evaluación"
+          subtitle="Operadores genéticos vs. Función objetivo"
           badge="O(N · C_fit + N · L)"
           icon={<Cpu className="h-5 w-5" />}
           accent="amber"
           active
         >
-          <p className="text-xs text-slate-700 leading-relaxed">
-            Torneo, cruce y mutación cuestan <MathFormula tex="\mathcal{O}(N \cdot L)" />. Sin embargo, el término dominante es{' '}
-            <strong className="text-amber-800">C_fit &gt; 90%</strong> cuando cada individuo dispara una simulación numérica <strong className="text-amber-800">CFD o FEA</strong>.
+          <p className="text-[15.5px] leading-snug text-[#1B365D]">
+            Torneo, cruce y mutación cuestan <MathFormula tex="\mathcal{O}(N \cdot L)" />; el cuello de botella es{' '}
+            <strong className="text-amber-800">C_fit &gt; 90%</strong> en simulaciones <strong className="text-amber-800">CFD o FEA</strong>.
           </p>
         </InteractiveCard>
 
         <InteractiveCard
-          title="Implicación Arquitectónica"
-          subtitle="Paralelismo a nivel de población"
+          title="Paralelismo Poblacional"
+          subtitle="Evaluaciones independientes por generación"
           icon={<Layers className="h-5 w-5" />}
           accent="emerald"
         >
-          <p className="text-xs text-slate-700 leading-relaxed">
-            Como las <MathFormula tex="N" /> evaluaciones de aptitud son independientes dentro de cada generación, el algoritmo se paraleliza trivialmente en clústeres o GPUs.
+          <p className="text-[15.5px] leading-snug text-[#1B365D]">
+            Los <MathFormula tex="N" /> individuos se evalúan en paralelo de forma trivial sobre clústeres o GPUs.
           </p>
         </InteractiveCard>
 
@@ -69,7 +69,7 @@ export function Slide15Complexity({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive ComplexityDonutSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <ComplexityDonutSVG />
       </div>
     </SlideLayout>

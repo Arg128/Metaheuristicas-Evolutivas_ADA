@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MousePointerClick, Pause, Play, RotateCcw, Target, Timer, X } from 'lucide-react';
+import { BookOpen, MousePointerClick, Pause, Play, RotateCcw, Target, Timer, X } from 'lucide-react';
+import { getCitationsForSlide } from '../../data/references';
 import type { SlideMeta } from '../../types/presentation';
 import { getAccentStyle, getBlockAccent } from '../../utils/accentStyles';
 
@@ -36,6 +37,7 @@ export function PresenterNotesModal({
 
   const accent = getBlockAccent(slide.block);
   const accentStyle = getAccentStyle(accent);
+  const citations = getCitationsForSlide(slide.id, slide.citationIds);
 
   return (
     <AnimatePresence>
@@ -48,16 +50,19 @@ export function PresenterNotesModal({
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 460, opacity: 0 }}
           transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed top-14 right-4 bottom-16 z-50 flex w-[min(440px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-amber-300 bg-white/95 shadow-2xl shadow-slate-900/15 backdrop-blur-xl"
+          className="fixed top-14 right-4 bottom-16 z-50 flex w-[min(460px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-amber-300 bg-white/95 shadow-2xl shadow-slate-900/15 backdrop-blur-xl"
         >
           {/* Header */}
           <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-4">
             <div className="min-w-0">
-              <div className="mb-1 flex items-center gap-2">
+              <div className="mb-1 flex flex-wrap items-center gap-2">
                 <span
                   className={`rounded-full border px-2 py-0.5 text-[11px] font-semibold ${accentStyle.badge}`}
                 >
                   {slide.block}
+                </span>
+                <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-bold text-[#1B365D]">
+                  {slide.speaker} ({slide.speakerRange})
                 </span>
                 <span className="font-mono text-xs text-slate-500">
                   {String(slide.id).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
@@ -121,7 +126,7 @@ export function PresenterNotesModal({
           </div>
 
           {/* Scrollable Presenter Content */}
-          <div className="custom-scrollbar flex-1 space-y-5 overflow-y-auto p-5">
+          <div className="custom-scrollbar flex-1 space-y-4 overflow-y-auto p-5">
             <div>
               <div className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-cyan-700">
                 <Target className="h-3.5 w-3.5" />
@@ -152,6 +157,26 @@ export function PresenterNotesModal({
                 <p className="rounded-xl border border-emerald-200 bg-emerald-50/80 p-3 text-sm leading-relaxed text-emerald-900">
                   {slide.interactionHint}
                 </p>
+              </div>
+            ) : null}
+
+            {citations.length > 0 ? (
+              <div>
+                <div className="mb-1.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#2E64B5]">
+                  <BookOpen className="h-3.5 w-3.5" />
+                  <span>Referencias de Esta Diapositiva</span>
+                </div>
+                <div className="space-y-1.5 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-700">
+                  {citations.map((c) => (
+                    <div key={c.id} className="leading-snug">
+                      <span className="font-mono font-bold text-[#2E64B5]">[{c.id}]</span>{' '}
+                      <span className="font-semibold text-slate-900">{c.authors} ({c.year}).</span>{' '}
+                      <span>{c.title}.</span>{' '}
+                      <span className="italic">{c.venue}</span>.
+                      {c.doi ? <span className="text-slate-500"> DOI: {c.doi}</span> : null}
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : null}
           </div>

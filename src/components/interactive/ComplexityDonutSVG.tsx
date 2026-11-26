@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useSlideKeyboard } from '../../hooks/useSlideKeyboard';
 
 type CostProfile = 'analytic' | 'fea' | 'cfd';
+const COST_PROFILES: CostProfile[] = ['analytic', 'fea', 'cfd'];
 
 interface Segment {
   key: string;
@@ -65,6 +67,21 @@ export function ComplexityDonutSVG() {
   const [profile, setProfile] = useState<CostProfile>('fea');
   const active = PROFILE_DATA[profile];
 
+  useSlideKeyboard({
+    onNextState: () =>
+      setProfile((prev) => COST_PROFILES[(COST_PROFILES.indexOf(prev) + 1) % COST_PROFILES.length]),
+    onPrevState: () =>
+      setProfile(
+        (prev) =>
+          COST_PROFILES[
+            (COST_PROFILES.indexOf(prev) - 1 + COST_PROFILES.length) % COST_PROFILES.length
+          ],
+      ),
+    onSelectNumber: (idx) => {
+      if (idx < COST_PROFILES.length) setProfile(COST_PROFILES[idx]);
+    },
+  });
+
   const radius = 64;
   const circumference = 2 * Math.PI * radius;
 
@@ -107,7 +124,7 @@ export function ComplexityDonutSVG() {
             type="button"
             onClick={() => setProfile(btn.id)}
             onKeyDown={(e) => e.stopPropagation()}
-            className={`rounded-xl border px-2.5 py-2 text-xs font-semibold transition-colors cursor-pointer ${
+            className={`rounded-xl border px-2.5 py-2 text-sm font-bold transition-colors cursor-pointer ${
               profile === btn.id
                 ? 'border-amber-500 bg-amber-50 text-amber-900 shadow-xs'
                 : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
@@ -144,21 +161,21 @@ export function ComplexityDonutSVG() {
             <text x="90" y="85" textAnchor="middle" fill="#b45309" fontSize="22" fontWeight="800">
               {active.segments[0].pct}%
             </text>
-            <text x="90" y="104" textAnchor="middle" fill="#475569" fontSize="10.5" fontWeight="600">
+            <text x="90" y="106" textAnchor="middle" fill="#334155" fontSize="12" fontWeight="700">
               Costo C_fit
             </text>
           </svg>
         </div>
 
-        <div className="col-span-7 space-y-1.5 text-xs">
+        <div className="col-span-7 space-y-1.5 text-sm">
           {active.segments.map((seg) => (
             <div
               key={seg.key}
               className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-1.5"
             >
-              <span className="flex items-center gap-2 text-slate-700">
+              <span className="flex items-center gap-2 font-medium text-slate-800">
                 <span
-                  className="inline-block h-2.5 w-2.5 rounded-full"
+                  className="inline-block h-3 w-3 rounded-full"
                   style={{ backgroundColor: seg.color }}
                 />
                 {seg.label}
@@ -170,8 +187,8 @@ export function ComplexityDonutSVG() {
       </div>
 
       {/* Projected Runtime Callout */}
-      <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs">
-        <span className="text-slate-700">{active.note}</span>
+      <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm">
+        <span className="font-medium text-[#1B365D]">{active.note}</span>
         <span className="shrink-0 rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1 font-mono font-bold text-amber-800">
           {active.totalProjected}
         </span>

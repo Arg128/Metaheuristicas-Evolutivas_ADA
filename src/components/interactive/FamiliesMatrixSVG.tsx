@@ -107,8 +107,8 @@ function FamilyMicroSVG({ code, active }: { code: FamilyItem['code']; active: bo
           animate={{ opacity: active ? [0.4, 1, 0.4] : 0.7 }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
-        <text x="90" y="65" textAnchor="middle" fill="#475569" fontSize="8.5" fontWeight="600">
-          Corte de recombinación
+        <text x="90" y="66" textAnchor="middle" fill="#475569" fontSize="10.5" fontWeight="700">
+          Corte de cruce
         </text>
       </svg>
     );
@@ -249,8 +249,8 @@ export function FamiliesMatrixSVG({ selectedCode, onSelectCode }: FamiliesMatrix
     <div className="flex flex-col gap-3">
       {/* Filter Bar */}
       <div className="flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white/95 px-5 py-2.5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
-        <p className="text-xs text-slate-700">
-          Filtra por dominio o selecciona cualquiera de las <strong className="text-slate-900">5 familias</strong> para animar su operador dominante.
+        <p className="text-sm font-medium text-[#1B365D]">
+          Filtra por dominio o elige una de las <strong className="text-black">5 familias</strong> para animar su operador:
         </p>
         <div className="flex shrink-0 items-center gap-2">
           {(
@@ -266,7 +266,7 @@ export function FamiliesMatrixSVG({ selectedCode, onSelectCode }: FamiliesMatrix
               type="button"
               onClick={() => setFilter(item.id)}
               onKeyDown={(e) => e.stopPropagation()}
-              className={`rounded-lg border px-3 py-1 text-xs font-semibold transition-colors cursor-pointer ${
+              className={`rounded-lg border px-3 py-1.5 text-sm font-semibold transition-colors cursor-pointer ${
                 filter === item.id
                   ? 'border-violet-500 bg-violet-50 text-violet-900 shadow-xs'
                   : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
@@ -301,34 +301,34 @@ export function FamiliesMatrixSVG({ selectedCode, onSelectCode }: FamiliesMatrix
               } ${isDimmed ? 'opacity-35' : 'opacity-100'}`}
             >
               <div>
-                <div className="mb-2 flex items-center justify-between gap-2">
+                <div className="mb-1.5 flex items-center justify-between gap-2">
                   <div className={`flex h-8 w-8 items-center justify-center rounded-lg border ${accent.border} ${accent.bgSoft} ${accent.text}`}>
                     <Icon className="h-4 w-4" />
                   </div>
-                  <span className={`rounded-full border px-2 py-0.5 font-mono text-[11px] font-bold ${accent.badge}`}>
+                  <span className={`rounded-full border px-2.5 py-0.5 font-mono text-xs font-bold ${accent.badge}`}>
                     {family.code}
                   </span>
                 </div>
-                <h4 className="text-sm font-bold text-slate-900">{family.name}</h4>
-                <p className="mt-0.5 text-[11px] text-slate-600">{family.domainLabel}</p>
+                <h4 className="text-base font-bold text-black leading-snug">{family.name}</h4>
+                <p className="mt-0.5 text-xs font-medium text-slate-600">{family.domainLabel}</p>
               </div>
 
-              <div className="my-2.5">
+              <div className="my-2">
                 <FamilyMicroSVG code={family.code} active={isSelected} />
               </div>
 
-              <div className="space-y-1.5 text-[11px]">
+              <div className="space-y-1.5 text-[13.5px]">
                 <div className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5">
-                  <span className="block text-[9.5px] font-semibold uppercase tracking-wider text-slate-500">
+                  <span className="block text-[10.5px] font-bold uppercase tracking-wider text-slate-500">
                     Representación
                   </span>
-                  <span className="font-medium text-slate-800">{family.representation}</span>
+                  <span className="font-semibold text-slate-900 leading-snug">{family.representation}</span>
                 </div>
                 <div className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5">
-                  <span className="block text-[9.5px] font-semibold uppercase tracking-wider text-slate-500">
+                  <span className="block text-[10.5px] font-bold uppercase tracking-wider text-slate-500">
                     Operador Dominante
                   </span>
-                  <span className={`font-medium ${accent.text}`}>{family.operator}</span>
+                  <span className={`font-semibold leading-snug ${accent.text}`}>{family.operator}</span>
                 </div>
               </div>
             </motion.button>
@@ -337,7 +337,7 @@ export function FamiliesMatrixSVG({ selectedCode, onSelectCode }: FamiliesMatrix
       </div>
 
       {/* Selected Detail Strip */}
-      <div className="rounded-xl border border-slate-200 bg-white/95 px-4 py-2.5 text-xs text-slate-700 shadow-xs">
+      <div className="rounded-xl border border-slate-200 bg-white/95 px-4 py-2 text-[15px] font-medium text-[#1B365D] shadow-xs">
         <strong className="text-violet-800">
           {selected.code} — {selected.name}:
         </strong>{' '}

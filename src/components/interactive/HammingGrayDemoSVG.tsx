@@ -76,18 +76,18 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
       <div className="grid grid-cols-1 gap-2.5">
         {/* Standard Binary */}
         <div className="rounded-xl border border-rose-200 bg-rose-50/75 p-3">
-          <div className="mb-1.5 flex items-center justify-between text-xs">
-            <span className="font-semibold text-rose-800">Binario Estándar</span>
+          <div className="mb-1.5 flex items-center justify-between text-sm">
+            <span className="font-bold text-rose-800">Binario Estándar</span>
             <span className="font-mono font-bold text-rose-700">
               d_H = {distBin} {distBin >= 3 ? '(Pared de Hamming)' : ''}
             </span>
           </div>
-          <div className="flex items-center justify-between gap-2 font-mono text-base font-bold">
+          <div className="flex items-center justify-between gap-2 font-mono text-lg font-bold">
             <div className="flex gap-1.5">
               {binA.split('').map((b, i) => (
                 <span
                   key={i}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-800"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-800"
                 >
                   {b}
                 </span>
@@ -103,7 +103,7 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
                     initial={changed ? { scale: 1.18 } : false}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.22 }}
-                    className={`flex h-9 w-9 items-center justify-center rounded-lg border ${
+                    className={`flex h-10 w-10 items-center justify-center rounded-lg border ${
                       changed
                         ? 'border-rose-600 bg-rose-600 text-white shadow-xs'
                         : 'border-slate-200 bg-white text-slate-500'
@@ -119,18 +119,18 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
 
         {/* Gray Code */}
         <div className="rounded-xl border border-emerald-200 bg-emerald-50/75 p-3">
-          <div className="mb-1.5 flex items-center justify-between text-xs">
-            <span className="font-semibold text-emerald-800">Código Gray G = B ⊕ (B ≫ 1)</span>
+          <div className="mb-1.5 flex items-center justify-between text-sm">
+            <span className="font-bold text-emerald-800">Código Gray G = B ⊕ (B ≫ 1)</span>
             <span className="font-mono font-bold text-emerald-700">
               d_H = {distGray} (Adyacencia unitaria)
             </span>
           </div>
-          <div className="flex items-center justify-between gap-2 font-mono text-base font-bold">
+          <div className="flex items-center justify-between gap-2 font-mono text-lg font-bold">
             <div className="flex gap-1.5">
               {grayA.split('').map((b, i) => (
                 <span
                   key={i}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-800"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-800"
                 >
                   {b}
                 </span>
@@ -146,7 +146,7 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
                     initial={changed ? { scale: 1.18 } : false}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.22 }}
-                    className={`flex h-9 w-9 items-center justify-center rounded-lg border ${
+                    className={`flex h-10 w-10 items-center justify-center rounded-lg border ${
                       changed
                         ? 'border-emerald-600 bg-emerald-600 text-white shadow-xs'
                         : 'border-slate-200 bg-white text-slate-500'
@@ -163,8 +163,8 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
 
       {/* Neighbor Graph SVG across 0..15 */}
       <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
-        <svg viewBox="0 0 420 74" className="h-[72px] w-full">
-          <text x="12" y="14" fill="#475569" fontSize="9" fontWeight="600">
+        <svg viewBox="0 0 420 74" className="h-[74px] w-full">
+          <text x="12" y="14" fill="#334155" fontSize="10.5" fontWeight="700">
             Grafo de vecindad fenotípica (0 → 15): costo en bits por paso
           </text>
           {Array.from({ length: 16 }, (_, n) => {
@@ -177,17 +177,17 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
                 {n < 15 ? (
                   <line
                     x1={x}
-                    y1="42"
+                    y1="40"
                     x2={x + 25.5}
-                    y2="42"
+                    y2="40"
                     stroke={isCurr ? '#d97706' : edgeDist >= 3 ? '#e11d48' : '#cbd5e1'}
                     strokeWidth={isCurr ? 2.5 : edgeDist >= 3 ? 2 : 1.4}
                   />
                 ) : null}
                 <circle
                   cx={x}
-                  cy="42"
-                  r={isCurr || isNext ? 8.5 : 6}
+                  cy="40"
+                  r={isCurr || isNext ? 9.5 : 7}
                   fill={isCurr ? '#d97706' : isNext ? '#059669' : '#ffffff'}
                   stroke={isCurr ? '#b45309' : isNext ? '#047857' : '#94a3b8'}
                   strokeWidth="1.4"
@@ -196,10 +196,10 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
                 />
                 <text
                   x={x}
-                  y="45"
+                  y="43.5"
                   textAnchor="middle"
-                  fill={isCurr || isNext ? '#ffffff' : '#334155'}
-                  fontSize="8"
+                  fill={isCurr || isNext ? '#ffffff' : '#1e293b'}
+                  fontSize="9"
                   fontWeight="700"
                   className="pointer-events-none"
                 >
@@ -208,7 +208,7 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
               </g>
             );
           })}
-          <text x="210" y="67" textAnchor="middle" fill="#475569" fontSize="9" fontWeight="600">
+          <text x="210" y="67" textAnchor="middle" fill="#334155" fontSize="10.5" fontWeight="700">
             Binario: {distBin} bit{distBin > 1 ? 's' : ''} (p_m^{distBin}) · Gray: 1 bit (p_m^1)
           </text>
         </svg>

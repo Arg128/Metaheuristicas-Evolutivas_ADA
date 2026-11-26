@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FamiliesMatrixSVG } from '../components/interactive/FamiliesMatrixSVG';
 import { MathFormula } from '../components/ui/MathFormula';
 import { SlideLayout } from '../components/ui/SlideLayout';
+import { useSlideKeyboard } from '../hooks/useSlideKeyboard';
 import type { SlideMeta } from '../types/presentation';
 
 export interface SlideProps {
@@ -9,8 +10,23 @@ export interface SlideProps {
   totalSlides: number;
 }
 
+const FAMILY_CODES: ('AG' | 'EE' | 'PE' | 'PG' | 'DE')[] = ['AG', 'EE', 'PE', 'PG', 'DE'];
+
 export function Slide06FiveFamilies({ meta, totalSlides }: SlideProps) {
   const [selectedCode, setSelectedCode] = useState<'AG' | 'EE' | 'PE' | 'PG' | 'DE'>('DE');
+
+  useSlideKeyboard({
+    onNextState: () =>
+      setSelectedCode((prev) => FAMILY_CODES[(FAMILY_CODES.indexOf(prev) + 1) % FAMILY_CODES.length]),
+    onPrevState: () =>
+      setSelectedCode(
+        (prev) =>
+          FAMILY_CODES[(FAMILY_CODES.indexOf(prev) - 1 + FAMILY_CODES.length) % FAMILY_CODES.length],
+      ),
+    onSelectNumber: (idx) => {
+      if (idx < FAMILY_CODES.length) setSelectedCode(FAMILY_CODES[idx]);
+    },
+  });
 
   return (
     <SlideLayout

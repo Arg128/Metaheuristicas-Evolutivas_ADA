@@ -51,7 +51,7 @@ export function MathFormula({
         } ${className}`}
       >
         {label ? (
-          <span className={`text-xs font-semibold uppercase tracking-wider ${accentStyle.text}`}>
+          <span className={`text-xs font-bold uppercase tracking-wider ${accentStyle.text}`}>
             {label}
           </span>
         ) : null}
@@ -62,25 +62,25 @@ export function MathFormula({
 
   return (
     <div
-      className={`rounded-2xl border px-5 py-4 shadow-sm shadow-slate-900/5 backdrop-blur-md transition-colors ${
+      className={`rounded-2xl border px-4 py-2.5 shadow-sm shadow-slate-900/5 backdrop-blur-md transition-colors ${
         highlight
           ? `${accentStyle.activeBorder} bg-white`
           : 'border-slate-200 bg-slate-50/90'
       } ${className}`}
     >
       {label ? (
-        <div className="mb-2 flex items-center gap-2">
+        <div className="mb-1 flex items-center gap-2">
           <span
             className={`inline-block h-2 w-2 rounded-full ${accentStyle.trackBg}`}
             aria-hidden="true"
           />
-          <span className={`text-xs font-semibold uppercase tracking-widest ${accentStyle.text}`}>
+          <span className={`text-xs font-bold uppercase tracking-wider ${accentStyle.text}`}>
             {label}
           </span>
         </div>
       ) : null}
       <div
-        className="overflow-x-auto py-1 text-center text-slate-900"
+        className="overflow-x-auto py-0.5 text-center text-slate-900"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

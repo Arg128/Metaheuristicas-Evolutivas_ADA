@@ -29,7 +29,7 @@ export function InteractiveCard({
   const accentStyle = getAccentStyle(accent);
   const isClickable = Boolean(onClick);
 
-  const sharedClasses = `relative w-full text-left rounded-2xl border p-5 bg-white/95 shadow-sm shadow-slate-900/5 backdrop-blur-md transition-colors ${
+  const sharedClasses = `relative w-full text-left rounded-2xl border p-4 bg-white/95 shadow-sm shadow-slate-900/5 backdrop-blur-md transition-colors ${
     active
       ? accentStyle.activeBorder
       : `border-slate-200 hover:border-slate-300`
@@ -44,10 +44,10 @@ export function InteractiveCard({
         />
       ) : null}
       <div className="relative z-10 flex items-start justify-between gap-3">
-        <div className="flex items-start gap-3.5 min-w-0">
+        <div className="flex items-start gap-3 min-w-0">
           {icon ? (
             <div
-              className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border ${
+              className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border ${
                 active
                   ? `${accentStyle.border} ${accentStyle.bgSoft} ${accentStyle.text}`
                   : 'border-slate-200 bg-slate-50 text-slate-600'
@@ -57,17 +57,19 @@ export function InteractiveCard({
             </div>
           ) : null}
           <div className="min-w-0">
-            <h3 className="text-lg font-semibold tracking-tight text-slate-900 leading-snug">
+            <h3 className="text-[19px] font-bold tracking-tight text-black leading-snug">
               {title}
             </h3>
             {subtitle ? (
-              <p className="mt-0.5 text-sm text-slate-600 leading-snug">{subtitle}</p>
+              <p className="mt-0.5 text-[14px] font-medium text-[#1B365D]/80 leading-snug">
+                {subtitle}
+              </p>
             ) : null}
           </div>
         </div>
         {badge ? (
           <span
-            className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-semibold ${
+            className={`shrink-0 rounded-full border px-2.5 py-0.5 text-xs font-bold ${
               active
                 ? accentStyle.badge
                 : 'border-slate-200 bg-slate-100 text-slate-700'
@@ -77,7 +79,11 @@ export function InteractiveCard({
           </span>
         ) : null}
       </div>
-      {children ? <div className="relative z-10 mt-3.5 text-sm text-slate-700">{children}</div> : null}
+      {children ? (
+        <div className="relative z-10 mt-2 text-[15.5px] leading-snug text-[#1B365D]">
+          {children}
+        </div>
+      ) : null}
     </>
   );
 

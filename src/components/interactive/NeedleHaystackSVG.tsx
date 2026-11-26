@@ -141,7 +141,7 @@ export function NeedleHaystackSVG({
                   strokeDasharray={idx % 2 === 0 ? '4 3' : undefined}
                 />
               ))}
-              <text x={NEEDLE.x} y="24" textAnchor="middle" fill="#047857" fontSize="11" fontWeight="700">
+              <text x={NEEDLE.x} y="24" textAnchor="middle" fill="#047857" fontSize="13" fontWeight="700">
                 Isolíneas guían la selección hacia x*
               </text>
             </>
@@ -156,11 +156,11 @@ export function NeedleHaystackSVG({
                 fill="rgba(225,29,72,0.05)"
                 stroke="rgba(225,29,72,0.3)"
               />
-              <circle cx={NEEDLE.x} cy={NEEDLE.y} r="5.5" fill="#e11d48" stroke="#ffffff" strokeWidth="1.5" />
-              <text x={NEEDLE.x} y={NEEDLE.y - 12} textAnchor="middle" fill="#be123c" fontSize="10.5" fontWeight="700">
+              <circle cx={NEEDLE.x} cy={NEEDLE.y} r="6" fill="#e11d48" stroke="#ffffff" strokeWidth="1.5" />
+              <text x={NEEDLE.x} y={NEEDLE.y - 13} textAnchor="middle" fill="#be123c" fontSize="12.5" fontWeight="700">
                 Aguja x* (sin pista vecina)
               </text>
-              <text x="120" y="42" textAnchor="middle" fill="#475569" fontSize="10.5" fontWeight="600">
+              <text x="126" y="42" textAnchor="middle" fill="#334155" fontSize="12" fontWeight="700">
                 f(x) = constante → P(i) = 1/N
               </text>
             </>
@@ -183,10 +183,10 @@ export function NeedleHaystackSVG({
       </div>
 
       {/* Cross-section profile bar */}
-      <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs text-slate-700">
+      <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-medium text-[#1B365D]">
         {landscape === 'flat'
-          ? 'Meseta plana: cada punto fuera de la aguja recibe idéntica evaluación f(x)=c; el muestreo colapsa a búsqueda aleatoria ciega.'
-          : 'Superficie escalable: las isolíneas proveen correlación espacial aptitud-distancia y permiten convergencia progresiva.'}
+          ? 'Meseta plana: todo punto fuera de la aguja recibe f(x)=c; el muestreo colapsa a búsqueda aleatoria.'
+          : 'Superficie escalable: las isolíneas proveen correlación espacial y permiten convergencia progresiva.'}
       </div>
     </div>
   );

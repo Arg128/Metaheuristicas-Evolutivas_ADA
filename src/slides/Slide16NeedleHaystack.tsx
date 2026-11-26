@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { AlertTriangle, Compass, HelpCircle } from 'lucide-react';
+import { AlertTriangle, HelpCircle } from 'lucide-react';
 import { NeedleHaystackSVG } from '../components/interactive/NeedleHaystackSVG';
 import { InteractiveCard } from '../components/ui/InteractiveCard';
 import { MathFormula } from '../components/ui/MathFormula';
+import { PaperExcerpt, PaperTermHighlight } from '../components/ui/PaperExcerpt';
 import { SlideLayout } from '../components/ui/SlideLayout';
+import { useSlideKeyboard } from '../hooks/useSlideKeyboard';
 import type { SlideMeta } from '../types/presentation';
 
 export interface SlideProps {
@@ -14,67 +16,68 @@ export interface SlideProps {
 export function Slide16NeedleHaystack({ meta, totalSlides }: SlideProps) {
   const [landscape, setLandscape] = useState<'gradient' | 'flat'>('flat');
 
+  useSlideKeyboard({
+    onNextState: () => setLandscape((m) => (m === 'flat' ? 'gradient' : 'flat')),
+    onPrevState: () => setLandscape((m) => (m === 'flat' ? 'gradient' : 'flat')),
+    onSelectNumber: (idx) => {
+      if (idx === 0) setLandscape('flat');
+      if (idx === 1) setLandscape('gradient');
+    },
+  });
+
   return (
     <SlideLayout
       meta={meta}
       totalSlides={totalSlides}
       variant="split"
-      keyTakeaway="Sin correlación espacial ni gradiente implícito de mejora, las metaheurísticas evolutivas pierden su ventaja y colapsan en muestreo aleatorio uniforme."
+      keyTakeaway="Sin correlación aptitud–distancia ni gradiente implícito, ningún optimizador supera al muestreo aleatorio (No Free Lunch)."
     >
-      {/* Left 6 Cols: Theory */}
-      <div className="col-span-6 flex flex-col justify-between gap-3">
+      {/* Left 6 Cols: Theory + No Free Lunch PaperExcerpt */}
+      <div className="col-span-6 flex flex-col gap-3.5">
         <InteractiveCard
-          title="Explosión Combinatoria sin Estructura"
-          subtitle="Cuando el espacio carece de pistas parciales"
-          badge="Límite Teórico"
-          icon={<AlertTriangle className="h-5 w-5" />}
-          accent="amber"
-          active={landscape === 'flat'}
-          onClick={() => setLandscape('flat')}
-        >
-          <p className="text-xs text-slate-700 leading-relaxed">
-            Una metaheurística necesita que soluciones cercanas al óptimo tengan mejor aptitud promedio que soluciones lejanas (correlación aptitud-distancia).
-          </p>
-        </InteractiveCard>
-
-        <InteractiveCard
-          title="Paisajes Planos de Decisión (Correcto / Incorrecto)"
+          title="Paisajes Planos (Correcto / Incorrecto)"
           subtitle="Ausencia total de gradiente implícito"
           badge="Aguja en Pajar"
           icon={<HelpCircle className="h-5 w-5" />}
           accent="rose"
+          active={landscape === 'flat'}
+          onClick={() => setLandscape('flat')}
+          className="flex flex-1 flex-col justify-center"
         >
-          <p className="text-xs text-slate-700 leading-relaxed">
-            Si toda respuesta incorrecta recibe exactamente el mismo puntaje <MathFormula tex="f(x) = c" /> (ej. romper una clave criptográfica exacta), ningún operador puede distinguir qué padre está más cerca.
+          <p className="text-[15.5px] leading-snug text-[#1B365D]">
+            Si toda solución errónea recibe igual puntaje <MathFormula tex="f(x)=c" /> (ej. clave criptográfica), la selección no distingue cercanía al óptimo.
           </p>
         </InteractiveCard>
 
         <InteractiveCard
-          title="Colapso a Búsqueda Aleatoria Uniforme"
-          subtitle="Degradación de la presión selectiva"
-          icon={<Compass className="h-5 w-5" />}
-          accent="cyan"
+          title="Requisito: Correlación Espacial"
+          subtitle="Cuándo funciona la búsqueda evolutiva"
+          badge="Con Gradiente"
+          icon={<AlertTriangle className="h-5 w-5" />}
+          accent="emerald"
           active={landscape === 'gradient'}
           onClick={() => setLandscape('gradient')}
+          className="flex flex-1 flex-col justify-center"
         >
-          <p className="text-xs text-slate-700 leading-relaxed">
-            Al igualarse todas las aptitudes en la meseta, <MathFormula tex="P(i) = 1/N" />: la selección deja de orientar la búsqueda.
+          <p className="text-[15.5px] leading-snug text-[#1B365D]">
+            Las metaheurísticas explotan estructura local: vecinos de buenas soluciones deben promediar mejor aptitud.
           </p>
         </InteractiveCard>
 
-        {meta.keyFormula ? (
-          <MathFormula
-            tex={meta.keyFormula.tex}
-            label={meta.keyFormula.label}
-            block
-            highlight
-            accent="amber"
-          />
-        ) : null}
+        <PaperExcerpt
+          category="Theorem 1 — No Free Lunch (Wolpert & Macready, 1997)"
+          sourceTag="[R14] IEEE TEVC"
+          accentColor="crimson"
+          formulaTex={meta.keyFormula?.tex}
+          equationNumber="(NFL)"
+        >
+          <PaperTermHighlight accentColor="crimson">No Free Lunch!</PaperTermHighlight>{' '}
+          Promediando sobre todas las funciones posibles, ningún algoritmo supera a la búsqueda aleatoria ciega sin aprovechar la estructura del dominio.
+        </PaperExcerpt>
       </div>
 
       {/* Right 6 Cols: Interactive NeedleHaystackSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <NeedleHaystackSVG landscape={landscape} onLandscapeChange={setLandscape} />
       </div>
     </SlideLayout>

@@ -102,7 +102,7 @@ export function SlideIndexMenu({
                               onSelectSlide(index);
                               onClose();
                             }}
-                            className={`flex w-full items-center gap-3 rounded-lg border px-3 py-2 text-left transition-colors cursor-pointer ${
+                            className={`flex w-full items-center gap-2.5 rounded-lg border px-3 py-2 text-left transition-colors cursor-pointer ${
                               isActive
                                 ? `${accentStyle.activeBorder} bg-white text-slate-900`
                                 : 'border-transparent bg-white/70 text-slate-700 hover:border-slate-200 hover:bg-white hover:text-slate-900'

@@ -1,9 +1,11 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Binary, GitBranch, Sliders } from 'lucide-react';
+import { useSlideKeyboard } from '../../hooks/useSlideKeyboard';
 import { ParameterSlider } from '../ui/ParameterSlider';
 
 type CodingMode = 'binary' | 'real' | 'tree';
+const CODING_MODES: CodingMode[] = ['binary', 'real', 'tree'];
 
 interface AstState {
   op: '+' | '*';
@@ -13,6 +15,19 @@ interface AstState {
 
 export function GenotypePhenotypeLab() {
   const [mode, setMode] = useState<CodingMode>('binary');
+
+  useSlideKeyboard({
+    onNextState: () =>
+      setMode((prev) => CODING_MODES[(CODING_MODES.indexOf(prev) + 1) % CODING_MODES.length]),
+    onPrevState: () =>
+      setMode(
+        (prev) =>
+          CODING_MODES[(CODING_MODES.indexOf(prev) - 1 + CODING_MODES.length) % CODING_MODES.length],
+      ),
+    onSelectNumber: (idx) => {
+      if (idx < CODING_MODES.length) setMode(CODING_MODES[idx]);
+    },
+  });
   const [bits, setBits] = useState<number[]>([1, 0, 1, 1, 0, 1]);
   const [r1, setR1] = useState<number>(0.65);
   const [r2, setR2] = useState<number>(0.42);
@@ -112,19 +127,19 @@ export function GenotypePhenotypeLab() {
       <div>
         <div className="flex items-center justify-between gap-2">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-cyan-700">
+            <span className="text-xs font-bold uppercase tracking-wider text-cyan-700">
               Laboratorio Genotipo → Fenotipo
             </span>
-            <h3 className="text-lg font-bold text-slate-900">
+            <h3 className="text-lg font-bold text-black">
               Morfogénesis en Tiempo Real φ(G)
             </h3>
           </div>
-          <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 font-mono text-xs font-semibold text-emerald-800">
+          <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 font-mono text-sm font-bold text-emerald-800">
             f = {decoded.fitness.toFixed(1)}%
           </span>
         </div>
 
-        <div className="mt-2.5 grid grid-cols-3 gap-2">
+        <div className="mt-2 grid grid-cols-3 gap-2">
           {(
             [
               { id: 'binary', label: 'Binaria (6 bits)', icon: Binary },
@@ -140,13 +155,13 @@ export function GenotypePhenotypeLab() {
                 type="button"
                 onClick={() => setMode(item.id)}
                 onKeyDown={(e) => e.stopPropagation()}
-                className={`inline-flex items-center justify-center gap-1.5 rounded-xl border px-2.5 py-2 text-xs font-semibold transition-colors cursor-pointer ${
+                className={`inline-flex items-center justify-center gap-1.5 rounded-xl border px-2.5 py-2 text-xs font-bold transition-colors cursor-pointer ${
                   active
                     ? 'border-cyan-500 bg-cyan-50 text-cyan-900 shadow-xs'
                     : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
-                <Icon className="h-3.5 w-3.5" />
+                <Icon className="h-4 w-4" />
                 {item.label}
               </button>
             );
@@ -156,13 +171,13 @@ export function GenotypePhenotypeLab() {
 
       {/* Genotype Manipulation Area */}
       <div className="rounded-xl border border-cyan-200 bg-cyan-50/70 p-3">
-        <div className="mb-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wider text-cyan-800">
+        <div className="mb-2 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-cyan-800">
           <span>1. Genotipo Manipulable G</span>
-          <span className="font-mono text-slate-700">{decoded.genotypeStr}</span>
+          <span className="font-mono text-sm text-slate-800">{decoded.genotypeStr}</span>
         </div>
 
         {mode === 'binary' ? (
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <div className="grid grid-cols-6 gap-2">
               {bits.map((bit, idx) => (
                 <motion.button
@@ -171,19 +186,19 @@ export function GenotypePhenotypeLab() {
                   whileTap={{ scale: 0.92 }}
                   onClick={() => toggleBit(idx)}
                   onKeyDown={(e) => e.stopPropagation()}
-                  className={`flex h-11 flex-col items-center justify-center rounded-lg border font-mono text-base font-bold transition-colors cursor-pointer ${
+                  className={`flex h-12 flex-col items-center justify-center rounded-lg border font-mono text-lg font-bold transition-colors cursor-pointer ${
                     bit === 1
                       ? 'border-cyan-600 bg-cyan-600 text-white shadow-xs'
-                      : 'border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900'
+                      : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:text-slate-900'
                   }`}
                 >
                   <span>{bit}</span>
-                  <span className="text-[9px] font-normal opacity-80">b{idx}</span>
+                  <span className="text-[10px] font-medium opacity-80">b{idx}</span>
                 </motion.button>
               ))}
             </div>
-            <p className="text-[11px] text-slate-600">
-              Haz clic en cualquier bit para mutar el genotipo y observar el cambio en el ala aerodinámica.
+            <p className="text-xs font-medium text-slate-600">
+              Haz clic en un bit para mutar el genotipo y ver cambiar el perfil alar.
             </p>
           </div>
         ) : null}
@@ -260,11 +275,11 @@ export function GenotypePhenotypeLab() {
       {/* Live SVG Phenotype + Fitness Gauge */}
       <div className="grid min-h-0 flex-1 grid-cols-12 gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
         <div className="col-span-8 flex flex-col justify-between">
-          <div className="flex items-center justify-between text-[11px]">
-            <span className="font-semibold uppercase tracking-wider text-violet-700">
-              2. Fenotipo F = φ(G) · Perfil Aerodinámico
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-bold uppercase tracking-wider text-violet-700">
+              2. Fenotipo F = φ(G)
             </span>
-            <span className="font-mono text-slate-600">{decoded.phenotypeStr}</span>
+            <span className="font-mono font-medium text-slate-700">{decoded.phenotypeStr}</span>
           </div>
 
           <svg viewBox="0 0 320 170" className="w-full flex-1">
@@ -310,7 +325,7 @@ export function GenotypePhenotypeLab() {
 
         {/* Fitness Gauge */}
         <div className="col-span-4 flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-white p-2">
-          <span className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">
+          <span className="mb-1 text-xs font-bold uppercase tracking-wider text-emerald-700">
             3. Aptitud f(φ(G))
           </span>
           <svg viewBox="0 0 96 96" className="h-24 w-24">
@@ -328,14 +343,14 @@ export function GenotypePhenotypeLab() {
               transition={{ type: 'spring', stiffness: 180, damping: 22 }}
               transform="rotate(-90 48 48)"
             />
-            <text x="48" y="48" textAnchor="middle" fill="#0f172a" fontSize="15" fontWeight="800">
+            <text x="48" y="48" textAnchor="middle" fill="#0f172a" fontSize="16" fontWeight="800">
               {decoded.fitness.toFixed(0)}
             </text>
-            <text x="48" y="62" textAnchor="middle" fill="#64748b" fontSize="8.5" fontWeight="600">
+            <text x="48" y="63" textAnchor="middle" fill="#64748b" fontSize="9.5" fontWeight="700">
               / 100 pts
             </text>
           </svg>
-          <span className="mt-1 text-center text-[11px] font-medium text-slate-700">
+          <span className="mt-1 text-center text-xs font-semibold text-slate-700">
             {decoded.fitness >= 82 ? 'Alta eficiencia' : 'Búsqueda activa'}
           </span>
         </div>

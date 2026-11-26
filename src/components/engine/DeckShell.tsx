@@ -5,6 +5,7 @@ import { useViewportScale } from '../../hooks/useViewportScale';
 import type { SlideMeta } from '../../types/presentation';
 import { BottomControls } from './BottomControls';
 import { PresenterNotesModal } from './PresenterNotesModal';
+import { ShortcutsLegendModal } from './ShortcutsLegendModal';
 import { SlideIndexMenu } from './SlideIndexMenu';
 import { TopProgressBar } from './TopProgressBar';
 
@@ -65,10 +66,14 @@ export function DeckShell({ slides, renderSlide }: DeckShellProps) {
         totalSlides={totalSlides}
         isIndexOpen={nav.isIndexOpen}
         isNotesOpen={nav.isNotesOpen}
+        isShortcutsOpen={nav.isShortcutsOpen}
         isFullscreen={nav.isFullscreen}
+        isHudVisible={nav.isHudVisible}
         onToggleIndex={nav.toggleIndex}
         onToggleNotes={nav.toggleNotes}
+        onToggleShortcuts={nav.toggleShortcuts}
         onToggleFullscreen={nav.toggleFullscreen}
+        onToggleHud={nav.toggleHud}
       />
 
       {/* Centered 1600x900 Scaled Presentation Stage */}
@@ -121,6 +126,14 @@ export function DeckShell({ slides, renderSlide }: DeckShellProps) {
         isOpen={nav.isNotesOpen}
         slide={currentSlide}
         totalSlides={totalSlides}
+        onClose={nav.closeOverlays}
+      />
+
+      {/* Keyboard Shortcuts Legend Modal */}
+      <ShortcutsLegendModal
+        isOpen={nav.isShortcutsOpen}
+        currentSlide={currentSlide}
+        slides={slides}
         onClose={nav.closeOverlays}
       />
     </div>

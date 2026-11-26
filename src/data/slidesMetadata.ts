@@ -5,17 +5,19 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 1,
     slug: 'caratula',
     block: 'Fundamentos y Taxonomía',
+    speaker: 'Maritza',
+    speakerRange: '01–05',
     title: 'Metaheurísticas Evolutivas',
-    subtitle:
-      'Análisis y Diseño de Algoritmos · Universidad Nacional de San Agustín (UNSA) · Grupo 7',
+    subtitle: 'Análisis y Diseño de Algoritmos · UNSA · Grupo 7',
     pedagogicalGoal:
-      'Presentar formalmente el tema de exposición, el equipo expositor y el hilo conductor desde los fundamentos estocásticos hasta las aplicaciones en ingeniería.',
+      'Presentar formalmente el tema, el equipo expositor por bloques y el hilo conductor desde fundamentos hasta aplicaciones.',
     speakerScript:
-      'Buenos días con todos. Somos el Grupo 7 del curso de Análisis y Diseño de Algoritmos de la UNSA. Hoy exploraremos las Metaheurísticas Evolutivas: cómo transformar principios poblacionales en algoritmos rigurosos de optimización estocástica capaces de resolver problemas complejos de ingeniería y optimización continua o combinatoria donde los métodos clásicos colapsan.',
+      'Buenos días con todos. Somos el Grupo 7 de Análisis y Diseño de Algoritmos (UNSA). Hoy presentaremos las Metaheurísticas Evolutivas en 4 bloques: Maritza cubrirá fundamentos y representación (1–5); Fredy, las familias evolutivas y operadores (6–10); Jhoans, ejecución y simulador Rastrigin 2D (11–14); y Ángel, complejidad, límites, aplicaciones y referencias (15–20).',
     interactionHint:
-      'Usa las flechas ← → o Barra Espaciadora para avanzar, I para abrir el índice temático, N para mostrar estas notas con cronómetro y F para pantalla completa.',
+      'Usa ← → o Espacio para avanzar, I para el índice por expositor, N para notas y cronómetro, y F para pantalla completa.',
     plannedVisualSummary:
-      'Portada de alto impacto con título, metadatos del curso (ADA - UNSA), espacio reservado para integrantes del Grupo 7, mapa visual de los 5 bloques temáticos y partículas evolutivas SVG en órbita.',
+      'Portada académica clara con título de alto impacto, integrantes del Grupo 7 con sus rangos de diapositivas y partículas orbitales SVG.',
+    citationIds: ['R2'],
     keyFormula: {
       label: 'Optimización Estocástica Poblacional',
       tex: 'P^{(g+1)} = \\mathcal{T}\\!\\left(P^{(g)}\\right), \\quad f: \\mathcal{G} \\rightarrow \\mathbb{R}',
@@ -25,55 +27,61 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 2,
     slug: 'contexto-paradigmas',
     block: 'Fundamentos y Taxonomía',
-    title: 'Algoritmo Exacto vs. Heurística vs. Metaheurística',
-    subtitle:
-      'Por qué la explosión exponencial y los paisajes no derivables exigen búsqueda estocástica poblacional.',
+    speaker: 'Maritza',
+    speakerRange: '01–05',
+    title: 'Exacto vs. Heurística vs. Metaheurística',
+    subtitle: 'Por qué la explosión O(2ⁿ) y paisajes no derivables exigen búsqueda poblacional.',
     pedagogicalGoal:
-      'Contrastar las garantías, velocidad y escalabilidad de los algoritmos exactos, las heurísticas específicas y las metaheurísticas evolutivas.',
+      'Contrastar garantías, necesidad de gradiente y escalabilidad de métodos exactos, heurísticas ad-hoc y metaheurísticas evolutivas.',
     speakerScript:
-      'En problemas complejos de ingeniería y optimización continua o combinatoria, los algoritmos exactos garantizan el óptimo global, pero su costo O(2^n) en instancias NP-duros o su dependencia de gradientes los vuelve inviables. Las heurísticas son veloces, pero específicas de un dominio y sin garantías. Las metaheurísticas evolutivas ofrecen un marco genérico, sin gradiente y poblacional para hallar soluciones cuasi-óptimas en presupuestos computacionales acotados.',
+      'En problemas NP-duros o no derivables, los métodos exactos garantizan el óptimo global pero explotan en O(2^n). Las heurísticas son veloces pero específicas de un dominio y sin garantías. Las metaheurísticas evolutivas ofrecen un marco generalista de caja negra con presupuesto acotado O(g_max · N · C_fit).',
     interactionHint:
-      'Selector interactivo entre los tres paradigmas para comparar complejidad, necesidad de gradiente y escalabilidad sobre un espacio multimodal.',
+      'Haz clic en las 3 tarjetas superiores y desliza n para comparar el crecimiento exponencial O(2^n) frente al presupuesto evolutivo.',
     plannedVisualSummary:
-      'Tabla comparativa interactiva de 3 columnas (Algoritmo Exacto, Heurística, Metaheurística Evolutiva) acoplada a un gráfico comparativo de crecimiento de tiempo de ejecución frente al tamaño del problema.',
+      'Tabla comparativa concisa de 3 paradigmas acoplada a gráfico SVG de crecimiento asintótico.',
+    citationIds: ['R1'],
     keyFormula: {
-      label: 'Barrera Combinatoria en Problemas NP-Duros',
-      tex: 'T_{\\text{exacto}}(n) \\in \\mathcal{O}(2^n) \\quad \\text{vs.} \\quad T_{\\text{evolutivo}}(n, g_{\\max}) \\in \\mathcal{O}(g_{\\max} \\cdot N \\cdot C_{\\text{fit}})',
+      label: 'Barrera Combinatoria en NP-Duros',
+      tex: 'T_{\\text{exacto}}(n) \\in \\mathcal{O}(2^n) \\;\\text{vs.}\\; T_{\\text{AE}}(n, g_{\\max}) \\in \\mathcal{O}(g_{\\max} \\cdot N \\cdot C_{\\text{fit}})',
     },
   },
   {
     id: 3,
     slug: 'taxonomia-metaheuristicas',
     block: 'Fundamentos y Taxonomía',
+    speaker: 'Maritza',
+    speakerRange: '01–05',
     title: 'Taxonomía de las Metaheurísticas',
-    subtitle:
-      'De los métodos de trayectoria única a los algoritmos poblacionales de enjambre y computación evolutiva.',
+    subtitle: 'Trayectoria única frente a enjambre y las cinco ramas de Computación Evolutiva.',
     pedagogicalGoal:
-      'Ubicar formalmente a las cinco ramas de la computación evolutiva (AG, EE, PE, PG y DE) dentro del espectro global de las metaheurísticas.',
+      'Ubicar formalmente AG, EE, PE, PG y DE dentro de las metaheurísticas poblacionales frente a trayectoria única.',
     speakerScript:
-      'No todas las búsquedas heurísticas son iguales. Mientras los métodos de trayectoria única como Simulated Annealing o Tabu Search exploran una única solución punto a punto a lo largo de una vecindad, las metaheurísticas poblacionales mantienen un colectivo de soluciones candidatas. Dentro de ellas distinguimos la Inteligencia de Enjambre (ACO, PSO) y la Computación Evolutiva, conformada por Algoritmos Genéticos (AG), Estrategias Evolutivas (EE), Programación Evolutiva (PE), Programación Genética (PG) y Evolución Diferencial (DE).',
+      'Las búsquedas de trayectoria (Simulated Annealing, Tabu Search) mueven una sola solución por vecindad. Las poblacionales mantienen un colectivo: Inteligencia de Enjambre (ACO, PSO) y Computación Evolutiva (AG, EE, PE, PG y Evolución Diferencial DE). Además podemos conmutar al diagrama clásico de la taxonomía NEOS.',
     interactionHint:
-      'Árbol taxonómico interactivo: haz clic en "Poblacionales" y "Computación Evolutiva" para desplegar AG, EE, PE, PG y DE, o alterna entre vista general y zoom evolutivo.',
+      'Alterna entre el árbol SVG interactivo (con zoom en Computación Evolutiva) y la figura clásica de la taxonomía NEOS.',
     plannedVisualSummary:
-      'Árbol taxonómico SVG desplegable: Metaheurísticas -> Trayectoria (SA, Tabu) vs. Poblacionales -> Enjambre (ACO, PSO) vs. Computación Evolutiva (AG, EE, PE, PG, DE).',
+      'Árbol SVG desplegable con zoom animado y pestaña a la taxonomía clásica NEOS Guide.',
+    citationIds: ['R1', 'R2', 'R3', 'R7'],
   },
   {
     id: 4,
     slug: 'genotipo-fenotipo-aptitud',
     block: 'Fundamentos y Taxonomía',
-    title: 'Dualidad Genotipo vs. Fenotipo y Función de Aptitud',
-    subtitle:
-      'El desacoplamiento entre la codificación matemática manipulable y la solución real evaluada.',
+    speaker: 'Maritza',
+    speakerRange: '01–05',
+    title: 'Genotipo vs. Fenotipo y Aptitud',
+    subtitle: 'Desacople entre codificación manipulable (G) y solución real evaluada (F).',
     pedagogicalGoal:
-      'Comprender el mapeo entre el espacio genotípico y el espacio fenotípico, así como el rol de la función escalar de aptitud.',
+      'Explicar el mapeo φ: G → F y el rol de la función escalar de aptitud f: G → ℝ.',
     speakerScript:
-      'El corazón de un algoritmo evolutivo reside en el desacoplamiento entre genotipo y fenotipo. El algoritmo no manipula directamente el ala aerodinámica ni el circuito físico; manipula su abstracción matemática —cadenas binarias, vectores reales o árboles sintácticos— y luego decodifica cada individuo para medir su calidad mediante la función de aptitud f: G -> R.',
+      'El algoritmo evolutivo no modifica directamente un ala aerodinámica o circuito (fenotipo F); manipula su abstracción matemática (genotipo G: bits, reales o árboles). Luego φ decodifica cada genotipo en fenotipo y f asigna su aptitud escalar.',
     interactionHint:
-      'Edita bits del genotipo o cambia el tipo de codificación (Binaria, Vector Real, Árbol Sintáctico) para observar la actualización instantánea del fenotipo.',
+      'Cambia entre codificación Binaria, Vector Real o Árbol Sintáctico y modifica genes para ver cambiar el perfil alar y la aptitud.',
     plannedVisualSummary:
-      'Pantalla dividida: panel izquierdo con cromosoma manipulable (bits / vector real / árbol) y panel derecho con decodificación visual en tiempo real y medidor de aptitud f(x).',
+      'Definiciones formales a la izquierda y laboratorio interactivo genotipo-fenotipo a la derecha.',
+    citationIds: ['R2', 'R5'],
     keyFormula: {
-      label: 'Mapeo Genotipo-Fenotipo y Evaluación',
+      label: 'Mapeo Genotipo–Fenotipo y Aptitud',
       tex: '\\phi: \\mathcal{G} \\rightarrow \\mathcal{F}, \\qquad f: \\mathcal{G} \\rightarrow \\mathbb{R}',
     },
   },
@@ -81,19 +89,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 5,
     slug: 'exploracion-vs-explotacion',
     block: 'Fundamentos y Taxonomía',
-    title: 'El Dilema: Exploración vs. Explotación',
-    subtitle:
-      'Equilibrio estocástico entre diversificación espacial e intensificación sobre óptimos prometedores.',
+    speaker: 'Maritza',
+    speakerRange: '01–05',
+    title: 'Dilema: Exploración vs. Explotación',
+    subtitle: 'Equilibrio entre diversificación global e intensificación sobre óptimos prometedores.',
     pedagogicalGoal:
-      'Evaluar cómo la presión de selección y la tasa de mutación gobiernan la convergencia prematura frente a la deriva aleatoria.',
+      'Mostrar cómo los extremos de selección y mutación provocan convergencia prematura o deriva aleatoria.',
     speakerScript:
-      'Todo algoritmo evolutivo camina sobre una cuerda floja. Si explotamos demasiado rápido mediante una presión de selección excesiva, la diversidad genética colapsa y la población queda atrapada en el primer óptimo local. Si exploramos en exceso con mutaciones descontroladas, la búsqueda degenera en un paseo aleatorio sin convergencia.',
+      'Como formalizan Črepinšek, Liu y Mernik (2013), todo algoritmo evolutivo equilibra dos fuerzas opuestas: exploración (diversidad vía mutación) y explotación (intensificación vía selección). Exceso de explotación produce convergencia prematura en trampas locales; exceso de exploración degenera en paseo aleatorio.',
     interactionHint:
-      'Desliza el control "Presión de Selección vs. Mutación" para observar en tiempo real cómo las partículas colapsan en un óptimo local o se dispersan sin rumbo.',
+      'Desliza el control para observar la población colapsar en trampas locales, divergir o converger al óptimo global x*.',
     plannedVisualSummary:
-      'Mapa de contorno 2D multimodal interactivo con población de partículas animada y slider continuo que regula el balance exploración/explotación.',
+      'Extracto científico ACM CSUR (2013) + mapa multimodal 2D en vivo con 24 partículas.',
+    citationIds: ['R4'],
     keyFormula: {
-      label: 'Balance de Diversidad Poblacional',
+      label: 'Varianza de Aptitud Poblacional',
       tex: '\\text{Var}\\!\\left(f(P^{(g)})\\right) = \\frac{1}{N}\\sum_{i=1}^{N} \\left(f_i - \\bar{f}\\right)^2',
     },
   },
@@ -101,19 +111,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 6,
     slug: 'cinco-familias-evolutivas',
     block: 'Operadores Evolutivos',
+    speaker: 'Fredy',
+    speakerRange: '06–10',
     title: 'Panorama de las 5 Familias Evolutivas',
-    subtitle:
-      'Comparación estructural de AG, EE, PE, PG y Evolución Diferencial (DE).',
+    subtitle: 'Representación y operador dominante en AG, EE, PE, PG y Evolución Diferencial.',
     pedagogicalGoal:
-      'Diferenciar la representación, el operador dominante y el dominio de aplicación de las cinco ramas canónicas de la computación evolutiva.',
+      'Diferenciar la representación, operador principal y dominio de aplicación de las cinco ramas evolutivas.',
     speakerScript:
-      'Aunque comparten la misma raíz conceptual, las cinco familias evolutivas divergen en su arquitectura interna. Los Algoritmos Genéticos (AG) operan con cadenas binarias y cruce; las Estrategias Evolutivas (EE) optimizan vectores reales con mutación gaussiana auto-adaptativa; la Programación Evolutiva (PE) evoluciona máquinas de estados mediante mutación fenotípica; la Programación Genética (PG) recombina árboles sintácticos ejecutables; y la Evolución Diferencial (DE) perturba vectores reales usando diferencias vectoriales entre individuos de la población.',
+      'Las cinco familias comparten el ciclo selectivo pero divergen en estructura: AG usa cadenas binarias y cruce; EE vectores reales y mutación gaussiana; PE autómatas y mutación fenotípica; PG árboles sintácticos ejecutables; y Evolución Diferencial (DE) combina vectores mediante diferencias poblacionales v_i = x_r1 + F(x_r2 − x_r3).',
     interactionHint:
-      'Filtra por dominio (Discreto, Continuo, Síntesis) y selecciona cada una de las 5 tarjetas (AG, EE, PE, PG, DE) para inspeccionar su estructura animada.',
+      'Filtra por dominio (Discreto, Continuo, Síntesis) y haz clic en cada familia para inspeccionar su micro-diagrama.',
     plannedVisualSummary:
-      'Matriz interactiva de 5 tarjetas (AG, EE, PE, PG, DE) con filtros por dominio y micro-diagramas SVG animados de cadenas binarias, elipsoides gaussianos, autómatas, árboles y vectores diferencia.',
+      'Matriz interactiva de 5 tarjetas con filtros de dominio y micro-SVG animados.',
+    citationIds: ['R5', 'R7'],
     keyFormula: {
-      label: 'Mutación Vectorial en Evolución Diferencial (DE/rand/1)',
+      label: 'Mutación Diferencial (DE/rand/1)',
       tex: '\\mathbf{v}_i = \\mathbf{x}_{r_1} + F \\cdot \\left(\\mathbf{x}_{r_2} - \\mathbf{x}_{r_3}\\right), \\quad F \\in (0, 2]',
     },
   },
@@ -121,19 +133,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 7,
     slug: 'metafora-vs-matematica',
     block: 'Operadores Evolutivos',
-    title: 'Crítica Constructiva: Metáfora Biológica vs. Operador Matemático',
-    subtitle:
-      'Desmitificación formal: distribuciones de probabilidad, operadores vectoriales y Cadenas de Markov.',
+    speaker: 'Fredy',
+    speakerRange: '06–10',
+    title: 'Metáfora Biológica vs. Operador Matemático',
+    subtitle: 'Desmitificación formal: de la retórica bio-inspirada a Cadenas de Markov.',
     pedagogicalGoal:
-      'Traducir la terminología bio-inspirada a su equivalente riguroso en análisis estocástico y optimización matemática.',
+      'Criticar la proliferación de metáforas ("EC-Bestiary") y traducir los términos biológicos a operadores estocásticos.',
     speakerScript:
-      'Debemos desmitificar la disciplina. Más allá de la narrativa biológica, un algoritmo evolutivo no hace magia darwiniana: es un método iterativo de optimización estocástica. La "selección natural" es muestreo probabilístico ponderado; la "mutación y el cruce" son operadores estocásticos de perturbación y mezcla; y la "evolución poblacional" es formalmente una Cadena de Markov no estacionaria sobre distribuciones de probabilidad.',
+      'Sörensen (2015) y el EC-Bestiary de Campelo alertan contra inventar algoritmos basados solo en metáforas animales. Como formaliza Cruz-Duarte et al. (2021), una metaheurística es una tupla modular de operadores estocásticos: la selección es muestreo ponderado, la variación es perturbación vectorial y la evolución es una Cadena de Markov.',
     interactionHint:
-      'Activa el conmutador "Traductor Matemático" para transformar cada término biológico en su definición formal y teorema equivalente.',
+      'Usa el Traductor Matemático o cambia a la pestaña "Evidencia en Literatura" para ver EC-Bestiary y el esquema modular.',
     plannedVisualSummary:
-      'Interfaz "Traductor Matemático" con deslizador continuo que transforma tarjetas de jerga biológica ("Supervivencia del más apto", "Mutación", "Población") en ecuaciones estocásticas y Cadenas de Markov.',
+      'Extracto Sörensen/Cruz-Duarte + traductor interactivo + figuras reales de EC-Bestiary y pipeline sin metáforas.',
+    citationIds: ['R8', 'R9', 'R10'],
     keyFormula: {
-      label: 'Transición Markoviana de Poblaciones',
+      label: 'Propiedad Markoviana Poblacional',
       tex: '\\mathbb{P}\\!\\left(P^{(g+1)} \\mid P^{(g)}, \\dots, P^{(0)}\\right) = \\mathbb{P}\\!\\left(P^{(g+1)} \\mid P^{(g)}\\right)',
     },
   },
@@ -141,19 +155,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 8,
     slug: 'operador-seleccion',
     block: 'Operadores Evolutivos',
+    speaker: 'Fredy',
+    speakerRange: '06–10',
     title: 'Operador de Selección: Ruleta vs. Torneo',
-    subtitle:
-      'Muestreo proporcional a la aptitud frente a competición estocástica con presión modulable.',
+    subtitle: 'Muestreo proporcional a la aptitud frente a competición estocástica modulable.',
     pedagogicalGoal:
-      'Explicar el fundamento probabilístico de la selección por ruleta y cómo el tamaño de torneo k regula la presión selectiva.',
+      'Comparar la sensibilidad a escala de la ruleta frente al torneo de tamaño k.',
     speakerScript:
-      'El operador de selección concentra el presupuesto computacional en las regiones más prometedoras. En la selección por ruleta, cada individuo i tiene una probabilidad proporcional a su aptitud relativa P(i) = f_i / sum(f_j), lo cual puede sufrir cuando hay súper-individuos. En cambio, la selección por torneo enfrenta a k candidatos aleatorios y elige al mejor: incrementando k modulamos directamente la presión selectiva sin depender de escalas absolutas.',
+      'La ruleta proporcional asigna P(i) = f_i / Σf_j, lo que falla si un súper-individuo domina la suma. El torneo toma k candidatos al azar y elige al mejor: como muestran Blickle y Thiele (1996), aumentar k incrementa directamente la presión selectiva y es invariante a desplazamientos o escalados de f.',
     interactionHint:
-      'Ajusta el tamaño de torneo k y lanza simulaciones de muestreo para comparar ruleta proporcional y torneo.',
+      'Pulsa "Muestrear Padre" y ajusta el tamaño k del torneo para comparar frecuencias empíricas entre Ruleta y Torneo.',
     plannedVisualSummary:
-      'Panel dual interactivo: ruleta circular proporcional animada frente a llaves de torneo estocástico de tamaño k configurable.',
+      'Extracto Blickle & Thiele (1996) + simulador dual ruleta SVG vs. llaves de torneo k.',
+    citationIds: ['R6', 'R10', 'R11'],
     keyFormula: {
-      label: 'Probabilidad de Selección Proporcional (Ruleta)',
+      label: 'Selección Proporcional (Ruleta)',
       tex: 'P(i) = \\frac{f_i}{\\sum_{j=1}^{N} f_j}',
     },
   },
@@ -161,19 +177,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 9,
     slug: 'operador-recombinacion',
     block: 'Operadores Evolutivos',
-    title: 'Operador de Recombinación (Cruce) y Teorema del Esquema',
-    subtitle:
-      'Cruce en 1 punto, 2 puntos y uniforme como motor de ensamblaje de bloques de construcción.',
+    speaker: 'Fredy',
+    speakerRange: '06–10',
+    title: 'Recombinación (Cruce) y Teorema del Esquema',
+    subtitle: 'Cruce en 1 punto, 2 puntos y uniforme para ensamblar bloques de construcción.',
     pedagogicalGoal:
-      'Mostrar cómo el cruce recombina esquemas cortos de bajo orden y explicar la Hipótesis del Bloque de Construcción de Holland y Goldberg.',
+      'Explicar el cruce cromosómico y la cota inferior del Teorema del Esquema de Holland.',
     speakerScript:
-      'La recombinación es el motor de ensamblaje de los Algoritmos Genéticos. Su objetivo es tomar "bloques de construcción" —esquemas cortos, de bajo orden y aptitud superior a la media— presentes en dos padres distintos y combinarlos en descendientes potencialmente superiores, tal como formaliza el Teorema del Esquema de Holland.',
+      'El cruce combina segmentos de dos progenitores para ensamblar bloques de construcción cortos y de alta aptitud (Goldberg, 1989). El Teorema del Esquema de Holland acota el crecimiento esperado de un esquema H en función de su longitud definitoria δ(H) y orden o(H). Además puedes abrir la Definición 15 literal del paper de Cruz-Duarte et al. (2021).',
     interactionHint:
-      'Alterna entre cruce de 1 punto, 2 puntos y uniforme y pulsa "Ejecutar Recombinación" para visualizar la herencia cromosómica.',
+      'Alterna entre 1 Punto, 2 Puntos y Uniforme, ejecuta recombinación, o pulsa "Ver Def. 15 (Paper SWEVO)".',
     plannedVisualSummary:
-      'Simulación cromosómica paso a paso con dos progenitores en colores contrastantes, puntos de corte dinámicos y resaltado de bloques de construcción preservados.',
+      'Extracto del Teorema del Esquema + simulador cromosómico interactivo + recorte literal SWEVO Def. 15.',
+    citationIds: ['R5', 'R6', 'R10'],
     keyFormula: {
-      label: 'Cota Inferior del Teorema del Esquema de Holland',
+      label: 'Teorema del Esquema (Holland)',
       tex: '\\mathbb{E}[m(H, g+1)] \\ge m(H, g)\\frac{\\bar{f}(H)}{\\bar{f}}\\left[1 - p_c\\frac{\\delta(H)}{L-1} - o(H)p_m\\right]',
     },
   },
@@ -181,19 +199,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 10,
     slug: 'operador-mutacion-agas',
     block: 'Operadores Evolutivos',
-    title: 'Mutación, Ergodicidad y Algoritmos Adaptativos (AGAs)',
-    subtitle:
-      'Perturbación binaria o gaussiana para garantizar accesibilidad global y ajuste dinámico de parámetros.',
+    speaker: 'Fredy',
+    speakerRange: '06–10',
+    title: 'Mutación, Ergodicidad y AGAs',
+    subtitle: 'Perturbación discreta o gaussiana y control adaptativo de p_c y p_m.',
     pedagogicalGoal:
-      'Demostrar por qué la mutación garantiza la ergodicidad de la cadena de Markov evolutiva y cómo los AGAs adaptan p_c y p_m.',
+      'Demostrar que la mutación garantiza ergodicidad y explicar el ajuste adaptativo de Srinivas y Patnaik.',
     speakerScript:
-      'La mutación aplica perturbaciones estocásticas: inversión bit a bit con probabilidad p_m en representaciones discretas, o ruido Gaussiano N(0, sigma^2) en espacios reales. Matemáticamente, asegura la ergodicidad del algoritmo al evitar que la probabilidad de transición entre dos estados sea cero. Además, los Algoritmos Genéticos Adaptativos (AGAs) ajustan p_c y p_m en tiempo real según la dispersión de la aptitud.',
+      'La mutación aplica bit-flip con tasa p_m o ruido gaussiano N(0, σ²I). Garantiza ergodicidad: cualquier estado es alcanzable con probabilidad positiva. Además, en los AGAs de Srinivas y Patnaik (1994), cuando cae la varianza de aptitud, el algoritmo eleva p_m y reduce p_c automáticamente para evitar estancarse.',
     interactionHint:
-      'Modifica p_m o sigma y activa el modo adaptativo (AGA) para ver cómo reacciona la varianza de la población.',
+      'Activa/desactiva Modo AGA y mueve la varianza poblacional o σ para ver el reajuste automático de p_c y p_m.',
     plannedVisualSummary:
-      'Comparador visual de mutación bit-flip y distribución Gaussiana N(0, sigma^2) con indicador de ergodicidad y curva adaptativa de p_m.',
+      'Extracto Rudolph/Srinivas & Patnaik + simulador bit-flip, campana gaussiana y control AGA.',
+    citationIds: ['R10', 'R12', 'R13'],
     keyFormula: {
-      label: 'Perturbación Gaussiana en Espacios Continuos',
+      label: 'Perturbación Gaussiana Continua',
       tex: "\\mathbf{x}' = \\mathbf{x} + \\boldsymbol{\\varepsilon}, \\qquad \\boldsymbol{\\varepsilon} \\sim \\mathcal{N}(\\mathbf{0}, \\sigma^2 \\mathbf{I})",
     },
   },
@@ -201,19 +221,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 11,
     slug: 'elitismo-y-parada',
     block: 'Operadores Evolutivos',
+    speaker: 'Jhoans',
+    speakerRange: '11–14',
     title: 'Elitismo y Criterios de Parada',
-    subtitle:
-      'Conservación monótona de la mejor aptitud frente a la pérdida estocástica y condiciones de término.',
+    subtitle: 'Convergencia monótona de la mejor solución y límites del ciclo evolutivo.',
     pedagogicalGoal:
-      'Ilustrar el rol del elitismo como trinquete de seguridad y sistematizar los criterios de detención del ciclo evolutivo.',
+      'Explicar el teorema de Rudolph sobre elitismo y los tres criterios canónicos de parada.',
     speakerScript:
-      'Sin elitismo, el azar del cruce y la mutación puede destruir la mejor solución hallada hasta el momento. Al preservar intactos los E mejores individuos hacia la siguiente generación, garantizamos una trayectoria monótona no decreciente de la mejor aptitud. Finalmente, el algoritmo se detiene al alcanzar un límite generacional g_max, detectar una meseta de convergencia o agotar el presupuesto temporal.',
+      'Rudolph (1994) demostró mediante Cadenas de Markov que un AG canónico sin elitismo no converge al óptimo global porque el cruce y la mutación pueden destruir al mejor individuo. Preservar los E mejores garantiza monotonicidad. El ciclo termina por límite generacional g_max, meseta Δf < ε o presupuesto temporal t_max.',
     interactionHint:
-      'Alterna el conmutador Elitismo ON/OFF para observar en la curva de aptitud cómo la ausencia de elitismo degrada temporalmente al mejor individuo.',
+      'Conmuta Elitismo ON/OFF y genera nuevas semillas para comparar la escalera monótona frente a las caídas estocásticas.',
     plannedVisualSummary:
-      'Gráfico SVG temporal (Aptitud Máxima vs. Aptitud Promedio) con toggle Elitismo ON/OFF mostrando caídas en la curva sin elitismo vs. escalera monótona con elitismo.',
+      'Teorema de Rudolph (1994) + tres criterios de parada + curva animada Elitismo ON/OFF.',
+    citationIds: ['R13'],
     keyFormula: {
-      label: 'Propiedad Monótona bajo Elitismo (Minimización)',
+      label: 'Monotonicidad Elitista (Minimización)',
       tex: 'f\\!\\left(x_{\\text{best}}^{(g+1)}\\right) \\le f\\!\\left(x_{\\text{best}}^{(g)}\\right) \\quad \\forall\\, g \\ge 0',
     },
   },
@@ -221,19 +243,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 12,
     slug: 'pseudocodigo-estandarizado',
     block: 'Operadores Evolutivos',
+    speaker: 'Jhoans',
+    speakerRange: '11–14',
     title: 'Pseudocódigo Base Estandarizado',
-    subtitle:
-      'Estructura canónica en 12 líneas que integra inicialización, operadores estocásticos y reemplazo elitista.',
+    subtitle: 'Estructura trazable en 12 líneas lista para depuración visual en Rastrigin 2D.',
     pedagogicalGoal:
-      'Consolidar el flujo completo de una metaheurística evolutiva en un pseudocódigo limpio y trazable paso a paso.',
+      'Consolidar inicialización, selección, cruce, mutación, evaluación y reemplazo elitista en 12 líneas.',
     speakerScript:
-      'Aquí consolidamos todos los operadores vistos en un pseudocódigo estándar de 12 líneas. Partimos de una población inicial aleatoria, la evaluamos e inicializamos el contador generacional g <- 0. Dentro del bucle principal encadenamos selección por torneo, cruce, mutación, evaluación de descendientes y reemplazo elitista hasta satisfacer el criterio de parada. Este mismo código será el depurador vivo en el simulador de la siguiente diapositiva.',
+      'Todo algoritmo evolutivo estándar se resume en estas 12 líneas: inicializamos N individuos, evaluamos su aptitud y entramos al bucle hasta el criterio de parada ejecutando torneo, cruce, mutación, evaluación y reemplazo elitista. Este mismo flujo será el depurador en vivo en la siguiente diapositiva.',
     interactionHint:
-      'Pasa el cursor o selecciona cualquiera de las 12 líneas para inspeccionar su rol algorítmico y su complejidad por iteración.',
+      'Haz clic o pasa el cursor sobre cualquiera de las 12 líneas para inspeccionar su operador, complejidad y efecto visual.',
     plannedVisualSummary:
-      'Bloque de pseudocódigo numerado de 12 líneas con resaltado sintáctico por fase (Inicialización, Selección, Cruce, Mutación, Evaluación, Elitismo) y diagramas de flujo laterales.',
+      'Bloque interactivo de 12 líneas con inspector matemático y efecto mapeado al simulador.',
+    citationIds: ['R2', 'R10'],
     keyFormula: {
-      label: 'Inicialización de Contador Generacional',
+      label: 'Bucle Generacional Acotado',
       tex: 'g \\leftarrow 0, \\quad \\text{mientras } g < g_{\\max} \\text{ hacer } g \\leftarrow g + 1',
     },
   },
@@ -241,19 +265,21 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 13,
     slug: 'simulador-rastrigin-2d',
     block: 'Simulación y Comparativa',
-    title: 'Simulador Interactivo Rastrigin 2D + Pseudocódigo',
-    subtitle:
-      'Depuración visual línea por línea sobre un paisaje multimodal en [-5.12, 5.12]^2.',
+    speaker: 'Jhoans',
+    speakerRange: '11–14',
+    title: 'Simulador Rastrigin 2D + Pseudocódigo',
+    subtitle: 'Depuración línea por línea sobre paisaje multimodal [-5.12, 5.12]² con Mulberry32.',
     pedagogicalGoal:
-      'Observar en tiempo real cómo cada línea del pseudocódigo transforma la distribución espacial de la población sobre Rastrigin 2D.',
+      'Visualizar en tiempo real cómo cada operador mueve la población hacia el óptimo global (0,0).',
     speakerScript:
-      'Pasemos de la teoría a la dinámica viva. A la izquierda tenemos las 12 líneas del pseudocódigo y a la derecha el plano cartesiano [-5.12, 5.12]^2 de la función multimodal de Rastrigin 2D, cuyo óptimo global está en (0,0) rodeado de decenas de trampas locales. Observen cómo el torneo, la interpolación del cruce, los saltos violetas de mutación y el halo dorado del elitismo guían la convergencia usando PRNG determinista Mulberry32.',
+      'Aquí vemos las 12 líneas ejecutándose en vivo sobre Rastrigin 2D, cuyo óptimo global está en (0,0) rodeado de decenas de mínimos locales. Observen los destellos del torneo en línea 5, la interpolación del cruce en línea 6, los saltos gaussianos violetas en línea 7 y el halo dorado elitista en línea 9 usando semilla determinista Mulberry32.',
     interactionHint:
-      'Usa Play/Pausa o Paso a Paso, cambia N, p_m, p_c, Elitismo y Velocidad en tiempo real, y observa el resaltado sincronizado de línea.',
+      'Usa Play, Paso o +1 Gen y ajusta N, p_m, p_c, Elitismo y Velocidad en tiempo real.',
     plannedVisualSummary:
-      'Módulo estelar dividido: pseudocódigo interactivo de 12 líneas sincronizado con lienzo cartesiano SVG/Canvas Rastrigin 2D, gráfica de convergencia y sliders en vivo.',
+      'Depurador sincronizado de 12 líneas a la izquierda y mapa topográfico 2D + curva de convergencia a la derecha.',
+    citationIds: ['R13'],
     keyFormula: {
-      label: 'Función Multimodal de Rastrigin 2D',
+      label: 'Rastrigin 2D',
       tex: 'f(x, y) = 20 + x^2 + y^2 - 10\\left(\\cos(2\\pi x) + \\cos(2\\pi y)\\right)',
     },
   },
@@ -261,39 +287,43 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 14,
     slug: 'carrera-ag-vs-exacto',
     block: 'Simulación y Comparativa',
-    title: 'Carrera en Vivo: Algoritmo Genético vs. Búsqueda Exacta',
-    subtitle:
-      'Comparativa empírica de evaluaciones y convergencia sobre el mismo espacio continuo Rastrigin 2D.',
+    speaker: 'Jhoans',
+    speakerRange: '11–14',
+    title: 'Carrera en Vivo: Genético vs. Grilla Exacta',
+    subtitle: 'Ahorro empírico de evaluaciones frente al barrido exhaustivo en Rastrigin 2D.',
     pedagogicalGoal:
-      'Demostrar cuantitativamente la ventaja en costo de evaluaciones de una búsqueda evolutiva guiada frente a una grilla exhaustiva.',
+      'Demostrar cuantitativamente la reducción de evaluaciones del AG frente a una cuadrícula exhaustiva.',
     speakerScript:
-      'Para cuantificar el ahorro computacional, enfrentamos en vivo a nuestro Algoritmo Genético contra una búsqueda exacta por grilla exhaustiva en el mismo espacio [-5.12, 5.12]^2. Mientras la grilla debe barrer sistemáticamente miles de celdas sin memoria de calidad previa, el algoritmo evolutivo concentra rápidamente sus evaluaciones alrededor de las cuencas de menor energía.',
+      'Enfrentamos al Algoritmo Genético contra una búsqueda exacta por cuadrícula sobre el mismo dominio. Mientras la malla debe visitar miles de celdas sin memoria previa —creciendo como ((b−a)/Δ)^D en D dimensiones—, el AG concentra evaluaciones en las mejores cuencas y encuentra soluciones de alta calidad en una fracción mínima de evaluaciones.',
     interactionHint:
-      'Inicia la carrera simultánea y compara el contador de evaluaciones de aptitud y el mejor f(x,y) encontrado por ambos métodos.',
+      'Cambia la resolución de malla (40×40, 80×80, 160×160) y pulsa Iniciar para observar el factor de ahorro en vivo.',
     plannedVisualSummary:
-      'Doble lienzo sincronizado lado a lado: barrido sistemático de grilla exhaustiva vs. enjambre poblacional evolutivo, con marcadores de evaluaciones y mejor aptitud en vivo.',
+      'Arena dual sincronizada: barrido exhaustivo de grilla vs. población evolutiva convergente.',
+    citationIds: ['R1'],
     keyFormula: {
-      label: 'Costo de Grilla Exhaustiva en D Dimensiones',
-      tex: 'N_{\\text{eval, grilla}} = \\left(\\frac{b - a}{\\Delta}\\right)^D',
+      label: 'Evaluaciones en Grilla D-Dim',
+      tex: 'N_{\\text{grilla}} = \\left(\\frac{b - a}{\\Delta}\\right)^D',
     },
   },
   {
     id: 15,
     slug: 'analisis-complejidad',
     block: 'Análisis y Límites',
+    speaker: 'Ángel',
+    speakerRange: '15–20',
     title: 'Análisis de Complejidad Computacional',
-    subtitle:
-      'Complejidad espacial O(N·L), temporal por generación y el cuello de botella dominante C_fit.',
+    subtitle: 'Memoria O(N·L), tiempo O(N·C_fit + N·L) y el cuello de botella C_fit.',
     pedagogicalGoal:
-      'Desglosar formalmente el costo algorítmico por generación e identificar que la evaluación de aptitud domina el tiempo real.',
+      'Desglosar el costo espacial/temporal y mostrar por qué C_fit domina el cómputo en ingeniería.',
     speakerScript:
-      'Desde el punto de vista algorítmico, almacenar una población de N individuos de longitud L cuesta O(N·L) en memoria, y los operadores genéticos por generación toman apenas tiempo lineal O(N·L). El verdadero cuello de botella computacional es C_fit: cuando evaluar un candidato implica ejecutar simulaciones de dinámica de fluidos (CFD) o elementos finitos (FEA), la evaluación supera el 90% del tiempo total.',
+      'En memoria solo almacenamos N individuos de longitud L: O(N·L). Los operadores genéticos por generación también son lineales O(N·L). El cuello de botella real es el costo de evaluar la aptitud C_fit: cuando cada individuo requiere una simulación de elementos finitos (FEA) o dinámica de fluidos (CFD), C_fit supera el 90% del tiempo total.',
     interactionHint:
-      'Cambia el perfil de costo de C_fit (analítica simple vs. FEA vs. CFD) para observar cómo cambia la proporción del gráfico de dona y el tiempo proyectado.',
+      'Cambia entre Analítica O(1), FEA Media y CFD Intensiva para ver cómo C_fit domina el gráfico de dona.',
     plannedVisualSummary:
-      'Gráfico circular tipo dona SVG desglosando Inicialización, Selección, Cruce, Mutación y Evaluación C_fit, junto a selector de complejidad de simulación.',
+      'Tarjetas de complejidad + gráfico de dona interactivo con perfiles analítico, FEA y CFD.',
+    citationIds: ['R1', 'R2'],
     keyFormula: {
-      label: 'Complejidad Temporal por Generación',
+      label: 'Tiempo por Generación',
       tex: 'T_{\\text{gen}} \\in \\mathcal{O}\\!\\left(N \\cdot C_{\\text{fit}} + N \\cdot L\\right)',
     },
   },
@@ -301,76 +331,102 @@ export const SLIDES_METADATA: SlideMeta[] = [
     id: 16,
     slug: 'limites-paisaje-plano',
     block: 'Análisis y Límites',
-    title: 'Límites Operativos: Paisaje Plano ("Aguja en un Pajar")',
-    subtitle:
-      'Por qué en funciones de decisión binaria limpia sin gradiente implícito la evolución colapsa.',
+    speaker: 'Ángel',
+    speakerRange: '15–20',
+    title: 'Límites: Paisaje Plano y No Free Lunch',
+    subtitle: 'Sin correlación aptitud–distancia ni señal diferencial, la evolución colapsa.',
     pedagogicalGoal:
-      'Evidenciar que los algoritmos evolutivos requieren correlación espacial de aptitud y fallan sobre mesetas completamente planas.',
+      'Evidenciar el límite teórico (Teorema NFL y paisajes planos tipo "Aguja en un Pajar").',
     speakerScript:
-      'Los algoritmos evolutivos no son mágicos. Si el paisaje de aptitud no ofrece ningún gradiente implícito de mejora —como un problema de decisión binaria limpia Correcto/Incorrecto o una aguja en un pajar—, todas las soluciones fuera del punto objetivo tienen exactamente la misma aptitud. Sin señal diferencial, la selección no puede guiar a la población y el algoritmo colapsa en una búsqueda aleatoria ciega.',
+      'Ninguna metaheurística es universal. Por el Teorema No Free Lunch de Wolpert y Macready (1997), promediando sobre todas las funciones posibles todos los algoritmos rinden igual. En un paisaje plano ("aguja en un pajar", como descifrar una clave exacta), todo fallo tiene la misma aptitud f(x)=c y la selección se reduce a búsqueda aleatoria ciega.',
     interactionHint:
-      'Alterna entre "Superficie Escalable" y "Paisaje Plano Sin Gradiente" para observar cómo la población pasa de converger a vagar erráticamente.',
+      'Alterna entre "Con Gradiente" y "Paisaje Plano" para observar cómo las partículas pasan de converger a vagar sin rumbo.',
     plannedVisualSummary:
-      'Visualizador comparativo 2D de isolíneas y perfil transversal: paisaje con gradiente guía vs. meseta plana con una única aguja estrecha.',
+      'Extracto formal No Free Lunch (1997) + simulador 2D de paisaje escalable vs. meseta plana.',
+    citationIds: ['R14'],
     keyFormula: {
-      label: 'Colapso por Ausencia de Señal Diferencial',
-      tex: 'f(\\mathbf{x}) = c \\;\\forall\\, \\mathbf{x} \\neq \\mathbf{x}^* \\implies P(i) = \\frac{1}{N} \\;\\text{(muestreo uniforme)}',
+      label: 'Colapso en Meseta Plana',
+      tex: 'f(\\mathbf{x}) = c \\;\\forall\\, \\mathbf{x} \\neq \\mathbf{x}^* \\implies P(i) = \\frac{1}{N}',
     },
   },
   {
     id: 17,
     slug: 'paredes-hamming-codigo-gray',
     block: 'Análisis y Límites',
-    title: 'Paredes de Hamming y Solución con Código Gray',
-    subtitle:
-      'Cómo evitar barreras de mutación destructivas entre enteros adyacentes en codificación binaria.',
+    speaker: 'Ángel',
+    speakerRange: '15–20',
+    title: 'Paredes de Hamming y Código Gray',
+    subtitle: 'Cómo evitar barreras de mutación entre enteros contiguos en binario.',
     pedagogicalGoal:
-      'Explicar el fenómeno de las paredes de Hamming en binario estándar (7 -> 8) y demostrar cómo el Código Gray garantiza adyacencia de 1 bit.',
+      'Demostrar la transición crítica 7→8 (4 bits) en binario frente a d_H = 1 en Código Gray.',
     speakerScript:
-      'Un problema clásico en representaciones binarias enteras son las paredes de Hamming. Pasar de 7 (0111) a 8 (1000) exige invertir los 4 bits simultáneamente: una distancia de Hamming de 4 que bloquea mutaciones simples. La codificación Gray resuelve esta barrera garantizando que dos enteros consecutivos difieran exactamente en un único bit, restaurando la continuidad del vecindario genotípico.',
+      'En binario natural, pasar de 7 (0111) a 8 (1000) exige mutar los 4 bits a la vez (probabilidad p_m^4): una pared de Hamming. Como analizó Whitley (1999), el Código Gray G = B ⊕ (B >> 1) garantiza que cualquier par de enteros adyacentes difiera en exactamente 1 bit (d_H = 1), eliminando estas barreras locales.',
     interactionHint:
-      'Recorre el selector entero de 0 a 15 para comparar las transiciones de bits y la distancia de Hamming entre Binario Estándar y Código Gray.',
+      'Pulsa "Ver Salto Crítico 7 → 8" o recorre B de 0 a 14 para comparar bits modificados entre Binario y Gray.',
     plannedVisualSummary:
-      'Comparador interactivo bit a bit entre Binario Natural y Código Gray con resaltado de bits que cambian en la transición 7 (0111) -> 8 (1000) vs. (0100) -> (1100).',
+      'Extracto Whitley (1999) + comparador interactivo bit a bit y grafo de vecindad 0..15.',
+    citationIds: ['R15'],
     keyFormula: {
-      label: 'Conversión Binario a Código Gray y Transición Crítica',
-      tex: 'G = B \\oplus (B \\gg 1), \\qquad d_H(0111_2,\\, 1000_2) = 4 \\;\\text{vs.}\\; d_H^{\\text{Gray}}(7, 8) = 1',
+      label: 'Transformación Binario → Gray',
+      tex: 'G = B \\oplus (B \\gg 1), \\qquad d_H(0111_2, 1000_2) = 4 \\;\\text{vs.}\\; d_H^{\\text{Gray}}(7, 8) = 1',
     },
   },
   {
     id: 18,
     slug: 'casos-reales-ingenieria',
     block: 'Aplicaciones y Cierre',
+    speaker: 'Ángel',
+    speakerRange: '15–20',
     title: 'Casos Reales en Ingeniería y Ciencia',
-    subtitle:
-      'Aeroespacial (NASA ST5), Automotriz (Frente de Pareto), Bioinformática y Sistemas Eléctricos.',
+    subtitle: 'Aeroespacial (NASA ST5), Automotriz (NSGA-II), Bioinformática y Control Eléctrico.',
     pedagogicalGoal:
-      'Conectar la maquinaria teórica con cuatro aplicaciones industriales reales en espacios no derivables, combinatorios y multiobjetivo.',
+      'Conectar representaciones genotípicas y frentes de Pareto con aplicaciones industriales documentadas.',
     speakerScript:
-      'En el mundo real, estas técnicas resuelven problemas inabordables para el cálculo clásico. En la misión ST5 de la NASA, la computación evolutiva diseñó antenas con geometrías asimétricas que superaron a los diseños humanos. En ingeniería automotriz, optimiza el compromiso choque-peso mediante Frentes de Pareto. En bioinformática explora conformaciones de plegamiento proteico, y en sistemas eléctricos co-optimiza controladores continuos y reglas discretas en un mismo cromosoma.',
+      'En aplicaciones reales sin derivadas: Hornby et al. (2006) evolucionaron antenas para la misión NASA ST5 superando diseños humanos; Deb et al. (2002) popularizaron NSGA-II para frentes de Pareto choque-peso en automoción; en bioinformática se optimiza plegamiento proteico y en redes eléctricas se co-evolucionan ganancias PID continuas con reglas difusas discretas.',
     interactionHint:
-      'Selecciona cada caso industrial (Aeroespacial, Automotriz, Bioinformática, Redes Eléctricas) para inspeccionar su representación genotípica y beneficio clave.',
+      'Selecciona cada caso industrial arriba para inspeccionar su genotipo, referencia y esquema SVG.',
     plannedVisualSummary:
-      'Matriz interactiva de 4 casos de estudio con íconos vectoriales, detalle de genotipo utilizado, gráfico de Frente de Pareto para el caso automotriz y métricas de impacto.',
+      'Selector de 4 casos documentados con diagrama SVG dinámico por dominio y cita directa.',
+    citationIds: ['R1', 'R2', 'R16', 'R17'],
   },
   {
     id: 19,
     slug: 'cierre-hiperheuristicas',
     block: 'Aplicaciones y Cierre',
-    title: 'Conclusiones y Puente hacia Hiperheurísticas',
-    subtitle:
-      'Sensibilidad a hiperparámetros y la transición hacia el Diseño Automático de Algoritmos.',
+    speaker: 'Ángel',
+    speakerRange: '15–20',
+    title: 'Conclusiones y Puente a Hiperheurísticas',
+    subtitle: 'La sensibilidad paramétrica motiva el Diseño Automático de Algoritmos.',
     pedagogicalGoal:
-      'Sintetizar los aprendizajes clave del módulo y abrir el puente temático hacia la siguiente exposición sobre hiperheurísticas.',
+      'Sintetizar los 4 pilares aprendidos y abrir paso al paradigma de Hiperheurísticas.',
     speakerScript:
-      'Para concluir, hemos visto que las metaheurísticas evolutivas destacan en problemas complejos de ingeniería y optimización continua o combinatoria gracias al desacople genotipo-fenotipo, el equilibrio exploración-explotación y su rigor estocástico. Sin embargo, su rendimiento depende fuertemente de calibrar manualmente N, p_c, p_m y los operadores. Precisamente esta sensibilidad abre la puerta al siguiente paradigma: las Hiperheurísticas y el Diseño Automático de Algoritmos, donde dejamos que los algoritmos diseñen algoritmos.',
+      'En síntesis: las metaheurísticas evolutivas resuelven problemas no derivables gracias al desacople genotipo-fenotipo y el balance exploración-explotación, aunque están acotadas por C_fit y paisajes planos. Su mayor reto es ajustar manualmente N, p_c y p_m; por ello el paso natural son las Hiperheurísticas (Burke et al., 2013; Cruz-Duarte et al., 2021): algoritmos que diseñan algoritmos.',
     interactionHint:
-      'Resumen interactivo de los 4 pilares y vista previa de la arquitectura de alto nivel de una Hiperheurística sobre metaheurísticas.',
+      'Revisa los 4 pilares y el diagrama ascendente hacia la capa de Hiperheurísticas; siguiente lámina muestra la bibliografía.',
     plannedVisualSummary:
-      'Síntesis visual de los 4 pilares fundamentales conectada mediante diagrama SVG ascendente hacia la capa de Hiperheurísticas y Diseño Automático de Algoritmos.',
+      '4 pilares sintéticos + puente SVG hacia Hiperheurísticas + extracto formal Burke / Cruz-Duarte.',
+    citationIds: ['R10', 'R18'],
     keyFormula: {
       label: 'Meta-Nivel de Hiperheurísticas',
       tex: '\\max_{h \\in \\mathcal{H}} \\; \\mathbb{E}\\!\\left[\\text{Rendimiento}(h(\\mathcal{P}))\\right]',
     },
+  },
+  {
+    id: 20,
+    slug: 'referencias-bibliograficas',
+    block: 'Aplicaciones y Cierre',
+    speaker: 'Ángel',
+    speakerRange: '15–20',
+    title: 'Referencias Bibliográficas',
+    subtitle: 'Literatura fundamental, teoremas de convergencia y aplicaciones documentadas.',
+    pedagogicalGoal:
+      'Respaldar cada bloque de la exposición con fuentes académicas verificadas y DOIs navegables.',
+    speakerScript:
+      'Presentamos las 18 referencias científicas verificadas que respaldan nuestra exposición, organizadas por expositor y bloque temático. Pueden filtrar por integrante si algún docente desea profundizar en un teorema o aplicación puntual. Muchas gracias por su atención.',
+    interactionHint:
+      'Filtra por expositor (Maritza, Fredy, Jhoans, Ángel) para ampliar la tipografía y abrir los DOIs directos.',
+    plannedVisualSummary:
+      'Índice bibliográfico interactivo filtrable por bloque/expositor con etiquetas de diapositiva y enlaces DOI.',
+    citationIds: [],
   },
 ];

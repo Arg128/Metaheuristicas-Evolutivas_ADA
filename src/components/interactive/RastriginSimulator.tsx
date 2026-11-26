@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FastForward, Pause, Play, RotateCcw, StepForward } from 'lucide-react';
+import { useSlideKeyboard } from '../../hooks/useSlideKeyboard';
 import { MathFormula } from '../ui/MathFormula';
 import { ParameterSlider } from '../ui/ParameterSlider';
 import { createMulberry32, rastrigin2D } from '../../utils/prng';
@@ -426,6 +427,21 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
     }
   }, [stepSingleLine]);
 
+  useSlideKeyboard({
+    onAction: () => setIsPlaying((p) => !p),
+    onNextState: () => {
+      setIsPlaying(false);
+      stepSingleLine();
+    },
+    onPrevState: () => {
+      setIsPlaying(false);
+      stepOneGeneration();
+    },
+    onKey: (k) => {
+      if (k === 'r') resetSimulation(popSize, seedInput);
+    },
+  });
+
   // Play/Pause timer driven by speedRef
   useEffect(() => {
     if (!isPlaying) return;
@@ -467,24 +483,24 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
   return (
     <div className="grid min-h-0 flex-1 grid-cols-12 gap-4">
       {/* Left 5 Cols: 12-Line Pseudocode Debugger + Live Sliders + Formula */}
-      <div className="col-span-5 flex min-h-0 flex-col justify-between gap-2">
-        <div className="rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-sm shadow-slate-900/5 backdrop-blur-md">
+      <div className="col-span-5 flex min-h-0 flex-col justify-between gap-1.5">
+        <div className="rounded-2xl border border-slate-200 bg-white/95 p-2.5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
           <div className="mb-1.5 flex items-center justify-between gap-2">
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
-              Depurador 12 Líneas · Gen {generation}/{G_MAX}
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-emerald-700">
+              Depurador · Gen {generation}/{G_MAX}
             </span>
             <div className="flex items-center gap-1">
               <button
                 type="button"
                 onClick={() => setIsPlaying((p) => !p)}
                 onKeyDown={(e) => e.stopPropagation()}
-                className={`inline-flex items-center gap-1 rounded-lg border px-2 py-1 text-[11px] font-semibold shadow-xs cursor-pointer ${
+                className={`inline-flex items-center gap-1 rounded-lg border px-2.5 py-1 text-xs font-bold shadow-xs cursor-pointer ${
                   isPlaying
                     ? 'border-amber-500 bg-amber-50 text-amber-800'
                     : 'border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700'
                 }`}
               >
-                {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
+                {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
                 {isPlaying ? 'Pausa' : 'Play'}
               </button>
               <button
@@ -494,9 +510,9 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                   stepSingleLine();
                 }}
                 onKeyDown={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 rounded-lg border border-cyan-200 bg-cyan-50 px-2 py-1 text-[11px] font-semibold text-cyan-800 hover:bg-cyan-100 cursor-pointer"
+                className="inline-flex items-center gap-1 rounded-lg border border-cyan-200 bg-cyan-50 px-2.5 py-1 text-xs font-bold text-cyan-800 hover:bg-cyan-100 cursor-pointer"
               >
-                <StepForward className="h-3 w-3" />
+                <StepForward className="h-3.5 w-3.5" />
                 Paso
               </button>
               <button
@@ -506,34 +522,34 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                   stepOneGeneration();
                 }}
                 onKeyDown={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 rounded-lg border border-violet-200 bg-violet-50 px-2 py-1 text-[11px] font-semibold text-violet-800 hover:bg-violet-100 cursor-pointer"
+                className="inline-flex items-center gap-1 rounded-lg border border-violet-200 bg-violet-50 px-2.5 py-1 text-xs font-bold text-violet-800 hover:bg-violet-100 cursor-pointer"
               >
-                <FastForward className="h-3 w-3" />
+                <FastForward className="h-3.5 w-3.5" />
                 +1 Gen
               </button>
               <button
                 type="button"
                 onClick={() => resetSimulation(popSize, seedInput)}
                 onKeyDown={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
+                className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-1.5 text-slate-600 hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
                 aria-label="Reiniciar simulador"
               >
-                <RotateCcw className="h-3 w-3" />
+                <RotateCcw className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
 
-          <div className="space-y-0.5 font-mono text-[11.5px] leading-tight">
+          <div className="space-y-0.5 font-mono text-[12.5px] leading-tight">
             {PSEUDOCODE_12.map((text, idx) => {
               const lineNum = idx + 1;
               const isCurrent = lineNum === activeLine;
               return (
                 <div
                   key={lineNum}
-                  className={`rounded px-2 py-[3px] transition-colors ${
+                  className={`rounded px-2 py-[1.5px] transition-colors ${
                     isCurrent
-                      ? 'border border-emerald-400 bg-emerald-50 font-bold text-emerald-900 shadow-xs'
-                      : 'border border-transparent text-slate-600'
+                      ? 'border border-emerald-400 bg-emerald-50 font-bold text-emerald-950 shadow-xs'
+                      : 'border border-transparent text-slate-700'
                   }`}
                 >
                   {text}
@@ -606,10 +622,10 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
       <div className="col-span-7 flex min-h-0 flex-col justify-between rounded-2xl border border-slate-200 bg-white/95 p-3.5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <div className="flex items-center justify-between gap-2">
           <div>
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
               Rastrigin 2D [-5.12, 5.12]² · Mulberry32 Determinista
             </span>
-            <h3 className="text-base font-bold text-slate-900">
+            <h3 className="text-lg font-bold text-black">
               Línea {String(activeLine).padStart(2, '0')} Activa · Mejor f ={' '}
               <span className="font-mono text-amber-700">
                 {bestInd ? bestInd.fitness.toFixed(4) : '0.0000'}
@@ -618,8 +634,8 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700">
-              <span className="font-semibold text-cyan-700">Seed:</span>
+            <label className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs text-slate-700">
+              <span className="font-bold text-cyan-700">Seed:</span>
               <input
                 type="text"
                 value={seedInput}
@@ -636,7 +652,7 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                 aria-label="Semilla Mulberry32"
               />
             </label>
-            <span className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 font-mono text-[11px] font-semibold text-slate-700">
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 font-mono text-xs font-bold text-slate-800">
               Evals: {evaluations}
             </span>
           </div>
@@ -652,7 +668,7 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                   : { boxShadow: '0 0 0px rgba(0,0,0,0)' }
               }
               transition={{ duration: 0.7 }}
-              className="relative aspect-square h-full max-h-[380px] w-full max-w-[380px] overflow-hidden rounded-xl border border-slate-300 bg-white shadow-inner"
+              className="relative aspect-square h-full max-h-[340px] w-full max-w-[340px] overflow-hidden rounded-xl border border-slate-300 bg-white shadow-inner"
             >
               {/* Static 2D Heatmap Canvas */}
               <RastriginHeatmapCanvas
@@ -811,16 +827,16 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
               onChange={setSpeed}
             />
 
-            <div className="grid grid-cols-2 gap-1.5 text-[11px]">
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
-                <span className="text-slate-600">Óptimo Hallado</span>
-                <p className="mt-0.5 font-mono font-bold text-amber-700">
+            <div className="grid grid-cols-2 gap-1.5 text-xs">
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+                <span className="font-medium text-slate-600">Óptimo Hallado</span>
+                <p className="mt-0.5 font-mono text-sm font-bold text-amber-700">
                   ({bestInd ? bestInd.x.toFixed(2) : '0.00'}, {bestInd ? bestInd.y.toFixed(2) : '0.00'})
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
-                <span className="text-slate-600">Promedio f(x,y)</span>
-                <p className="mt-0.5 font-mono font-bold text-cyan-700">
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+                <span className="font-medium text-slate-600">Promedio f(x,y)</span>
+                <p className="mt-0.5 font-mono text-sm font-bold text-cyan-700">
                   {avgFitness.toFixed(2)}
                 </p>
               </div>
@@ -828,11 +844,11 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
 
             {/* Live Convergence SVG Chart */}
             <div className="flex flex-1 flex-col justify-between rounded-xl border border-slate-200 bg-slate-50 p-2.5">
-              <div className="flex items-center justify-between text-[10.5px]">
-                <span className="font-semibold text-emerald-700">Curva de Convergencia</span>
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-bold text-emerald-700">Curva de Convergencia</span>
                 <span className="font-mono text-slate-600">
-                  <span className="font-semibold text-amber-700">● Mejor</span> ·{' '}
-                  <span className="font-semibold text-cyan-700">● Prom</span>
+                  <span className="font-bold text-amber-700">● Mejor</span> ·{' '}
+                  <span className="font-bold text-cyan-700">● Prom</span>
                 </span>
               </div>
 
@@ -845,13 +861,13 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                 {bestPath ? (
                   <path d={bestPath} fill="none" stroke="#d97706" strokeWidth="2.4" />
                 ) : null}
-                <text x="130" y="87" textAnchor="middle" fill="#475569" fontSize="8.5" fontWeight="600">
+                <text x="130" y="88" textAnchor="middle" fill="#334155" fontSize="10" fontWeight="700">
                   Generación 0 → {G_MAX}
                 </text>
               </svg>
             </div>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] text-slate-700">
+            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-[#1B365D]">
               {activeLine === 1 && 'L1: Población inicial dispersa en gris uniforme.'}
               {(activeLine === 2 || activeLine === 8) &&
                 'Evaluación térmica: azul frío (bajo error) → oro/rojo (alto error).'}

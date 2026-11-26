@@ -19,6 +19,7 @@ import { Slide16NeedleHaystack } from './Slide16NeedleHaystack';
 import { Slide17HammingGray } from './Slide17HammingGray';
 import { Slide18RealWorldCases } from './Slide18RealWorldCases';
 import { Slide19Closing } from './Slide19Closing';
+import { Slide20References } from './Slide20References';
 
 export function renderSlide(
   slide: SlideMeta,
@@ -64,6 +65,8 @@ export function renderSlide(
       return <Slide18RealWorldCases meta={slide} totalSlides={totalSlides} />;
     case 19:
       return <Slide19Closing meta={slide} totalSlides={totalSlides} />;
+    case 20:
+      return <Slide20References meta={slide} totalSlides={totalSlides} />;
     default:
       return <Slide01Cover meta={slide} totalSlides={totalSlides} />;
   }

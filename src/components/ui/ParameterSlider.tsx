@@ -42,11 +42,11 @@ export function ParameterSlider({
   } as CSSProperties;
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm shadow-slate-900/5">
-      <div className="mb-2 flex items-center justify-between gap-3">
+    <div className="rounded-xl border border-slate-200 bg-white/95 px-3.5 py-2 shadow-sm shadow-slate-900/5">
+      <div className="mb-1.5 flex items-center justify-between gap-3">
         <label
           htmlFor={inputId}
-          className="flex items-center gap-2 text-sm font-medium text-slate-800"
+          className="flex items-center gap-2 text-sm font-semibold text-slate-900"
         >
           <span>{label}</span>
           {symbol ? (
@@ -56,14 +56,14 @@ export function ParameterSlider({
           ) : null}
         </label>
         <div
-          className={`rounded-md border px-2.5 py-0.5 font-mono text-sm font-semibold tabular-nums ${accentStyle.badge}`}
+          className={`rounded-md border px-2.5 py-0.5 font-mono text-sm font-bold tabular-nums ${accentStyle.badge}`}
         >
           {displayValue}
           {unit ? <span className="ml-1 text-xs opacity-85">{unit}</span> : null}
         </div>
       </div>
 
-      <div className="relative flex h-6 items-center">
+      <div className="relative flex h-5 items-center">
         <div className="pointer-events-none absolute inset-x-0 h-2 overflow-hidden rounded-full bg-slate-200">
           <div
             className={`h-full rounded-full ${accentStyle.trackBg} transition-[width] duration-75`}
@@ -86,7 +86,7 @@ export function ParameterSlider({
         />
       </div>
 
-      <div className="mt-1 flex justify-between font-mono text-[11px] tabular-nums text-slate-500">
+      <div className="mt-0.5 flex justify-between font-mono text-xs tabular-nums text-slate-500">
         <span>
           {min}
           {unit}

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { RefreshCw, ShieldCheck } from 'lucide-react';
+import { useSlideKeyboard } from '../../hooks/useSlideKeyboard';
 import { createMulberry32 } from '../../utils/prng';
 
 export interface ElitismChartSVGProps {
@@ -17,6 +18,10 @@ interface GenStats {
 
 export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGProps) {
   const [runSeed, setRunSeed] = useState<number>(1);
+
+  useSlideKeyboard({
+    onAction: () => setRunSeed((s) => s + 1),
+  });
 
   const series = useMemo<GenStats[]>(() => {
     const rng = createMulberry32(9001 + runSeed * 1337);
@@ -131,7 +136,7 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
                 stroke="rgba(15,23,42,0.1)"
                 strokeDasharray="3 3"
               />
-              <text x="36" y={toY(v) + 3.5} textAnchor="end" fill="#475569" fontSize="9">
+              <text x="36" y={toY(v) + 4} textAnchor="end" fill="#334155" fontSize="11" fontWeight="600">
                 {v}
               </text>
             </g>
@@ -194,31 +199,31 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
               return null;
             })}
 
-          <text x="220" y="201" textAnchor="middle" fill="#475569" fontSize="10.5">
+          <text x="220" y="203" textAnchor="middle" fill="#334155" fontSize="12" fontWeight="600">
             Generación g (0 → 30) · Semilla #{runSeed}
           </text>
         </svg>
       </div>
 
       {/* Legend & Telemetry */}
-      <div className="grid grid-cols-3 gap-2 text-xs">
+      <div className="grid grid-cols-3 gap-2 text-sm">
         <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
-          <span className={`block font-semibold ${elitismOn ? 'text-emerald-700' : 'text-rose-700'}`}>
+          <span className={`block text-xs font-bold ${elitismOn ? 'text-emerald-700' : 'text-rose-700'}`}>
             Aptitud Máxima
           </span>
-          <span className="font-mono text-sm font-bold text-slate-900">
+          <span className="font-mono text-base font-bold text-slate-900">
             {finalMax.toFixed(1)} pts
           </span>
         </div>
         <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
-          <span className="block font-semibold text-cyan-700">Aptitud Promedio</span>
-          <span className="font-mono text-sm font-bold text-slate-900">
+          <span className="block text-xs font-bold text-cyan-700">Aptitud Promedio</span>
+          <span className="font-mono text-base font-bold text-slate-900">
             {finalPt.avgFitness.toFixed(1)} pts
           </span>
         </div>
         <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
-          <span className="block font-semibold text-slate-500">Comportamiento</span>
-          <span className="font-semibold text-slate-800">
+          <span className="block text-xs font-bold text-slate-500">Comportamiento</span>
+          <span className="text-sm font-bold text-slate-900">
             {elitismOn ? 'Monótono seguro' : 'Retrocesos activos'}
           </span>
         </div>
