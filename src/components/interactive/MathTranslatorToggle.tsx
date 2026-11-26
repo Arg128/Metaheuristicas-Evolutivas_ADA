@@ -61,10 +61,10 @@ export function MathTranslatorToggle({
       {/* Header + Animated Toggle */}
       <div className="flex items-center justify-between gap-3">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-violet-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-violet-700">
             Traductor Conceptual Interactivo
           </span>
-          <h3 className="text-lg font-bold text-slate-100">
+          <h3 className="text-lg font-bold text-slate-900">
             {isMath ? 'Rigor Matemático Estocástico' : 'Metáfora Biológica Clásica'}
           </h3>
         </div>
@@ -73,10 +73,10 @@ export function MathTranslatorToggle({
           type="button"
           onClick={() => setRigorLevel(isMath ? 0 : 100)}
           onKeyDown={(e) => e.stopPropagation()}
-          className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-semibold transition-colors cursor-pointer ${
+          className={`inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-semibold shadow-xs transition-colors cursor-pointer ${
             isMath
-              ? 'border-violet-400 bg-violet-500/20 text-violet-100'
-              : 'border-amber-400 bg-amber-500/20 text-amber-100'
+              ? 'border-violet-600 bg-violet-600 text-white hover:bg-violet-700'
+              : 'border-amber-600 bg-amber-600 text-white hover:bg-amber-700'
           }`}
         >
           <ArrowLeftRight className="h-3.5 w-3.5" />
@@ -110,16 +110,16 @@ export function MathTranslatorToggle({
               className={`flex flex-col justify-between rounded-xl border p-3 text-left transition-colors cursor-pointer ${
                 active
                   ? isMath
-                    ? 'border-violet-400 bg-violet-500/14 shadow-[0_0_18px_rgba(167,139,250,0.2)]'
-                    : 'border-amber-400 bg-amber-500/12 shadow-[0_0_18px_rgba(251,191,36,0.16)]'
-                  : 'border-slate-800 bg-slate-950/75 hover:border-slate-600'
+                    ? 'border-violet-500 bg-violet-50/80 ring-1 ring-violet-500/20 shadow-sm'
+                    : 'border-amber-500 bg-amber-50/80 ring-1 ring-amber-500/20 shadow-sm'
+                  : 'border-slate-200 bg-slate-50 hover:border-slate-300 hover:bg-white'
               }`}
             >
               <div>
                 <div className="mb-1.5 flex items-center justify-between gap-2">
                   <span
                     className={`inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider ${
-                      isMath ? 'text-violet-300' : 'text-amber-300'
+                      isMath ? 'text-violet-700' : 'text-amber-700'
                     }`}
                   >
                     {isMath ? (
@@ -140,18 +140,18 @@ export function MathTranslatorToggle({
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.18 }}
                   >
-                    <h4 className="text-sm font-bold text-slate-100">
+                    <h4 className="text-sm font-bold text-slate-900">
                       {isMath ? card.mathTitle : card.bioTitle}
                     </h4>
-                    <p className="mt-1 text-[11px] leading-snug text-slate-300">
+                    <p className="mt-1 text-[11px] leading-snug text-slate-700">
                       {isMath ? card.mathDesc : card.bioDesc}
                     </p>
                   </motion.div>
                 </AnimatePresence>
               </div>
 
-              <div className="mt-2 overflow-hidden rounded-lg border border-slate-800/90 bg-[#050816] px-2 py-1.5 text-center text-[11px]">
-                <MathFormula tex={card.tex} className="text-violet-200" />
+              <div className="mt-2 overflow-hidden rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-center text-[11px]">
+                <MathFormula tex={card.tex} className="text-violet-900" />
               </div>
             </motion.button>
           );

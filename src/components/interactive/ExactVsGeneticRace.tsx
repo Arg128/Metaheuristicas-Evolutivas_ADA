@@ -214,31 +214,31 @@ export function ExactVsGeneticRace({
       {/* Split Synchronized Arena */}
       <div className="grid min-h-0 flex-1 grid-cols-12 gap-4">
         {/* Left 6 Cols: Exhaustive Grid Search */}
-        <div className="col-span-6 flex min-h-0 flex-col justify-between rounded-2xl border border-rose-500/35 bg-slate-900/80 p-3.5 backdrop-blur-md">
+        <div className="col-span-6 flex min-h-0 flex-col justify-between rounded-2xl border border-rose-200 bg-white/95 p-3.5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Grid3x3 className="h-5 w-5 text-rose-300" />
+              <Grid3x3 className="h-5 w-5 text-rose-700" />
               <div>
-                <h3 className="text-base font-bold text-slate-100">
+                <h3 className="text-base font-bold text-slate-900">
                   Búsqueda Exacta (Grilla {resolution}×{resolution})
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-600">
                   Barrido exhaustivo celda por celda sin memoria previa
                 </p>
               </div>
             </div>
             <div className="text-right font-mono text-xs">
-              <span className="block font-bold text-rose-300">
+              <span className="block font-bold text-rose-700">
                 {gridEvals.toLocaleString('es-PE')} / {totalCells.toLocaleString('es-PE')} evals
               </span>
-              <span className="text-[11px] text-slate-300">
+              <span className="text-[11px] text-slate-700">
                 Mejor f = {gridBest.f.toFixed(4)}
               </span>
             </div>
           </div>
 
           <div className="my-2 flex min-h-0 flex-1 items-center justify-center">
-            <div className="relative aspect-square h-full max-h-[290px] w-full max-w-[290px] overflow-hidden rounded-xl border border-slate-700 bg-[#050816]">
+            <div className="relative aspect-square h-full max-h-[290px] w-full max-w-[290px] overflow-hidden rounded-xl border border-slate-300 bg-white shadow-inner">
               <RastriginHeatmapCanvas size={260} className="absolute inset-0 h-full w-full" />
               <svg viewBox="0 0 260 260" className="relative z-10 h-full w-full">
                 {/* Completed rows sweep overlay */}
@@ -248,7 +248,7 @@ export function ExactVsGeneticRace({
                     y="10"
                     width="240"
                     height={completedRows * rowHeightSvg}
-                    fill="rgba(251,113,133,0.22)"
+                    fill="rgba(225,29,72,0.22)"
                   />
                 ) : null}
                 {/* Partial row */}
@@ -258,18 +258,18 @@ export function ExactVsGeneticRace({
                     y={10 + completedRows * rowHeightSvg}
                     width={partialWidthSvg}
                     height={Math.max(1.5, rowHeightSvg)}
-                    fill="rgba(251,113,133,0.34)"
+                    fill="rgba(225,29,72,0.36)"
                   />
                 ) : null}
 
                 {/* Target (0,0) */}
-                <circle cx="130" cy="130" r="6" fill="none" stroke="#34d399" strokeWidth="1.3" strokeDasharray="2 2" />
+                <circle cx="130" cy="130" r="6" fill="none" stroke="#059669" strokeWidth="1.5" strokeDasharray="2 2" />
 
                 {/* Current sweep cursor */}
                 {gridEvals < totalCells ? (
                   <g>
-                    <line x1="10" y1={cursorY} x2="250" y2={cursorY} stroke="#fb7185" strokeWidth="1" opacity="0.6" />
-                    <circle cx={cursorX} cy={cursorY} r="4" fill="#fb7185" stroke="#fff" strokeWidth="1" />
+                    <line x1="10" y1={cursorY} x2="250" y2={cursorY} stroke="#e11d48" strokeWidth="1.2" opacity="0.7" />
+                    <circle cx={cursorX} cy={cursorY} r="4" fill="#e11d48" stroke="#ffffff" strokeWidth="1.2" />
                   </g>
                 ) : null}
 
@@ -278,72 +278,72 @@ export function ExactVsGeneticRace({
                   cx={toSvg(gridBest.x)}
                   cy={toSvg(gridBest.y)}
                   r="5.5"
-                  fill="#fbbf24"
-                  stroke="#050816"
-                  strokeWidth="1.2"
+                  fill="#f59e0b"
+                  stroke="#0f172a"
+                  strokeWidth="1.4"
                 />
               </svg>
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/75 px-3.5 py-2 text-xs">
-            <span className="text-slate-400">Progreso de malla:</span>
-            <span className="font-mono font-bold text-rose-200">
+          <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs">
+            <span className="text-slate-600">Progreso de malla:</span>
+            <span className="font-mono font-bold text-rose-700">
               {((gridEvals / totalCells) * 100).toFixed(1)}% cubierto
             </span>
           </div>
         </div>
 
         {/* Right 6 Cols: Genetic Algorithm */}
-        <div className="col-span-6 flex min-h-0 flex-col justify-between rounded-2xl border border-emerald-500/35 bg-slate-900/80 p-3.5 backdrop-blur-md">
+        <div className="col-span-6 flex min-h-0 flex-col justify-between rounded-2xl border border-emerald-200 bg-white/95 p-3.5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-5 w-5 text-emerald-300" />
+              <Sparkles className="h-5 w-5 text-emerald-700" />
               <div>
-                <h3 className="text-base font-bold text-slate-100">
+                <h3 className="text-base font-bold text-slate-900">
                   Algoritmo Genético (N = {GA_POP_SIZE} · Gen {gaGen}/{GA_MAX_GENS})
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-600">
                   Concentra muestras en cuencas prometedoras hacia (0, 0)
                 </p>
               </div>
             </div>
             <div className="text-right font-mono text-xs">
-              <span className="block font-bold text-emerald-300">
+              <span className="block font-bold text-emerald-700">
                 {gaEvals.toLocaleString('es-PE')} evals
               </span>
-              <span className="text-[11px] text-amber-300">
+              <span className="text-[11px] font-semibold text-amber-700">
                 Mejor f = {gaBest.fitness.toFixed(4)}
               </span>
             </div>
           </div>
 
           <div className="my-2 flex min-h-0 flex-1 items-center justify-center">
-            <div className="relative aspect-square h-full max-h-[290px] w-full max-w-[290px] overflow-hidden rounded-xl border border-slate-700 bg-[#050816]">
+            <div className="relative aspect-square h-full max-h-[290px] w-full max-w-[290px] overflow-hidden rounded-xl border border-slate-300 bg-white shadow-inner">
               <RastriginHeatmapCanvas size={260} className="absolute inset-0 h-full w-full" />
               <svg viewBox="0 0 260 260" className="relative z-10 h-full w-full">
-                <line x1="10" y1="130" x2="250" y2="130" stroke="rgba(226,232,240,0.2)" />
-                <line x1="130" y1="10" x2="130" y2="250" stroke="rgba(226,232,240,0.2)" />
-                <circle cx="130" cy="130" r="8" fill="none" stroke="#34d399" strokeWidth="1.4" strokeDasharray="3 2" />
+                <line x1="10" y1="130" x2="250" y2="130" stroke="rgba(15,23,42,0.22)" />
+                <line x1="130" y1="10" x2="130" y2="250" stroke="rgba(15,23,42,0.22)" />
+                <circle cx="130" cy="130" r="8" fill="none" stroke="#059669" strokeWidth="1.6" strokeDasharray="3 2" />
 
                 {gaPop.map((ind, idx) => (
                   <circle
                     key={idx}
                     cx={toSvg(ind.x)}
                     cy={toSvg(ind.y)}
-                    r={idx === 0 ? 5.2 : 3.4}
-                    fill={idx === 0 ? '#fbbf24' : '#38bdf8'}
-                    stroke="#050816"
-                    strokeWidth="0.9"
+                    r={idx === 0 ? 5.4 : 3.6}
+                    fill={idx === 0 ? '#f59e0b' : '#0284c7'}
+                    stroke={idx === 0 ? '#0f172a' : '#ffffff'}
+                    strokeWidth="1.2"
                   />
                 ))}
               </svg>
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/75 px-3.5 py-2 text-xs">
-            <span className="text-slate-400">Factor de ahorro vs. malla completa:</span>
-            <span className="font-mono font-bold text-emerald-300">
+          <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs">
+            <span className="text-slate-600">Factor de ahorro vs. malla completa:</span>
+            <span className="font-mono font-bold text-emerald-700">
               {savingsFactor.toFixed(1)}× menos evaluaciones
             </span>
           </div>
@@ -353,8 +353,8 @@ export function ExactVsGeneticRace({
       {/* Bottom Control & Dimensionality Bar */}
       <div className="grid shrink-0 grid-cols-12 items-center gap-3">
         {/* Resolution Selector */}
-        <div className="col-span-4 flex items-center justify-between gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-3 py-2">
-          <span className="text-xs font-semibold text-slate-300">Grilla:</span>
+        <div className="col-span-4 flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/95 px-3 py-2 shadow-sm shadow-slate-900/5">
+          <span className="text-xs font-semibold text-slate-700">Grilla:</span>
           <div className="flex gap-1.5">
             {([40, 80, 160] as ResolutionOption[]).map((res) => (
               <button
@@ -364,8 +364,8 @@ export function ExactVsGeneticRace({
                 onKeyDown={(e) => e.stopPropagation()}
                 className={`rounded-lg border px-2.5 py-1 font-mono text-[11px] font-bold cursor-pointer ${
                   resolution === res
-                    ? 'border-rose-400 bg-rose-500/20 text-rose-100'
-                    : 'border-slate-700 bg-slate-950 text-slate-400 hover:text-slate-200'
+                    ? 'border-rose-500 bg-rose-50 text-rose-800'
+                    : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
               >
                 {res}×{res}
@@ -375,11 +375,11 @@ export function ExactVsGeneticRace({
         </div>
 
         {/* Dimensionality Projection Callout */}
-        <div className="col-span-4 flex items-center justify-between gap-2 rounded-xl border border-slate-800 bg-slate-900/80 px-3 py-2 text-[11px]">
+        <div className="col-span-4 flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-white/95 px-3 py-2 text-[11px] shadow-sm shadow-slate-900/5">
           {projections.map((p) => (
             <div key={p.d} className="text-center">
-              <span className="block font-mono text-slate-400">D = {p.d}</span>
-              <span className="font-mono font-bold text-rose-200">{p.count}</span>
+              <span className="block font-mono text-slate-500">D = {p.d}</span>
+              <span className="font-mono font-bold text-rose-700">{p.count}</span>
             </div>
           ))}
         </div>
@@ -395,10 +395,10 @@ export function ExactVsGeneticRace({
               setIsPlaying((p) => !p);
             }}
             onKeyDown={(e) => e.stopPropagation()}
-            className={`inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2.5 text-xs font-semibold cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2.5 text-xs font-semibold shadow-xs cursor-pointer ${
               isPlaying
-                ? 'border-amber-400 bg-amber-500/20 text-amber-100'
-                : 'border-emerald-400 bg-emerald-500/20 text-emerald-100'
+                ? 'border-amber-500 bg-amber-50 text-amber-800'
+                : 'border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700'
             }`}
           >
             {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
@@ -409,7 +409,7 @@ export function ExactVsGeneticRace({
             type="button"
             onClick={() => resetRace(resolution)}
             onKeyDown={(e) => e.stopPropagation()}
-            className="inline-flex items-center justify-center rounded-xl border border-slate-700 bg-slate-950 p-2.5 text-slate-300 hover:text-white cursor-pointer"
+            className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white p-2.5 text-slate-600 shadow-xs hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
             aria-label="Reiniciar carrera"
           >
             <RotateCcw className="h-3.5 w-3.5" />

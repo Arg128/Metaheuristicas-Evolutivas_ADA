@@ -28,7 +28,7 @@ export function Slide04GenotypePhenotype({ meta, totalSlides }: SlideProps) {
           accent="cyan"
           active
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Estructura interna (bits, vectores reales, permutaciones o árboles) sobre la que actúan el cruce y la mutación sin conocer la física del problema.
           </p>
         </InteractiveCard>
@@ -40,7 +40,7 @@ export function Slide04GenotypePhenotype({ meta, totalSlides }: SlideProps) {
           icon={<Cpu className="h-5 w-5" />}
           accent="violet"
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Instancia física o matemática válida del problema (geometría de una antena, perfil aerodinámico o modelo simbólico) obtenida mediante{' '}
             <MathFormula tex="\phi(\mathbf{g}) = \mathbf{x} \in \mathcal{F}" />.
           </p>
@@ -53,7 +53,7 @@ export function Slide04GenotypePhenotype({ meta, totalSlides }: SlideProps) {
           icon={<Calculator className="h-5 w-5" />}
           accent="emerald"
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Asigna a cada individuo un valor numérico comparable que resume desempeño, restricciones y penalizaciones.
           </p>
         </InteractiveCard>
@@ -70,7 +70,7 @@ export function Slide04GenotypePhenotype({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive GenotypePhenotypeLab */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <GenotypePhenotypeLab />
       </div>
     </SlideLayout>

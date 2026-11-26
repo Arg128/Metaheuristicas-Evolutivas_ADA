@@ -32,35 +32,35 @@ export function RastriginHeatmapCanvas({
         const val = rastrigin2D(x, y); // [0, ~80]
         const norm = Math.min(1, Math.sqrt(Math.max(0, val) / 76));
 
-        // Subtle contour isoline highlights
+        // Subtle darker contour isoline rings on light scientific palette
         const contourMod = val % 6.5;
-        const isContour = contourMod < 0.45 ? 14 : 0;
+        const isContour = contourMod < 0.45 ? -20 : 0;
 
-        // Smooth thermal dark palette: deep teal-navy valleys -> cobalt -> warm crimson/amber peaks
+        // Scientific light-mode topographical palette: cool mint/sky valleys -> warm sand -> coral-rose peaks
         let r: number;
         let g: number;
         let b: number;
-        if (norm < 0.35) {
-          const t = norm / 0.35;
-          r = 6 + t * 14;
-          g = 26 + t * 14;
-          b = 46 + t * 52;
-        } else if (norm < 0.7) {
-          const t = (norm - 0.35) / 0.35;
-          r = 20 + t * 68;
-          g = 40 - t * 12;
-          b = 98 - t * 14;
+        if (norm < 0.32) {
+          const t = norm / 0.32;
+          r = 204 - t * 64;
+          g = 251 - t * 30;
+          b = 241 + t * 11;
+        } else if (norm < 0.68) {
+          const t = (norm - 0.32) / 0.36;
+          r = 140 + t * 113;
+          g = 221 + t * 9;
+          b = 252 - t * 112;
         } else {
-          const t = (norm - 0.7) / 0.3;
-          r = 88 + t * 92;
-          g = 28 + t * 44;
-          b = 84 - t * 42;
+          const t = (norm - 0.68) / 0.32;
+          r = 253 - t * 8;
+          g = 230 - t * 104;
+          b = 140 - t * 18;
         }
 
         const idx = (py * size + px) * 4;
-        data[idx] = Math.min(255, Math.round(r + isContour));
-        data[idx + 1] = Math.min(255, Math.round(g + isContour));
-        data[idx + 2] = Math.min(255, Math.round(b + isContour));
+        data[idx] = Math.max(0, Math.min(255, Math.round(r + isContour)));
+        data[idx + 1] = Math.max(0, Math.min(255, Math.round(g + isContour)));
+        data[idx + 2] = Math.max(0, Math.min(255, Math.round(b + isContour)));
         data[idx + 3] = 255;
       }
     }

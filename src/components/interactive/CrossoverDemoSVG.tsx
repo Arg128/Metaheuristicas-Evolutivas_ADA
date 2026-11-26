@@ -70,10 +70,10 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
       {/* Header + Mode Selector */}
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-violet-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-violet-700">
             Recombinación Cromosómica Animada
           </span>
-          <h3 className="text-base font-bold text-slate-100">
+          <h3 className="text-base font-bold text-slate-900">
             {mode === '1-point'
               ? `Cruce en 1 Punto (k = ${cut1})`
               : mode === '2-point'
@@ -86,7 +86,7 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
           type="button"
           onClick={executeRecombination}
           onKeyDown={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1.5 rounded-xl border border-violet-400/60 bg-violet-500/20 px-3 py-1.5 text-xs font-semibold text-violet-100 hover:bg-violet-500/30 cursor-pointer"
+          className="inline-flex items-center gap-1.5 rounded-xl border border-violet-600 bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-violet-700 cursor-pointer"
         >
           <Shuffle className="h-3.5 w-3.5" />
           Ejecutar Recombinación
@@ -109,8 +109,8 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
             onKeyDown={(e) => e.stopPropagation()}
             className={`inline-flex items-center justify-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
               mode === item.id
-                ? 'border-violet-400 bg-violet-500/20 text-violet-100'
-                : 'border-slate-800 bg-slate-950/75 text-slate-400 hover:text-slate-200'
+                ? 'border-violet-500 bg-violet-50 text-violet-900 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             <Scissors className="h-3.5 w-3.5" />
@@ -120,7 +120,7 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
       </div>
 
       {/* SVG Chromosome Recombination Diagram */}
-      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-800 bg-[#050816] p-2">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-2">
         <svg viewBox="0 0 435 236" className="h-full w-full">
           {/* Building Block Highlight Window (1 * 1 * * * * *) */}
           <rect
@@ -129,8 +129,8 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
             width="136"
             height="86"
             rx="8"
-            fill="rgba(52,211,153,0.06)"
-            stroke={blockPreserved ? '#34d399' : 'rgba(251,113,133,0.5)'}
+            fill={blockPreserved ? 'rgba(5,150,105,0.08)' : 'rgba(225,29,72,0.07)'}
+            stroke={blockPreserved ? '#059669' : '#e11d48'}
             strokeWidth="1.2"
             strokeDasharray="4 3"
           />
@@ -138,7 +138,7 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
             x={cellX(0) + 64}
             y="11"
             textAnchor="middle"
-            fill={blockPreserved ? '#6ee7b7' : '#fda4af'}
+            fill={blockPreserved ? '#047857' : '#be123c'}
             fontSize="8.5"
             fontWeight="700"
           >
@@ -146,7 +146,7 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
           </text>
 
           {/* P1 Row */}
-          <text x="12" y="40" fill="#67e8f9" fontSize="11" fontWeight="700">
+          <text x="12" y="40" fill="#0e7490" fontSize="11" fontWeight="700">
             P1
           </text>
           {PARENT_1.map((bit, i) => (
@@ -155,18 +155,18 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
                 width="38"
                 height="30"
                 rx="6"
-                fill="rgba(34,211,238,0.18)"
-                stroke="#22d3ee"
+                fill="#ecfeff"
+                stroke="#0891b2"
                 strokeWidth="1.3"
               />
-              <text x="19" y="20" textAnchor="middle" fill="#ecfeff" fontSize="13" fontWeight="700">
+              <text x="19" y="20" textAnchor="middle" fill="#0f172a" fontSize="13" fontWeight="700">
                 {bit}
               </text>
             </g>
           ))}
 
           {/* P2 Row */}
-          <text x="12" y="82" fill="#ddd6fe" fontSize="11" fontWeight="700">
+          <text x="12" y="82" fill="#6d28d9" fontSize="11" fontWeight="700">
             P2
           </text>
           {PARENT_2.map((bit, i) => (
@@ -175,11 +175,11 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
                 width="38"
                 height="30"
                 rx="6"
-                fill="rgba(167,139,250,0.18)"
-                stroke="#a78bfa"
+                fill="#f5f3ff"
+                stroke="#7c3aed"
                 strokeWidth="1.3"
               />
-              <text x="19" y="20" textAnchor="middle" fill="#f5f3ff" fontSize="13" fontWeight="700">
+              <text x="19" y="20" textAnchor="middle" fill="#0f172a" fontSize="13" fontWeight="700">
                 {bit}
               </text>
             </g>
@@ -192,7 +192,7 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
               y1="14"
               x2={cellX(cut1) - 4}
               y2="220"
-              stroke="#fbbf24"
+              stroke="#d97706"
               strokeWidth="2"
               strokeDasharray="5 3"
               animate={{ x1: cellX(cut1) - 4, x2: cellX(cut1) - 4 }}
@@ -207,7 +207,7 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
                 y1="14"
                 x2={cellX(cut1) - 4}
                 y2="220"
-                stroke="#fbbf24"
+                stroke="#d97706"
                 strokeWidth="2"
                 strokeDasharray="5 3"
                 animate={{ x1: cellX(cut1) - 4, x2: cellX(cut1) - 4 }}
@@ -217,7 +217,7 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
                 y1="14"
                 x2={cellX(cut2) - 4}
                 y2="220"
-                stroke="#22d3ee"
+                stroke="#0891b2"
                 strokeWidth="2"
                 strokeDasharray="5 3"
                 animate={{ x1: cellX(cut2) - 4, x2: cellX(cut2) - 4 }}
@@ -226,15 +226,15 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
           ) : null}
 
           {/* Flow Divider */}
-          <line x1="12" y1="112" x2="420" y2="112" stroke="#1e293b" strokeWidth="1.2" />
-          <text x="218" y="126" textAnchor="middle" fill="#94a3b8" fontSize="9.5" fontWeight="600">
+          <line x1="12" y1="112" x2="420" y2="112" stroke="#cbd5e1" strokeWidth="1.2" />
+          <text x="218" y="126" textAnchor="middle" fill="#475569" fontSize="9.5" fontWeight="600">
             {mode === 'uniform'
               ? `Máscara binaria: [ ${mask.join(' ')} ]`
               : 'Herencia cruzada de segmentos parentales'}
           </text>
 
           {/* Offspring H1 */}
-          <text x="12" y="158" fill="#34d399" fontSize="11" fontWeight="700">
+          <text x="12" y="158" fill="#047857" fontSize="11" fontWeight="700">
             H1
           </text>
           {offspring.map((gene, i) => {
@@ -251,14 +251,14 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
                   width="38"
                   height="32"
                   rx="6"
-                  fill={fromP1 ? 'rgba(34,211,238,0.24)' : 'rgba(167,139,250,0.24)'}
-                  stroke={fromP1 ? '#22d3ee' : '#a78bfa'}
+                  fill={fromP1 ? '#cffafe' : '#ede9fe'}
+                  stroke={fromP1 ? '#0891b2' : '#7c3aed'}
                   strokeWidth="1.5"
                 />
-                <text x="19" y="18" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="800">
+                <text x="19" y="18" textAnchor="middle" fill="#0f172a" fontSize="13" fontWeight="800">
                   {gene.h1Bit}
                 </text>
-                <text x="19" y="28" textAnchor="middle" fill={fromP1 ? '#67e8f9' : '#ddd6fe'} fontSize="7.5">
+                <text x="19" y="28" textAnchor="middle" fill={fromP1 ? '#0e7490' : '#6d28d9'} fontSize="7.5" fontWeight="700">
                   {gene.h1Origin}
                 </text>
               </motion.g>
@@ -266,7 +266,7 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
           })}
 
           {/* Offspring H2 */}
-          <text x="12" y="203" fill="#34d399" fontSize="11" fontWeight="700">
+          <text x="12" y="203" fill="#047857" fontSize="11" fontWeight="700">
             H2
           </text>
           {offspring.map((gene, i) => {
@@ -283,14 +283,14 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
                   width="38"
                   height="32"
                   rx="6"
-                  fill={fromP1 ? 'rgba(34,211,238,0.24)' : 'rgba(167,139,250,0.24)'}
-                  stroke={fromP1 ? '#22d3ee' : '#a78bfa'}
+                  fill={fromP1 ? '#cffafe' : '#ede9fe'}
+                  stroke={fromP1 ? '#0891b2' : '#7c3aed'}
                   strokeWidth="1.5"
                 />
-                <text x="19" y="18" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="800">
+                <text x="19" y="18" textAnchor="middle" fill="#0f172a" fontSize="13" fontWeight="800">
                   {gene.h2Bit}
                 </text>
-                <text x="19" y="28" textAnchor="middle" fill={fromP1 ? '#67e8f9' : '#ddd6fe'} fontSize="7.5">
+                <text x="19" y="28" textAnchor="middle" fill={fromP1 ? '#0e7490' : '#6d28d9'} fontSize="7.5" fontWeight="700">
                   {gene.h2Origin}
                 </text>
               </motion.g>
@@ -300,12 +300,12 @@ export function CrossoverDemoSVG({ mode, onModeChange }: CrossoverDemoSVGProps) 
       </div>
 
       {/* Holland Building Block Status */}
-      <div className="flex items-center justify-between gap-2 rounded-xl border border-slate-800 bg-slate-950/75 px-3.5 py-2 text-xs">
-        <span className="inline-flex items-center gap-1.5 text-slate-300">
-          <Sparkles className={`h-3.5 w-3.5 ${blockPreserved ? 'text-emerald-300' : 'text-rose-300'}`} />
-          Bloque de construcción <code className="font-mono text-emerald-300">101*****</code>:
+      <div className="flex items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs">
+        <span className="inline-flex items-center gap-1.5 text-slate-700">
+          <Sparkles className={`h-3.5 w-3.5 ${blockPreserved ? 'text-emerald-700' : 'text-rose-700'}`} />
+          Bloque de construcción <code className="rounded bg-emerald-50 px-1 font-mono font-semibold text-emerald-800">101*****</code>:
         </span>
-        <span className={`font-semibold ${blockPreserved ? 'text-emerald-300' : 'text-rose-300'}`}>
+        <span className={`font-semibold ${blockPreserved ? 'text-emerald-700' : 'text-rose-700'}`}>
           {blockPreserved ? 'Preservado intacto en descendencia' : 'Fragmentado por el corte'}
         </span>
       </div>

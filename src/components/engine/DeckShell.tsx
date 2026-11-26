@@ -38,18 +38,18 @@ export function DeckShell({ slides, renderSlide }: DeckShellProps) {
   const currentSlide = slides[nav.currentIndex] ?? slides[0];
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-[#050816] text-slate-50 select-none">
+    <div className="relative h-screen w-screen overflow-hidden bg-slate-50 text-slate-900 select-none">
       {/* Ambient Radial + Subtle Grid SVG Backdrop */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute -top-48 left-1/4 h-[520px] w-[520px] rounded-full bg-cyan-500/10 blur-[140px]" />
-        <div className="absolute -bottom-48 right-1/5 h-[520px] w-[520px] rounded-full bg-violet-500/10 blur-[140px]" />
-        <svg className="h-full w-full opacity-[0.14]" xmlns="http://www.w3.org/2000/svg">
+        <div className="absolute -top-48 left-1/4 h-[520px] w-[520px] rounded-full bg-cyan-400/12 blur-[140px]" />
+        <div className="absolute -bottom-48 right-1/5 h-[520px] w-[520px] rounded-full bg-violet-400/10 blur-[140px]" />
+        <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="deck-grid" width="48" height="48" patternUnits="userSpaceOnUse">
               <path
                 d="M 48 0 L 0 0 0 48"
                 fill="none"
-                stroke="rgba(148, 163, 184, 0.22)"
+                stroke="rgba(15, 23, 42, 0.06)"
                 strokeWidth="1"
               />
             </pattern>

@@ -143,10 +143,10 @@ export function SelectionDemoSVG({
       {/* Header + Action Buttons */}
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-violet-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-violet-700">
             Simulador Dual en Vivo
           </span>
-          <h3 className="text-base font-bold text-slate-100">
+          <h3 className="text-base font-bold text-slate-900">
             Ruleta Proporcional vs. Torneo (k = {tournamentK})
           </h3>
         </div>
@@ -156,7 +156,7 @@ export function SelectionDemoSVG({
             type="button"
             onClick={sampleParent}
             onKeyDown={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-400/60 bg-violet-500/20 px-3 py-1.5 text-xs font-semibold text-violet-100 hover:bg-violet-500/30 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-600 bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-violet-700 cursor-pointer"
           >
             <Play className="h-3.5 w-3.5" />
             Muestrear Padre
@@ -165,7 +165,7 @@ export function SelectionDemoSVG({
             type="button"
             onClick={resetCounts}
             onKeyDown={(e) => e.stopPropagation()}
-            className="inline-flex items-center justify-center rounded-xl border border-slate-700 bg-slate-950 p-1.5 text-slate-300 hover:text-slate-100 cursor-pointer"
+            className="inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white p-1.5 text-slate-600 shadow-xs hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
             aria-label="Reiniciar contadores"
           >
             <RotateCcw className="h-3.5 w-3.5" />
@@ -180,18 +180,18 @@ export function SelectionDemoSVG({
           onClick={() => onMethodChange('roulette')}
           className={`col-span-6 flex flex-col items-center justify-between rounded-xl border p-2.5 transition-colors cursor-pointer ${
             activeMethod === 'roulette'
-              ? 'border-amber-400/70 bg-amber-500/8'
-              : 'border-slate-800 bg-[#050816]'
+              ? 'border-amber-500 bg-amber-50/70 shadow-xs'
+              : 'border-slate-200 bg-slate-50'
           }`}
         >
           <div className="flex w-full items-center justify-between text-[11px]">
-            <span className="font-semibold text-amber-200">Ruleta fᵢ / Σfⱼ</span>
-            <span className="font-mono text-slate-300">Ganador: {rouletteWinner}</span>
+            <span className="font-semibold text-amber-800">Ruleta fᵢ / Σfⱼ</span>
+            <span className="font-mono font-semibold text-slate-700">Ganador: {rouletteWinner}</span>
           </div>
 
           <svg viewBox="0 0 180 164" className="w-full max-h-[148px]">
             {/* Pointer at top */}
-            <polygon points="90,14 84,3 96,3" fill="#fbbf24" />
+            <polygon points="90,14 84,3 96,3" fill="#d97706" />
             <motion.g
               animate={{ rotate: wheelAngle }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
@@ -204,16 +204,16 @@ export function SelectionDemoSVG({
                     <path
                       d={describeSector(90, 88, 68, s.start, s.end)}
                       fill={s.color}
-                      fillOpacity={rouletteWinner === s.id ? 0.92 : 0.68}
-                      stroke="#050816"
+                      fillOpacity={rouletteWinner === s.id ? 0.95 : 0.75}
+                      stroke="#ffffff"
                       strokeWidth="2"
                     />
                     <text
                       x={labelPos.x}
                       y={labelPos.y + 3}
                       textAnchor="middle"
-                      fill="#050816"
-                      fontSize="10"
+                      fill="#ffffff"
+                      fontSize="10.5"
                       fontWeight="800"
                     >
                       {s.id}
@@ -221,7 +221,7 @@ export function SelectionDemoSVG({
                   </g>
                 );
               })}
-              <circle cx="90" cy="88" r="14" fill="#050816" stroke="#e2e8f0" strokeWidth="1.5" />
+              <circle cx="90" cy="88" r="14" fill="#ffffff" stroke="#cbd5e1" strokeWidth="1.8" />
             </motion.g>
           </svg>
         </div>
@@ -231,13 +231,13 @@ export function SelectionDemoSVG({
           onClick={() => onMethodChange('tournament')}
           className={`col-span-6 flex flex-col items-center justify-between rounded-xl border p-2.5 transition-colors cursor-pointer ${
             activeMethod === 'tournament'
-              ? 'border-violet-400/70 bg-violet-500/8'
-              : 'border-slate-800 bg-[#050816]'
+              ? 'border-violet-500 bg-violet-50/70 shadow-xs'
+              : 'border-slate-200 bg-slate-50'
           }`}
         >
           <div className="flex w-full items-center justify-between text-[11px]">
-            <span className="font-semibold text-violet-200">Torneo k = {tournamentK}</span>
-            <span className="font-mono text-slate-300">Ganador: {tourneyWinner}</span>
+            <span className="font-semibold text-violet-800">Torneo k = {tournamentK}</span>
+            <span className="font-mono font-semibold text-slate-700">Ganador: {tourneyWinner}</span>
           </div>
 
           <svg viewBox="0 0 190 164" className="w-full max-h-[148px]">
@@ -253,8 +253,8 @@ export function SelectionDemoSVG({
                     y1={total === 1 ? 82 : y}
                     x2="122"
                     y2="82"
-                    stroke={isWin ? '#a78bfa' : '#334155'}
-                    strokeWidth={isWin ? '2.2' : '1.3'}
+                    stroke={isWin ? '#7c3aed' : '#cbd5e1'}
+                    strokeWidth={isWin ? '2.2' : '1.4'}
                   />
                   <rect
                     x="12"
@@ -262,15 +262,15 @@ export function SelectionDemoSVG({
                     width="58"
                     height="26"
                     rx="7"
-                    fill={isWin ? 'rgba(167,139,250,0.24)' : '#0f172a'}
+                    fill={isWin ? '#ede9fe' : '#ffffff'}
                     stroke={cand.color}
-                    strokeWidth={isWin ? '2' : '1.2'}
+                    strokeWidth={isWin ? '2' : '1.3'}
                   />
                   <text
                     x="41"
                     y={(total === 1 ? 82 : y) + 4}
                     textAnchor="middle"
-                    fill="#f8fafc"
+                    fill="#0f172a"
                     fontSize="10.5"
                     fontWeight="700"
                   >
@@ -293,11 +293,11 @@ export function SelectionDemoSVG({
                 width="58"
                 height="36"
                 rx="9"
-                fill="rgba(167,139,250,0.28)"
-                stroke="#a78bfa"
+                fill="#7c3aed"
+                stroke="#6d28d9"
                 strokeWidth="2"
               />
-              <text x="151" y="79" textAnchor="middle" fill="#ddd6fe" fontSize="8.5" fontWeight="600">
+              <text x="151" y="79" textAnchor="middle" fill="#ede9fe" fontSize="8.5" fontWeight="600">
                 PADRE
               </text>
               <text x="151" y="93" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="800">
@@ -309,10 +309,10 @@ export function SelectionDemoSVG({
       </div>
 
       {/* Empirical Selection Frequency Bars */}
-      <div className="rounded-xl border border-slate-800 bg-slate-950/80 p-2.5">
-        <div className="mb-1.5 flex items-center justify-between text-[11px] text-slate-400">
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+        <div className="mb-1.5 flex items-center justify-between text-[11px] text-slate-600">
           <span>Conteo Empírico Acumulado (Ruleta vs. Torneo)</span>
-          <span className="font-mono">
+          <span className="font-mono font-semibold text-slate-700">
             Muestras: {Object.values(tourneyCounts).reduce((a, b) => a + b, 0)}
           </span>
         </div>
@@ -321,28 +321,28 @@ export function SelectionDemoSVG({
             const rPct = ((rouletteCounts[c.id] ?? 0) / totalRouletteSamples) * 100;
             const tPct = ((tourneyCounts[c.id] ?? 0) / totalTourneySamples) * 100;
             return (
-              <div key={c.id} className="rounded-lg border border-slate-800/90 bg-slate-900/70 p-1.5">
+              <div key={c.id} className="rounded-lg border border-slate-200 bg-white p-1.5">
                 <div className="mb-1 flex items-center justify-between font-mono text-[10.5px]">
-                  <span className="font-bold text-slate-100">{c.id}</span>
-                  <span className="text-slate-400">f={c.fitness}</span>
+                  <span className="font-bold text-slate-900">{c.id}</span>
+                  <span className="text-slate-500">f={c.fitness}</span>
                 </div>
                 <div className="space-y-1">
-                  <div className="h-1.5 overflow-hidden rounded-full bg-slate-800">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-slate-200">
                     <div
-                      className="h-full rounded-full bg-amber-400 transition-all duration-300"
+                      className="h-full rounded-full bg-amber-500 transition-all duration-300"
                       style={{ width: `${rPct}%` }}
                     />
                   </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-slate-800">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-slate-200">
                     <div
-                      className="h-full rounded-full bg-violet-400 transition-all duration-300"
+                      className="h-full rounded-full bg-violet-600 transition-all duration-300"
                       style={{ width: `${tPct}%` }}
                     />
                   </div>
                 </div>
-                <div className="mt-1 flex justify-between font-mono text-[9.5px] text-slate-400">
-                  <span className="text-amber-300">R:{rouletteCounts[c.id] ?? 0}</span>
-                  <span className="text-violet-300">T:{tourneyCounts[c.id] ?? 0}</span>
+                <div className="mt-1 flex justify-between font-mono text-[9.5px] font-semibold">
+                  <span className="text-amber-700">R:{rouletteCounts[c.id] ?? 0}</span>
+                  <span className="text-violet-700">T:{tourneyCounts[c.id] ?? 0}</span>
                 </div>
               </div>
             );

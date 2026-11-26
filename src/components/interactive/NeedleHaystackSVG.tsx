@@ -87,10 +87,10 @@ export function NeedleHaystackSVG({
     <div className="flex h-full min-h-0 flex-col justify-between gap-2.5">
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-amber-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-amber-700">
             Dinámica de Población sobre el Paisaje
           </span>
-          <h3 className="text-base font-bold text-slate-100">
+          <h3 className="text-base font-bold text-slate-900">
             {landscape === 'flat'
               ? 'Superficie Plana Sin Gradiente (Aguja en un Pajar)'
               : 'Superficie Escalable (Con Gradiente Implícito)'}
@@ -104,8 +104,8 @@ export function NeedleHaystackSVG({
             onKeyDown={(e) => e.stopPropagation()}
             className={`rounded-lg border px-2.5 py-1.5 text-xs font-semibold cursor-pointer ${
               landscape === 'gradient'
-                ? 'border-emerald-400 bg-emerald-500/20 text-emerald-100'
-                : 'border-slate-700 bg-slate-950 text-slate-400 hover:text-slate-200'
+                ? 'border-emerald-500 bg-emerald-50 text-emerald-800 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             Con Gradiente
@@ -116,8 +116,8 @@ export function NeedleHaystackSVG({
             onKeyDown={(e) => e.stopPropagation()}
             className={`rounded-lg border px-2.5 py-1.5 text-xs font-semibold cursor-pointer ${
               landscape === 'flat'
-                ? 'border-rose-400 bg-rose-500/20 text-rose-100'
-                : 'border-slate-700 bg-slate-950 text-slate-400 hover:text-slate-200'
+                ? 'border-rose-500 bg-rose-50 text-rose-800 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             Paisaje Plano
@@ -126,7 +126,7 @@ export function NeedleHaystackSVG({
       </div>
 
       {/* 2D Contour + Needle SVG */}
-      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-800 bg-[#050816] p-1">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-1">
         <svg viewBox="0 0 420 220" className="h-full w-full">
           {landscape === 'gradient' ? (
             <>
@@ -136,12 +136,12 @@ export function NeedleHaystackSVG({
                   cx={NEEDLE.x}
                   cy={NEEDLE.y}
                   r={r}
-                  fill={`rgba(52,211,153,${0.04 + idx * 0.04})`}
-                  stroke="rgba(52,211,153,0.35)"
+                  fill={`rgba(5,150,105,${0.05 + idx * 0.045})`}
+                  stroke="rgba(5,150,105,0.38)"
                   strokeDasharray={idx % 2 === 0 ? '4 3' : undefined}
                 />
               ))}
-              <text x={NEEDLE.x} y="24" textAnchor="middle" fill="#6ee7b7" fontSize="11" fontWeight="700">
+              <text x={NEEDLE.x} y="24" textAnchor="middle" fill="#047857" fontSize="11" fontWeight="700">
                 Isolíneas guían la selección hacia x*
               </text>
             </>
@@ -153,14 +153,14 @@ export function NeedleHaystackSVG({
                 width="384"
                 height="184"
                 rx="10"
-                fill="rgba(251,113,133,0.06)"
-                stroke="rgba(251,113,133,0.28)"
+                fill="rgba(225,29,72,0.05)"
+                stroke="rgba(225,29,72,0.3)"
               />
-              <circle cx={NEEDLE.x} cy={NEEDLE.y} r="5.5" fill="#fb7185" stroke="#fff" strokeWidth="1.3" />
-              <text x={NEEDLE.x} y={NEEDLE.y - 12} textAnchor="middle" fill="#fda4af" fontSize="10.5" fontWeight="700">
+              <circle cx={NEEDLE.x} cy={NEEDLE.y} r="5.5" fill="#e11d48" stroke="#ffffff" strokeWidth="1.5" />
+              <text x={NEEDLE.x} y={NEEDLE.y - 12} textAnchor="middle" fill="#be123c" fontSize="10.5" fontWeight="700">
                 Aguja x* (sin pista vecina)
               </text>
-              <text x="120" y="42" textAnchor="middle" fill="#94a3b8" fontSize="10.5">
+              <text x="120" y="42" textAnchor="middle" fill="#475569" fontSize="10.5" fontWeight="600">
                 f(x) = constante → P(i) = 1/N
               </text>
             </>
@@ -172,18 +172,18 @@ export function NeedleHaystackSVG({
               key={idx}
               cx={w.x}
               cy={w.y}
-              r="4.2"
-              fill={landscape === 'gradient' ? '#22d3ee' : '#fbbf24'}
-              stroke="#050816"
-              strokeWidth="1"
-              opacity="0.92"
+              r="4.4"
+              fill={landscape === 'gradient' ? '#0891b2' : '#d97706'}
+              stroke="#ffffff"
+              strokeWidth="1.3"
+              opacity="0.95"
             />
           ))}
         </svg>
       </div>
 
       {/* Cross-section profile bar */}
-      <div className="rounded-xl border border-slate-800 bg-slate-950/75 px-4 py-2.5 text-xs text-slate-300">
+      <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-xs text-slate-700">
         {landscape === 'flat'
           ? 'Meseta plana: cada punto fuera de la aguja recibe idéntica evaluación f(x)=c; el muestreo colapsa a búsqueda aleatoria ciega.'
           : 'Superficie escalable: las isolíneas proveen correlación espacial aptitud-distancia y permiten convergencia progresiva.'}

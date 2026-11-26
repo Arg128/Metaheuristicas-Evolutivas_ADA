@@ -12,11 +12,11 @@ export interface SlideProps {
 }
 
 const CANDIDATES: SelectionCandidate[] = [
-  { id: 'A', fitness: 48, color: '#a78bfa' },
-  { id: 'B', fitness: 24, color: '#22d3ee' },
-  { id: 'C', fitness: 14, color: '#34d399' },
-  { id: 'D', fitness: 9, color: '#fbbf24' },
-  { id: 'E', fitness: 5, color: '#fb7185' },
+  { id: 'A', fitness: 48, color: '#7c3aed' },
+  { id: 'B', fitness: 24, color: '#0891b2' },
+  { id: 'C', fitness: 14, color: '#059669' },
+  { id: 'D', fitness: 9, color: '#d97706' },
+  { id: 'E', fitness: 5, color: '#e11d48' },
 ];
 
 export function Slide08Selection({ meta, totalSlides }: SlideProps) {
@@ -41,9 +41,9 @@ export function Slide08Selection({ meta, totalSlides }: SlideProps) {
           active={method === 'roulette'}
           onClick={() => setMethod('roulette')}
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
-            Asigna sectores proporcionales a <strong className="text-amber-200">fᵢ</strong>. Si un{' '}
-            <strong className="text-rose-300">súper-individuo</strong> acapara el 80% de la aptitud total, monopoliza la reproducción y destruye la diversidad.
+          <p className="text-xs text-slate-700 leading-relaxed">
+            Asigna sectores proporcionales a <strong className="text-amber-800">fᵢ</strong>. Si un{' '}
+            <strong className="text-rose-700">súper-individuo</strong> acapara el 80% de la aptitud total, monopoliza la reproducción y destruye la diversidad.
           </p>
         </InteractiveCard>
 
@@ -56,7 +56,7 @@ export function Slide08Selection({ meta, totalSlides }: SlideProps) {
           active={method === 'tournament'}
           onClick={() => setMethod('tournament')}
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Extrae <MathFormula tex="k" /> individuos al azar y selecciona al mejor. Al aumentar{' '}
             <MathFormula tex="k" /> se incrementa la presión selectiva sin depender de la magnitud numérica de <MathFormula tex="f" />.
           </p>
@@ -74,7 +74,7 @@ export function Slide08Selection({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive SelectionDemoSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <SelectionDemoSVG
           candidates={CANDIDATES}
           tournamentK={tournamentK}

@@ -32,7 +32,7 @@ export function Slide16NeedleHaystack({ meta, totalSlides }: SlideProps) {
           active={landscape === 'flat'}
           onClick={() => setLandscape('flat')}
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Una metaheurística necesita que soluciones cercanas al óptimo tengan mejor aptitud promedio que soluciones lejanas (correlación aptitud-distancia).
           </p>
         </InteractiveCard>
@@ -44,7 +44,7 @@ export function Slide16NeedleHaystack({ meta, totalSlides }: SlideProps) {
           icon={<HelpCircle className="h-5 w-5" />}
           accent="rose"
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Si toda respuesta incorrecta recibe exactamente el mismo puntaje <MathFormula tex="f(x) = c" /> (ej. romper una clave criptográfica exacta), ningún operador puede distinguir qué padre está más cerca.
           </p>
         </InteractiveCard>
@@ -57,7 +57,7 @@ export function Slide16NeedleHaystack({ meta, totalSlides }: SlideProps) {
           active={landscape === 'gradient'}
           onClick={() => setLandscape('gradient')}
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Al igualarse todas las aptitudes en la meseta, <MathFormula tex="P(i) = 1/N" />: la selección deja de orientar la búsqueda.
           </p>
         </InteractiveCard>
@@ -74,7 +74,7 @@ export function Slide16NeedleHaystack({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive NeedleHaystackSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <NeedleHaystackSVG landscape={landscape} onLandscapeChange={setLandscape} />
       </div>
     </SlideLayout>

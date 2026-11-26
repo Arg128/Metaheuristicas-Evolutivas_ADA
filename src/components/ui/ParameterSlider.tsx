@@ -42,11 +42,11 @@ export function ParameterSlider({
   } as CSSProperties;
 
   return (
-    <div className="rounded-xl border border-slate-800/90 bg-slate-900/75 px-4 py-3">
+    <div className="rounded-xl border border-slate-200 bg-white/95 px-4 py-3 shadow-sm shadow-slate-900/5">
       <div className="mb-2 flex items-center justify-between gap-3">
         <label
           htmlFor={inputId}
-          className="flex items-center gap-2 text-sm font-medium text-slate-200"
+          className="flex items-center gap-2 text-sm font-medium text-slate-800"
         >
           <span>{label}</span>
           {symbol ? (
@@ -64,7 +64,7 @@ export function ParameterSlider({
       </div>
 
       <div className="relative flex h-6 items-center">
-        <div className="pointer-events-none absolute inset-x-0 h-2 overflow-hidden rounded-full bg-slate-800">
+        <div className="pointer-events-none absolute inset-x-0 h-2 overflow-hidden rounded-full bg-slate-200">
           <div
             className={`h-full rounded-full ${accentStyle.trackBg} transition-[width] duration-75`}
             style={{ width: `${percent}%` }}

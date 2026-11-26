@@ -27,7 +27,7 @@ export function Slide15Complexity({ meta, totalSlides }: SlideProps) {
           icon={<HardDrive className="h-5 w-5" />}
           accent="cyan"
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Solo mantiene <MathFormula tex="N" /> cromosomas de longitud <MathFormula tex="L" /> y su vector de aptitud: muy liviano frente a árboles de búsqueda exponenciales.
           </p>
         </InteractiveCard>
@@ -40,9 +40,9 @@ export function Slide15Complexity({ meta, totalSlides }: SlideProps) {
           accent="amber"
           active
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Torneo, cruce y mutación cuestan <MathFormula tex="\mathcal{O}(N \cdot L)" />. Sin embargo, el término dominante es{' '}
-            <strong className="text-amber-200">C_fit &gt; 90%</strong> cuando cada individuo dispara una simulación numérica <strong className="text-amber-200">CFD o FEA</strong>.
+            <strong className="text-amber-800">C_fit &gt; 90%</strong> cuando cada individuo dispara una simulación numérica <strong className="text-amber-800">CFD o FEA</strong>.
           </p>
         </InteractiveCard>
 
@@ -52,7 +52,7 @@ export function Slide15Complexity({ meta, totalSlides }: SlideProps) {
           icon={<Layers className="h-5 w-5" />}
           accent="emerald"
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Como las <MathFormula tex="N" /> evaluaciones de aptitud son independientes dentro de cada generación, el algoritmo se paraleliza trivialmente en clústeres o GPUs.
           </p>
         </InteractiveCard>
@@ -69,7 +69,7 @@ export function Slide15Complexity({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive ComplexityDonutSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <ComplexityDonutSVG />
       </div>
     </SlideLayout>

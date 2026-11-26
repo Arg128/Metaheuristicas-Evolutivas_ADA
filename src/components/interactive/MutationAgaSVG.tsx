@@ -84,10 +84,10 @@ export function MutationAgaSVG({
       {/* Header + Action */}
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-violet-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-violet-700">
             Bit-Flip · Gaussiana N(0, σ²) · Modo AGA
           </span>
-          <h3 className="text-base font-bold text-slate-100">
+          <h3 className="text-base font-bold text-slate-900">
             Perturbación &amp; Control Adaptativo de Parámetros
           </h3>
         </div>
@@ -99,8 +99,8 @@ export function MutationAgaSVG({
             onKeyDown={(e) => e.stopPropagation()}
             className={`rounded-xl border px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
               agaEnabled
-                ? 'border-amber-400 bg-amber-500/20 text-amber-100'
-                : 'border-slate-700 bg-slate-950 text-slate-400 hover:text-slate-200'
+                ? 'border-amber-500 bg-amber-50 text-amber-800 shadow-xs'
+                : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             Modo AGA: {agaEnabled ? 'ON' : 'OFF'}
@@ -109,7 +109,7 @@ export function MutationAgaSVG({
             type="button"
             onClick={executeMutation}
             onKeyDown={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-400/60 bg-violet-500/20 px-3 py-1.5 text-xs font-semibold text-violet-100 hover:bg-violet-500/30 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-violet-600 bg-violet-600 px-3 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-violet-700 cursor-pointer"
           >
             <Zap className="h-3.5 w-3.5" />
             Ejecutar Mutación
@@ -118,12 +118,12 @@ export function MutationAgaSVG({
       </div>
 
       {/* Bit-flip Row */}
-      <div className="rounded-xl border border-slate-800 bg-[#050816] p-3">
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
         <div className="mb-2 flex items-center justify-between text-[11px]">
-          <span className="font-semibold text-violet-300">
+          <span className="font-semibold text-violet-700">
             1. Bit-Flip Discreto (p_m efectivo = {effectivePm.toFixed(2)})
           </span>
-          <span className="font-mono text-slate-400">
+          <span className="font-mono text-slate-600">
             Mutados: {flippedIndices.length > 0 ? flippedIndices.map((i) => `b${i}`).join(', ') : 'ninguno'}
           </span>
         </div>
@@ -138,8 +138,8 @@ export function MutationAgaSVG({
                 transition={{ duration: 0.22 }}
                 className={`flex h-9 items-center justify-center rounded-lg border font-mono text-sm font-bold ${
                   wasFlipped
-                    ? 'border-violet-400 bg-violet-500/30 text-white shadow-[0_0_12px_rgba(167,139,250,0.35)]'
-                    : 'border-slate-700 bg-slate-900/90 text-slate-300'
+                    ? 'border-violet-600 bg-violet-600 text-white shadow-xs'
+                    : 'border-slate-200 bg-white text-slate-700'
                 }`}
               >
                 {b}
@@ -150,16 +150,16 @@ export function MutationAgaSVG({
       </div>
 
       {/* Gaussian Bell Curve SVG */}
-      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-800 bg-[#050816] p-2">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-2">
         <svg viewBox="0 0 420 135" className="h-full w-full">
-          <line x1="20" y1="114" x2="400" y2="114" stroke="#475569" strokeWidth="1.2" />
-          <line x1="210" y1="14" x2="210" y2="114" stroke="rgba(167,139,250,0.35)" strokeDasharray="4 4" />
+          <line x1="20" y1="114" x2="400" y2="114" stroke="#64748b" strokeWidth="1.2" />
+          <line x1="210" y1="14" x2="210" y2="114" stroke="rgba(124,58,237,0.35)" strokeDasharray="4 4" />
           <motion.path
             d={pathD}
             animate={{ d: pathD }}
             transition={{ duration: 0.25 }}
             fill="none"
-            stroke="#22d3ee"
+            stroke="#0891b2"
             strokeWidth="2.8"
           />
           <motion.line
@@ -167,7 +167,7 @@ export function MutationAgaSVG({
             y1="26"
             x2={sampleX}
             y2="114"
-            stroke="#fbbf24"
+            stroke="#d97706"
             strokeWidth="2"
             strokeDasharray="3 2"
             animate={{ x1: sampleX, x2: sampleX }}
@@ -176,10 +176,12 @@ export function MutationAgaSVG({
             cx={sampleX}
             cy="114"
             r="5"
-            fill="#fbbf24"
+            fill="#d97706"
+            stroke="#ffffff"
+            strokeWidth="1.2"
             animate={{ cx: sampleX }}
           />
-          <text x="210" y="130" textAnchor="middle" fill="#94a3b8" fontSize="10.5">
+          <text x="210" y="130" textAnchor="middle" fill="#475569" fontSize="10.5" fontWeight="600">
             ε ~ N(0, σ²) · muestra actual ε = {sampleOffset.toFixed(2)}
           </text>
         </svg>
@@ -225,14 +227,14 @@ export function MutationAgaSVG({
             onChange={setPopVariance}
           />
         </div>
-        <div className="col-span-5 rounded-xl border border-slate-800 bg-slate-950/80 px-3 py-2 text-[11px]">
+        <div className="col-span-5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-[11px]">
           <div className="flex justify-between">
-            <span className="text-slate-400">p_c adaptado:</span>
-            <span className="font-mono font-bold text-cyan-300">{effectivePc.toFixed(2)}</span>
+            <span className="text-slate-600">p_c adaptado:</span>
+            <span className="font-mono font-bold text-cyan-700">{effectivePc.toFixed(2)}</span>
           </div>
           <div className="mt-1 flex justify-between">
-            <span className="text-slate-400">p_m adaptado:</span>
-            <span className="font-mono font-bold text-amber-300">{effectivePm.toFixed(2)}</span>
+            <span className="text-slate-600">p_m adaptado:</span>
+            <span className="font-mono font-bold text-amber-700">{effectivePm.toFixed(2)}</span>
           </div>
         </div>
       </div>

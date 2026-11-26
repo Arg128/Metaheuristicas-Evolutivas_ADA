@@ -29,11 +29,11 @@ const THEMATIC_BLOCKS: { block: ThematicBlock; range: string; label: string }[] 
 ];
 
 const ORBITAL_PARTICLES = [
-  { rx: 220, ry: 120, rot: -18, duration: 16, delay: 0, color: '#22d3ee', r: 5 },
-  { rx: 175, ry: 95, rot: 24, duration: 13, delay: 0.8, color: '#a78bfa', r: 4.5 },
-  { rx: 135, ry: 72, rot: -35, duration: 10.5, delay: 1.4, color: '#34d399', r: 4 },
-  { rx: 95, ry: 52, rot: 12, duration: 8.5, delay: 0.3, color: '#fbbf24', r: 3.5 },
-  { rx: 260, ry: 148, rot: 8, duration: 20, delay: 1.9, color: '#fb7185', r: 4 },
+  { rx: 220, ry: 120, rot: -18, duration: 16, delay: 0, color: '#0891b2', r: 5 },
+  { rx: 175, ry: 95, rot: 24, duration: 13, delay: 0.8, color: '#7c3aed', r: 4.5 },
+  { rx: 135, ry: 72, rot: -35, duration: 10.5, delay: 1.4, color: '#059669', r: 4 },
+  { rx: 95, ry: 52, rot: 12, duration: 8.5, delay: 0.3, color: '#d97706', r: 3.5 },
+  { rx: 260, ry: 148, rot: 8, duration: 20, delay: 1.9, color: '#e11d48', r: 4 },
 ];
 
 function loadSavedMembers(): string[] {
@@ -79,25 +79,25 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
 
   return (
     <SlideLayout meta={meta} totalSlides={totalSlides} variant="cover">
-      <div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-800/80 bg-[#090d1f]/75 p-10 backdrop-blur-md">
+      <div className="relative flex h-full w-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white/90 p-10 shadow-xl shadow-slate-900/5 backdrop-blur-md">
         {/* Animated Orbital Evolutionary Trajectories Converging Toward (0,0) */}
         <svg
           viewBox="-340 -220 680 440"
-          className="pointer-events-none absolute inset-y-0 right-0 h-full w-[62%] opacity-75"
+          className="pointer-events-none absolute inset-y-0 right-0 h-full w-[62%] opacity-85"
           aria-hidden="true"
         >
           <defs>
             <radialGradient id="cover-core-glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#22d3ee" stopOpacity="0.45" />
-              <stop offset="45%" stopColor="#a78bfa" stopOpacity="0.16" />
-              <stop offset="100%" stopColor="#050816" stopOpacity="0" />
+              <stop offset="0%" stopColor="#0891b2" stopOpacity="0.22" />
+              <stop offset="45%" stopColor="#7c3aed" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="#f8fafc" stopOpacity="0" />
             </radialGradient>
           </defs>
 
           {/* Coordinate crosshair centered at (0,0) */}
           <circle cx="0" cy="0" r="190" fill="url(#cover-core-glow)" />
-          <line x1="-290" y1="0" x2="290" y2="0" stroke="rgba(148,163,184,0.14)" strokeDasharray="4 6" />
-          <line x1="0" y1="-190" x2="0" y2="190" stroke="rgba(148,163,184,0.14)" strokeDasharray="4 6" />
+          <line x1="-290" y1="0" x2="290" y2="0" stroke="rgba(15,23,42,0.12)" strokeDasharray="4 6" />
+          <line x1="0" y1="-190" x2="0" y2="190" stroke="rgba(15,23,42,0.12)" strokeDasharray="4 6" />
 
           {/* Concentric fitness contours */}
           {[50, 100, 155, 215].map((radius) => (
@@ -107,7 +107,7 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
               cy="0"
               r={radius}
               fill="none"
-              stroke="rgba(56, 189, 248, 0.14)"
+              stroke="rgba(8, 145, 178, 0.16)"
               strokeWidth="1"
               strokeDasharray="3 6"
             />
@@ -123,7 +123,7 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
                 ry={orb.ry}
                 fill="none"
                 stroke={orb.color}
-                strokeOpacity="0.24"
+                strokeOpacity="0.32"
                 strokeWidth="1.4"
                 strokeDasharray="6 6"
               />
@@ -133,7 +133,7 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
                 animate={{
                   cx: [orb.rx, 0, -orb.rx, 0, orb.rx],
                   cy: [0, orb.ry, 0, -orb.ry, 0],
-                  opacity: [0.45, 0.95, 0.75, 0.95, 0.45],
+                  opacity: [0.55, 1, 0.8, 1, 0.55],
                 }}
                 transition={{
                   duration: orb.duration,
@@ -151,19 +151,19 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
             cy="0"
             r="14"
             fill="none"
-            stroke="#34d399"
-            strokeWidth="1.5"
-            animate={{ r: [10, 22, 10], opacity: [0.9, 0.15, 0.9] }}
+            stroke="#059669"
+            strokeWidth="1.6"
+            animate={{ r: [10, 22, 10], opacity: [0.9, 0.18, 0.9] }}
             transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
           />
-          <circle cx="0" cy="0" r="6" fill="#34d399" />
+          <circle cx="0" cy="0" r="6" fill="#059669" />
           <text
             x="14"
             y="-10"
-            fill="#a7f3d0"
+            fill="#047857"
             fontSize="12"
             fontFamily="monospace"
-            fontWeight="600"
+            fontWeight="700"
           >
             x* = (0, 0)
           </text>
@@ -171,13 +171,13 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
 
         {/* Top Course Header */}
         <div className="relative z-10 flex items-center justify-between gap-4">
-          <div className="inline-flex items-center gap-3 rounded-full border border-cyan-400/35 bg-cyan-500/10 px-4 py-1.5">
-            <GraduationCap className="h-4 w-4 text-cyan-300" />
-            <span className="text-xs font-semibold tracking-wider text-cyan-200 uppercase">
+          <div className="inline-flex items-center gap-3 rounded-full border border-cyan-200 bg-cyan-50 px-4 py-1.5">
+            <GraduationCap className="h-4 w-4 text-cyan-700" />
+            <span className="text-xs font-semibold tracking-wider text-cyan-800 uppercase">
               Análisis y Diseño de Algoritmos · UNSA · Grupo 7
             </span>
           </div>
-          <span className="rounded-full border border-slate-700/80 bg-slate-900/80 px-3.5 py-1 font-mono text-xs text-slate-300">
+          <span className="rounded-full border border-slate-200 bg-slate-100/90 px-3.5 py-1 font-mono text-xs text-slate-700">
             19 Diapositivas · Nivel Ingeniería
           </span>
         </div>
@@ -186,13 +186,13 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
         <div className="relative z-10 my-auto grid grid-cols-12 items-center gap-8">
           <div className="col-span-7 space-y-5">
             <div>
-              <p className="mb-2 font-mono text-xs font-semibold tracking-[0.22em] text-cyan-300 uppercase">
+              <p className="mb-2 font-mono text-xs font-semibold tracking-[0.22em] text-cyan-700 uppercase">
                 Optimización Estocástica Poblacional
               </p>
-              <h1 className="bg-gradient-to-r from-slate-50 via-cyan-100 to-violet-200 bg-clip-text text-6xl font-extrabold tracking-tight text-transparent leading-[1.06]">
+              <h1 className="bg-gradient-to-r from-slate-900 via-cyan-700 to-violet-700 bg-clip-text text-6xl font-extrabold tracking-tight text-transparent leading-[1.06]">
                 Metaheurísticas Evolutivas
               </h1>
-              <p className="mt-4 max-w-2xl text-lg text-slate-300 leading-relaxed">
+              <p className="mt-4 max-w-2xl text-lg text-slate-700 leading-relaxed">
                 De los operadores estocásticos y la dualidad genotipo-fenotipo hasta
                 simulaciones en vivo para problemas complejos de ingeniería y
                 optimización continua o combinatoria.
@@ -213,17 +213,17 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
           </div>
 
           {/* Editable Group 7 Panel */}
-          <div className="col-span-5 rounded-2xl border border-slate-700/80 bg-slate-950/85 p-5 shadow-2xl backdrop-blur-md">
+          <div className="col-span-5 rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-lg shadow-slate-900/10 backdrop-blur-md">
             <div className="mb-3 flex items-center justify-between gap-2">
               <div className="flex items-center gap-2.5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-cyan-500/35 bg-cyan-500/15 text-cyan-300">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-cyan-200 bg-cyan-50 text-cyan-700">
                   <Users className="h-4 w-4" />
                 </span>
                 <div>
-                  <h2 className="text-sm font-bold text-slate-100">
+                  <h2 className="text-sm font-bold text-slate-900">
                     Integrantes del Grupo 7
                   </h2>
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[11px] text-slate-500">
                     Editable en vivo · guardado en este navegador
                   </p>
                 </div>
@@ -231,7 +231,7 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
               <button
                 type="button"
                 onClick={addMember}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/35 bg-cyan-500/15 px-2.5 py-1 text-xs font-semibold text-cyan-200 transition-colors hover:bg-cyan-500/25 cursor-pointer"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-200 bg-cyan-50 px-2.5 py-1 text-xs font-semibold text-cyan-800 transition-colors hover:bg-cyan-100 cursor-pointer"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Agregar integrante
@@ -251,7 +251,7 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
                     onKeyDown={(e) => e.stopPropagation()}
                     placeholder={`Nombre del integrante ${index + 1}`}
                     aria-label={`Integrante ${index + 1}`}
-                    className="w-full rounded-lg border border-slate-800 bg-slate-900/90 px-3 py-1.5 text-sm text-slate-100 placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none"
+                    className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-cyan-600 focus:bg-white focus:outline-none"
                   />
                   <button
                     type="button"
@@ -259,7 +259,7 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
                     disabled={members.length <= 1}
                     title="Eliminar integrante"
                     aria-label={`Eliminar integrante ${index + 1}`}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-800 bg-slate-900/80 text-slate-400 transition-colors hover:border-rose-500/40 hover:text-rose-300 disabled:cursor-not-allowed disabled:opacity-35 cursor-pointer"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-500 transition-colors hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 disabled:cursor-not-allowed disabled:opacity-35 cursor-pointer"
                   >
                     <Trash2 className="h-3.5 w-3.5" />
                   </button>
@@ -277,7 +277,7 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
             return (
               <div
                 key={item.block}
-                className={`rounded-xl border ${style.border} bg-slate-900/75 px-3.5 py-2.5 backdrop-blur-sm`}
+                className={`rounded-xl border ${style.border} bg-white/90 px-3.5 py-2.5 shadow-xs backdrop-blur-sm`}
               >
                 <div className="flex items-center justify-between">
                   <span className={`font-mono text-[11px] font-bold ${style.text}`}>
@@ -285,7 +285,7 @@ export function Slide01Cover({ meta, totalSlides }: SlideProps) {
                   </span>
                   <span className={`h-2 w-2 rounded-full ${style.trackBg}`} />
                 </div>
-                <p className="mt-1 truncate text-xs font-semibold text-slate-100">
+                <p className="mt-1 truncate text-xs font-semibold text-slate-800">
                   {item.label}
                 </p>
               </div>

@@ -29,10 +29,10 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
       {/* Header + Quick Jump & Stepper */}
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-amber-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-amber-700">
             Comparador 0..15 · Transición Adyacente
           </span>
-          <h3 className="text-lg font-bold text-slate-100">
+          <h3 className="text-lg font-bold text-slate-900">
             Entero {currVal} → {nextVal}
           </h3>
         </div>
@@ -42,7 +42,7 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
             type="button"
             onClick={() => onChange(Math.max(0, currVal - 1))}
             onKeyDown={(e) => e.stopPropagation()}
-            className="rounded-lg border border-slate-700 bg-slate-950 p-1.5 text-slate-300 hover:text-white cursor-pointer"
+            className="rounded-lg border border-slate-200 bg-white p-1.5 text-slate-600 shadow-xs hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
             aria-label="Anterior"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -51,7 +51,7 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
             type="button"
             onClick={() => onChange(Math.min(14, currVal + 1))}
             onKeyDown={(e) => e.stopPropagation()}
-            className="rounded-lg border border-slate-700 bg-slate-950 p-1.5 text-slate-300 hover:text-white cursor-pointer"
+            className="rounded-lg border border-slate-200 bg-white p-1.5 text-slate-600 shadow-xs hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
             aria-label="Siguiente"
           >
             <ChevronRight className="h-4 w-4" />
@@ -62,8 +62,8 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
             onKeyDown={(e) => e.stopPropagation()}
             className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold cursor-pointer ${
               isCriticalWall
-                ? 'border-amber-400 bg-amber-500/25 text-amber-100'
-                : 'border-amber-500/40 bg-amber-500/15 text-amber-200 hover:bg-amber-500/25'
+                ? 'border-amber-500 bg-amber-100 text-amber-900 shadow-xs'
+                : 'border-amber-300 bg-amber-50 text-amber-800 hover:bg-amber-100'
             }`}
           >
             <Binary className="h-3.5 w-3.5" />
@@ -75,10 +75,10 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
       {/* Bit-Flip Comparison Boxes */}
       <div className="grid grid-cols-1 gap-2.5">
         {/* Standard Binary */}
-        <div className="rounded-xl border border-rose-500/35 bg-rose-500/10 p-3">
+        <div className="rounded-xl border border-rose-200 bg-rose-50/75 p-3">
           <div className="mb-1.5 flex items-center justify-between text-xs">
-            <span className="font-semibold text-rose-200">Binario Estándar</span>
-            <span className="font-mono font-bold text-rose-300">
+            <span className="font-semibold text-rose-800">Binario Estándar</span>
+            <span className="font-mono font-bold text-rose-700">
               d_H = {distBin} {distBin >= 3 ? '(Pared de Hamming)' : ''}
             </span>
           </div>
@@ -87,13 +87,13 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
               {binA.split('').map((b, i) => (
                 <span
                   key={i}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-700 bg-slate-950 text-slate-200"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-800"
                 >
                   {b}
                 </span>
               ))}
             </div>
-            <span className="text-slate-400">→</span>
+            <span className="text-slate-500">→</span>
             <div className="flex gap-1.5">
               {binB.split('').map((b, i) => {
                 const changed = b !== binA[i];
@@ -105,8 +105,8 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
                     transition={{ duration: 0.22 }}
                     className={`flex h-9 w-9 items-center justify-center rounded-lg border ${
                       changed
-                        ? 'border-rose-400 bg-rose-500/30 text-white shadow-[0_0_10px_rgba(251,113,133,0.35)]'
-                        : 'border-slate-700 bg-slate-950 text-slate-400'
+                        ? 'border-rose-600 bg-rose-600 text-white shadow-xs'
+                        : 'border-slate-200 bg-white text-slate-500'
                     }`}
                   >
                     {b}
@@ -118,10 +118,10 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
         </div>
 
         {/* Gray Code */}
-        <div className="rounded-xl border border-emerald-500/35 bg-emerald-500/10 p-3">
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50/75 p-3">
           <div className="mb-1.5 flex items-center justify-between text-xs">
-            <span className="font-semibold text-emerald-200">Código Gray G = B ⊕ (B ≫ 1)</span>
-            <span className="font-mono font-bold text-emerald-300">
+            <span className="font-semibold text-emerald-800">Código Gray G = B ⊕ (B ≫ 1)</span>
+            <span className="font-mono font-bold text-emerald-700">
               d_H = {distGray} (Adyacencia unitaria)
             </span>
           </div>
@@ -130,13 +130,13 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
               {grayA.split('').map((b, i) => (
                 <span
                   key={i}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-700 bg-slate-950 text-slate-200"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-800"
                 >
                   {b}
                 </span>
               ))}
             </div>
-            <span className="text-slate-400">→</span>
+            <span className="text-slate-500">→</span>
             <div className="flex gap-1.5">
               {grayB.split('').map((b, i) => {
                 const changed = b !== grayA[i];
@@ -148,8 +148,8 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
                     transition={{ duration: 0.22 }}
                     className={`flex h-9 w-9 items-center justify-center rounded-lg border ${
                       changed
-                        ? 'border-emerald-400 bg-emerald-500/30 text-white shadow-[0_0_10px_rgba(52,211,153,0.35)]'
-                        : 'border-slate-700 bg-slate-950 text-slate-400'
+                        ? 'border-emerald-600 bg-emerald-600 text-white shadow-xs'
+                        : 'border-slate-200 bg-white text-slate-500'
                     }`}
                   >
                     {b}
@@ -162,9 +162,9 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
       </div>
 
       {/* Neighbor Graph SVG across 0..15 */}
-      <div className="rounded-xl border border-slate-800 bg-[#050816] p-2">
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
         <svg viewBox="0 0 420 74" className="h-[72px] w-full">
-          <text x="12" y="14" fill="#94a3b8" fontSize="9" fontWeight="600">
+          <text x="12" y="14" fill="#475569" fontSize="9" fontWeight="600">
             Grafo de vecindad fenotípica (0 → 15): costo en bits por paso
           </text>
           {Array.from({ length: 16 }, (_, n) => {
@@ -180,17 +180,17 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
                     y1="42"
                     x2={x + 25.5}
                     y2="42"
-                    stroke={isCurr ? '#fbbf24' : edgeDist >= 3 ? '#fb7185' : '#334155'}
-                    strokeWidth={isCurr ? 2.5 : edgeDist >= 3 ? 2 : 1.2}
+                    stroke={isCurr ? '#d97706' : edgeDist >= 3 ? '#e11d48' : '#cbd5e1'}
+                    strokeWidth={isCurr ? 2.5 : edgeDist >= 3 ? 2 : 1.4}
                   />
                 ) : null}
                 <circle
                   cx={x}
                   cy="42"
                   r={isCurr || isNext ? 8.5 : 6}
-                  fill={isCurr ? '#fbbf24' : isNext ? '#34d399' : '#0f172a'}
-                  stroke={isCurr ? '#fde68a' : isNext ? '#6ee7b7' : '#475569'}
-                  strokeWidth="1.3"
+                  fill={isCurr ? '#d97706' : isNext ? '#059669' : '#ffffff'}
+                  stroke={isCurr ? '#b45309' : isNext ? '#047857' : '#94a3b8'}
+                  strokeWidth="1.4"
                   className="cursor-pointer"
                   onClick={() => onChange(Math.min(14, n))}
                 />
@@ -198,7 +198,7 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
                   x={x}
                   y="45"
                   textAnchor="middle"
-                  fill={isCurr || isNext ? '#050816' : '#cbd5e1'}
+                  fill={isCurr || isNext ? '#ffffff' : '#334155'}
                   fontSize="8"
                   fontWeight="700"
                   className="pointer-events-none"
@@ -208,7 +208,7 @@ export function HammingGrayDemoSVG({ value, onChange }: HammingGrayDemoSVGProps)
               </g>
             );
           })}
-          <text x="210" y="67" textAnchor="middle" fill="#94a3b8" fontSize="9">
+          <text x="210" y="67" textAnchor="middle" fill="#475569" fontSize="9" fontWeight="600">
             Binario: {distBin} bit{distBin > 1 ? 's' : ''} (p_m^{distBin}) · Gray: 1 bit (p_m^1)
           </text>
         </svg>

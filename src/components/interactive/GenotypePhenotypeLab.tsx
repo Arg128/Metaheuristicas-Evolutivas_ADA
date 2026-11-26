@@ -112,14 +112,14 @@ export function GenotypePhenotypeLab() {
       <div>
         <div className="flex items-center justify-between gap-2">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
+            <span className="text-xs font-semibold uppercase tracking-wider text-cyan-700">
               Laboratorio Genotipo → Fenotipo
             </span>
-            <h3 className="text-lg font-bold text-slate-100">
+            <h3 className="text-lg font-bold text-slate-900">
               Morfogénesis en Tiempo Real φ(G)
             </h3>
           </div>
-          <span className="rounded-full border border-emerald-500/35 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-semibold text-emerald-200">
+          <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 font-mono text-xs font-semibold text-emerald-800">
             f = {decoded.fitness.toFixed(1)}%
           </span>
         </div>
@@ -142,8 +142,8 @@ export function GenotypePhenotypeLab() {
                 onKeyDown={(e) => e.stopPropagation()}
                 className={`inline-flex items-center justify-center gap-1.5 rounded-xl border px-2.5 py-2 text-xs font-semibold transition-colors cursor-pointer ${
                   active
-                    ? 'border-cyan-400 bg-cyan-500/20 text-cyan-100'
-                    : 'border-slate-800 bg-slate-950/75 text-slate-400 hover:border-slate-600 hover:text-slate-200'
+                    ? 'border-cyan-500 bg-cyan-50 text-cyan-900 shadow-xs'
+                    : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-300 hover:text-slate-900'
                 }`}
               >
                 <Icon className="h-3.5 w-3.5" />
@@ -155,10 +155,10 @@ export function GenotypePhenotypeLab() {
       </div>
 
       {/* Genotype Manipulation Area */}
-      <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/8 p-3">
-        <div className="mb-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wider text-cyan-300">
+      <div className="rounded-xl border border-cyan-200 bg-cyan-50/70 p-3">
+        <div className="mb-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-wider text-cyan-800">
           <span>1. Genotipo Manipulable G</span>
-          <span className="font-mono text-slate-300">{decoded.genotypeStr}</span>
+          <span className="font-mono text-slate-700">{decoded.genotypeStr}</span>
         </div>
 
         {mode === 'binary' ? (
@@ -173,16 +173,16 @@ export function GenotypePhenotypeLab() {
                   onKeyDown={(e) => e.stopPropagation()}
                   className={`flex h-11 flex-col items-center justify-center rounded-lg border font-mono text-base font-bold transition-colors cursor-pointer ${
                     bit === 1
-                      ? 'border-cyan-400 bg-cyan-500/25 text-cyan-100 shadow-[0_0_12px_rgba(34,211,238,0.22)]'
-                      : 'border-slate-700 bg-slate-950 text-slate-400 hover:border-slate-500'
+                      ? 'border-cyan-600 bg-cyan-600 text-white shadow-xs'
+                      : 'border-slate-300 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900'
                   }`}
                 >
                   <span>{bit}</span>
-                  <span className="text-[9px] font-normal opacity-75">b{idx}</span>
+                  <span className="text-[9px] font-normal opacity-80">b{idx}</span>
                 </motion.button>
               ))}
             </div>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-600">
               Haz clic en cualquier bit para mutar el genotipo y observar el cambio en el ala aerodinámica.
             </p>
           </div>
@@ -229,7 +229,7 @@ export function GenotypePhenotypeLab() {
               type="button"
               onClick={() => setAst((s) => ({ ...s, op: s.op === '+' ? '*' : '+' }))}
               onKeyDown={(e) => e.stopPropagation()}
-              className="flex-1 rounded-lg border border-violet-400/60 bg-violet-500/20 px-3 py-2 font-mono text-xs font-bold text-violet-100 cursor-pointer hover:bg-violet-500/30"
+              className="flex-1 rounded-lg border border-violet-300 bg-violet-50 px-3 py-2 font-mono text-xs font-bold text-violet-800 cursor-pointer hover:bg-violet-100"
             >
               Raíz: {ast.op}
             </button>
@@ -239,7 +239,7 @@ export function GenotypePhenotypeLab() {
                 setAst((s) => ({ ...s, left: s.left === 'sin(x)' ? 'cos(x)' : 'sin(x)' }))
               }
               onKeyDown={(e) => e.stopPropagation()}
-              className="flex-1 rounded-lg border border-cyan-400/60 bg-cyan-500/20 px-3 py-2 font-mono text-xs font-bold text-cyan-100 cursor-pointer hover:bg-cyan-500/30"
+              className="flex-1 rounded-lg border border-cyan-300 bg-white px-3 py-2 font-mono text-xs font-bold text-cyan-800 cursor-pointer hover:bg-cyan-100"
             >
               Izq: {ast.left}
             </button>
@@ -249,7 +249,7 @@ export function GenotypePhenotypeLab() {
                 setAst((s) => ({ ...s, right: s.right === '0.5x' ? '0.2x²' : '0.5x' }))
               }
               onKeyDown={(e) => e.stopPropagation()}
-              className="flex-1 rounded-lg border border-emerald-400/60 bg-emerald-500/20 px-3 py-2 font-mono text-xs font-bold text-emerald-100 cursor-pointer hover:bg-emerald-500/30"
+              className="flex-1 rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-2 font-mono text-xs font-bold text-emerald-800 cursor-pointer hover:bg-emerald-100"
             >
               Der: {ast.right}
             </button>
@@ -258,13 +258,13 @@ export function GenotypePhenotypeLab() {
       </div>
 
       {/* Live SVG Phenotype + Fitness Gauge */}
-      <div className="grid min-h-0 flex-1 grid-cols-12 gap-3 rounded-xl border border-slate-800 bg-[#050816] p-3">
+      <div className="grid min-h-0 flex-1 grid-cols-12 gap-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
         <div className="col-span-8 flex flex-col justify-between">
           <div className="flex items-center justify-between text-[11px]">
-            <span className="font-semibold uppercase tracking-wider text-violet-300">
+            <span className="font-semibold uppercase tracking-wider text-violet-700">
               2. Fenotipo F = φ(G) · Perfil Aerodinámico
             </span>
-            <span className="font-mono text-slate-400">{decoded.phenotypeStr}</span>
+            <span className="font-mono text-slate-600">{decoded.phenotypeStr}</span>
           </div>
 
           <svg viewBox="0 0 320 170" className="w-full flex-1">
@@ -274,7 +274,7 @@ export function GenotypePhenotypeLab() {
                 key={yPos}
                 d={`M 8 ${yPos} Q 145 ${yPos - (i === 1 ? decoded.camber * 0.45 : 4)} 312 ${yPos - 4}`}
                 fill="none"
-                stroke="rgba(34,211,238,0.22)"
+                stroke="rgba(8,145,178,0.28)"
                 strokeWidth="1.4"
                 strokeDasharray="6 5"
                 animate={{ strokeDashoffset: [0, -22] }}
@@ -287,8 +287,8 @@ export function GenotypePhenotypeLab() {
               d={airfoilPath}
               animate={{ d: airfoilPath }}
               transition={{ type: 'spring', stiffness: 220, damping: 20 }}
-              fill="rgba(167,139,250,0.26)"
-              stroke="#a78bfa"
+              fill="rgba(124,58,237,0.2)"
+              stroke="#7c3aed"
               strokeWidth="2.4"
             />
 
@@ -297,30 +297,30 @@ export function GenotypePhenotypeLab() {
               <motion.path
                 d={`M 30 140 Q 115 ${ast.left === 'sin(x)' ? 50 : 120} 195 ${ast.op === '+' ? 75 : 135} T 290 ${ast.right === '0.5x' ? 62 : 112}`}
                 fill="none"
-                stroke="#34d399"
+                stroke="#059669"
                 strokeWidth="2"
                 strokeDasharray="4 3"
               />
             ) : null}
 
             {/* Center of Pressure Marker */}
-            <circle cx={96 + decoded.sweep * 0.3} cy="100" r="4" fill="#22d3ee" />
+            <circle cx={96 + decoded.sweep * 0.3} cy="100" r="4" fill="#0891b2" />
           </svg>
         </div>
 
         {/* Fitness Gauge */}
-        <div className="col-span-4 flex flex-col items-center justify-center rounded-xl border border-slate-800/80 bg-slate-900/70 p-2">
-          <span className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
+        <div className="col-span-4 flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-white p-2">
+          <span className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-700">
             3. Aptitud f(φ(G))
           </span>
           <svg viewBox="0 0 96 96" className="h-24 w-24">
-            <circle cx="48" cy="48" r={gaugeRadius} fill="none" stroke="#1e293b" strokeWidth="9" />
+            <circle cx="48" cy="48" r={gaugeRadius} fill="none" stroke="#e2e8f0" strokeWidth="9" />
             <motion.circle
               cx="48"
               cy="48"
               r={gaugeRadius}
               fill="none"
-              stroke={decoded.fitness >= 80 ? '#34d399' : decoded.fitness >= 55 ? '#22d3ee' : '#fbbf24'}
+              stroke={decoded.fitness >= 80 ? '#059669' : decoded.fitness >= 55 ? '#0891b2' : '#d97706'}
               strokeWidth="9"
               strokeLinecap="round"
               strokeDasharray={gaugeCirc}
@@ -328,14 +328,14 @@ export function GenotypePhenotypeLab() {
               transition={{ type: 'spring', stiffness: 180, damping: 22 }}
               transform="rotate(-90 48 48)"
             />
-            <text x="48" y="48" textAnchor="middle" fill="#f8fafc" fontSize="15" fontWeight="800">
+            <text x="48" y="48" textAnchor="middle" fill="#0f172a" fontSize="15" fontWeight="800">
               {decoded.fitness.toFixed(0)}
             </text>
-            <text x="48" y="62" textAnchor="middle" fill="#94a3b8" fontSize="8.5" fontWeight="600">
+            <text x="48" y="62" textAnchor="middle" fill="#64748b" fontSize="8.5" fontWeight="600">
               / 100 pts
             </text>
           </svg>
-          <span className="mt-1 text-center text-[11px] font-medium text-slate-300">
+          <span className="mt-1 text-center text-[11px] font-medium text-slate-700">
             {decoded.fitness >= 82 ? 'Alta eficiencia' : 'Búsqueda activa'}
           </span>
         </div>

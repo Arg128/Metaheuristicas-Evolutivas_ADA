@@ -110,20 +110,20 @@ export function ExplorationBalanceSVG({
       ? {
           label: 'Convergencia Prematura',
           accent: 'rose' as const,
-          color: '#fb7185',
+          color: '#e11d48',
           desc: 'Presión selectiva extrema: la población colapsa en el óptimo local más cercano y pierde diversidad.',
         }
       : balance > 68
         ? {
             label: 'Paseo Aleatorio (Deriva)',
             accent: 'amber' as const,
-            color: '#fbbf24',
+            color: '#d97706',
             desc: 'Tasa de mutación descontrolada: las partículas vagan erráticamente sin consolidar ninguna cuenca.',
           }
         : {
             label: 'Equilibrio Estocástico',
             accent: 'emerald' as const,
-            color: '#34d399',
+            color: '#059669',
             desc: 'Balance óptimo: la población escapa de las trampas locales y converge al óptimo global x*.',
           };
 
@@ -142,48 +142,48 @@ export function ExplorationBalanceSVG({
     <div className="flex h-full min-h-0 flex-col justify-between gap-2.5">
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-cyan-700">
             Mapa Multimodal 2D (24 Partículas · 60 FPS)
           </span>
-          <h3 className="text-lg font-bold text-slate-100">
+          <h3 className="text-lg font-bold text-slate-900">
             Régimen: {regime.label}
           </h3>
         </div>
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-700 bg-slate-950/85 px-3 py-1 font-mono text-xs text-slate-200">
-          <Snowflake className="h-3.5 w-3.5 text-cyan-300" />
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 font-mono text-xs font-semibold text-slate-800">
+          <Snowflake className="h-3.5 w-3.5 text-cyan-700" />
           σ_pop = {variance.toFixed(1)}
         </span>
       </div>
 
       {/* Contour Map SVG */}
-      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-800/90 bg-[#050816]">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
         <svg viewBox="0 0 420 230" className="h-full w-full">
           {/* Subtle grid */}
-          <line x1="20" y1="115" x2="400" y2="115" stroke="rgba(148,163,184,0.1)" strokeDasharray="3 3" />
-          <line x1="210" y1="15" x2="210" y2="215" stroke="rgba(148,163,184,0.1)" strokeDasharray="3 3" />
+          <line x1="20" y1="115" x2="400" y2="115" stroke="rgba(15,23,42,0.1)" strokeDasharray="3 3" />
+          <line x1="210" y1="15" x2="210" y2="215" stroke="rgba(15,23,42,0.1)" strokeDasharray="3 3" />
 
           {/* Local Trap 1 */}
-          <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="48" fill="rgba(251,113,133,0.08)" stroke="rgba(251,113,133,0.32)" strokeDasharray="4 4" />
-          <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="25" fill="rgba(251,113,133,0.14)" stroke="rgba(251,113,133,0.45)" />
-          <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="4" fill="#fb7185" />
-          <text x={LOCAL_TRAP_1.x} y={LOCAL_TRAP_1.y + 62} textAnchor="middle" fill="#fda4af" fontSize="10.5" fontWeight="600">
+          <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="48" fill="rgba(225,29,72,0.07)" stroke="rgba(225,29,72,0.35)" strokeDasharray="4 4" />
+          <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="25" fill="rgba(225,29,72,0.13)" stroke="rgba(225,29,72,0.48)" />
+          <circle cx={LOCAL_TRAP_1.x} cy={LOCAL_TRAP_1.y} r="4" fill="#e11d48" />
+          <text x={LOCAL_TRAP_1.x} y={LOCAL_TRAP_1.y + 62} textAnchor="middle" fill="#be123c" fontSize="10.5" fontWeight="700">
             Trampa Local 1
           </text>
 
           {/* Local Trap 2 */}
-          <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="36" fill="rgba(251,191,36,0.07)" stroke="rgba(251,191,36,0.28)" strokeDasharray="4 4" />
-          <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="17" fill="rgba(251,191,36,0.14)" />
-          <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="3.5" fill="#fbbf24" />
-          <text x={LOCAL_TRAP_2.x} y={LOCAL_TRAP_2.y - 42} textAnchor="middle" fill="#fde68a" fontSize="10.5" fontWeight="600">
+          <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="36" fill="rgba(217,119,6,0.08)" stroke="rgba(217,119,6,0.35)" strokeDasharray="4 4" />
+          <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="17" fill="rgba(217,119,6,0.16)" />
+          <circle cx={LOCAL_TRAP_2.x} cy={LOCAL_TRAP_2.y} r="3.5" fill="#d97706" />
+          <text x={LOCAL_TRAP_2.x} y={LOCAL_TRAP_2.y - 42} textAnchor="middle" fill="#b45309" fontSize="10.5" fontWeight="700">
             Trampa Local 2
           </text>
 
           {/* Global Optimum */}
-          <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="68" fill="rgba(52,211,153,0.06)" stroke="rgba(52,211,153,0.28)" strokeDasharray="4 4" />
-          <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="42" fill="rgba(52,211,153,0.11)" stroke="rgba(52,211,153,0.42)" />
-          <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="18" fill="rgba(52,211,153,0.2)" />
-          <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="5.5" fill="#34d399" />
-          <text x={GLOBAL_OPT.x} y={GLOBAL_OPT.y + 82} textAnchor="middle" fill="#6ee7b7" fontSize="11.5" fontWeight="700">
+          <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="68" fill="rgba(5,150,105,0.07)" stroke="rgba(5,150,105,0.32)" strokeDasharray="4 4" />
+          <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="42" fill="rgba(5,150,105,0.12)" stroke="rgba(5,150,105,0.46)" />
+          <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="18" fill="rgba(5,150,105,0.22)" />
+          <circle cx={GLOBAL_OPT.x} cy={GLOBAL_OPT.y} r="5.5" fill="#059669" />
+          <text x={GLOBAL_OPT.x} y={GLOBAL_OPT.y + 82} textAnchor="middle" fill="#047857" fontSize="11.5" fontWeight="700">
             Óptimo Global x*
           </text>
 
@@ -195,9 +195,9 @@ export function ExplorationBalanceSVG({
               cy={p.y}
               r={idx < 3 ? 5 : 4}
               fill={regime.color}
-              stroke="#f8fafc"
-              strokeWidth="1"
-              opacity={0.9}
+              stroke="#ffffff"
+              strokeWidth="1.4"
+              opacity={0.95}
             />
           ))}
         </svg>
@@ -218,7 +218,7 @@ export function ExplorationBalanceSVG({
           }
           onChange={onBalanceChange}
         />
-        <p className="rounded-xl border border-slate-800 bg-slate-950/75 px-3.5 py-2 text-xs text-slate-300">
+        <p className="rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-700">
           {regime.desc}
         </p>
       </div>

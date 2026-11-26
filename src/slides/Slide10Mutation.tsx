@@ -31,7 +31,7 @@ export function Slide10Mutation({ meta, totalSlides }: SlideProps) {
             icon={<Sliders className="h-5 w-5" />}
             accent="violet"
           >
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-700 leading-relaxed">
               Invierte cada bit <MathFormula tex="0 \leftrightarrow 1" /> con probabilidad típica{' '}
               <MathFormula tex="p_m \approx 1/L" />, reintroduciendo alelos perdidos.
             </p>
@@ -43,7 +43,7 @@ export function Slide10Mutation({ meta, totalSlides }: SlideProps) {
             icon={<Activity className="h-5 w-5" />}
             accent="cyan"
           >
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-700 leading-relaxed">
               Suma ruido normal <MathFormula tex="\mathcal{N}(0, \sigma^2 \mathbf{I})" />: pasos cortos frecuentes y saltos amplios ocasionales.
             </p>
           </InteractiveCard>
@@ -57,7 +57,7 @@ export function Slide10Mutation({ meta, totalSlides }: SlideProps) {
           accent="emerald"
           active
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Con <MathFormula tex="p_m > 0" /> (o soporte gaussiano completo), la probabilidad de transición entre dos estados cualesquiera es estrictamente positiva: el algoritmo nunca queda atrapado irreversiblemente.
           </p>
         </InteractiveCard>
@@ -70,7 +70,7 @@ export function Slide10Mutation({ meta, totalSlides }: SlideProps) {
           active={agaEnabled}
           onClick={() => setAgaEnabled((v) => !v)}
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Si la varianza de aptitud cae (riesgo de convergencia prematura), AGA eleva{' '}
             <MathFormula tex="p_m" /> y reduce <MathFormula tex="p_c" />; si la población es diversa, intensifica la explotación.
           </p>
@@ -88,7 +88,7 @@ export function Slide10Mutation({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive MutationAgaSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <MutationAgaSVG
           sigma={sigma}
           onSigmaChange={setSigma}

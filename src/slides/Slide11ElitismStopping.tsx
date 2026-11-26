@@ -32,35 +32,35 @@ export function Slide11ElitismStopping({ meta, totalSlides }: SlideProps) {
           active={elitismOn}
           onClick={() => setElitismOn((v) => !v)}
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Copia intactos los <MathFormula tex="E" /> mejores individuos de <MathFormula tex="P^{(g)}" /> a{' '}
             <MathFormula tex="P^{(g+1)}" />. Evita que el cruce o la mutación destruyan el mejor óptimo encontrado.
           </p>
         </InteractiveCard>
 
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 backdrop-blur-md">
-          <h3 className="mb-2.5 text-sm font-bold text-slate-100">
+        <div className="rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-sm shadow-slate-900/5 backdrop-blur-md">
+          <h3 className="mb-2.5 text-sm font-bold text-slate-900">
             Tres Criterios Canónicos de Parada
           </h3>
           <div className="space-y-2">
-            <div className="flex items-start gap-2.5 rounded-xl border border-slate-800 bg-slate-950/75 p-2.5">
-              <TimerOff className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" />
-              <div className="text-xs text-slate-300">
-                <strong className="text-slate-100">1. Límite generacional (g_max):</strong>{' '}
+            <div className="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+              <TimerOff className="mt-0.5 h-4 w-4 shrink-0 text-cyan-700" />
+              <div className="text-xs text-slate-700">
+                <strong className="text-slate-900">1. Límite generacional (g_max):</strong>{' '}
                 detiene la ejecución tras un número fijo de generaciones o evaluaciones.
               </div>
             </div>
-            <div className="flex items-start gap-2.5 rounded-xl border border-slate-800 bg-slate-950/75 p-2.5">
-              <TrendingDown className="mt-0.5 h-4 w-4 shrink-0 text-violet-300" />
-              <div className="text-xs text-slate-300">
-                <strong className="text-slate-100">2. Meseta de aptitud (Δf &lt; ε):</strong>{' '}
+            <div className="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+              <TrendingDown className="mt-0.5 h-4 w-4 shrink-0 text-violet-700" />
+              <div className="text-xs text-slate-700">
+                <strong className="text-slate-900">2. Meseta de aptitud (Δf &lt; ε):</strong>{' '}
                 finaliza cuando la mejora acumulada en W generaciones es despreciable.
               </div>
             </div>
-            <div className="flex items-start gap-2.5 rounded-xl border border-slate-800 bg-slate-950/75 p-2.5">
-              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" />
-              <div className="text-xs text-slate-300">
-                <strong className="text-slate-100">3. Presupuesto temporal (t_max):</strong>{' '}
+            <div className="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-slate-50 p-2.5">
+              <Clock className="mt-0.5 h-4 w-4 shrink-0 text-amber-700" />
+              <div className="text-xs text-slate-700">
+                <strong className="text-slate-900">3. Presupuesto temporal (t_max):</strong>{' '}
                 imprescindible en sistemas en tiempo real o simulaciones CFD/FEA costosas.
               </div>
             </div>
@@ -79,7 +79,7 @@ export function Slide11ElitismStopping({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive ElitismChartSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <ElitismChartSVG
           elitismOn={elitismOn}
           onToggleElitism={() => setElitismOn((v) => !v)}

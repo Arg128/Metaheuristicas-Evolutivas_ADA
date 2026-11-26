@@ -33,7 +33,7 @@ export function Slide09Crossover({ meta, totalSlides }: SlideProps) {
             onClick={() => setMode('1-point')}
             className="!p-3.5"
           >
-            <p className="text-[11px] text-slate-300">Preserva esquemas de baja longitud definitoria δ(H).</p>
+            <p className="text-[11px] text-slate-700">Preserva esquemas de baja longitud definitoria δ(H).</p>
           </InteractiveCard>
 
           <InteractiveCard
@@ -45,7 +45,7 @@ export function Slide09Crossover({ meta, totalSlides }: SlideProps) {
             onClick={() => setMode('2-point')}
             className="!p-3.5"
           >
-            <p className="text-[11px] text-slate-300">Reduce sesgo posicional en extremos del cromosoma.</p>
+            <p className="text-[11px] text-slate-700">Reduce sesgo posicional en extremos del cromosoma.</p>
           </InteractiveCard>
 
           <InteractiveCard
@@ -57,7 +57,7 @@ export function Slide09Crossover({ meta, totalSlides }: SlideProps) {
             onClick={() => setMode('uniform')}
             className="!p-3.5"
           >
-            <p className="text-[11px] text-slate-300">Máxima mezcla exploratoria bit a bit (p = 0.5).</p>
+            <p className="text-[11px] text-slate-700">Máxima mezcla exploratoria bit a bit (p = 0.5).</p>
           </InteractiveCard>
         </div>
 
@@ -68,7 +68,7 @@ export function Slide09Crossover({ meta, totalSlides }: SlideProps) {
           icon={<Blocks className="h-5 w-5" />}
           accent="violet"
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Un esquema <MathFormula tex="H" /> corto (baja longitud definitoria{' '}
             <MathFormula tex="\delta(H)" />), de bajo orden <MathFormula tex="o(H)" /> y aptitud superior a la media{' '}
             <MathFormula tex="\bar{f}(H) > \bar{f}" /> crece exponencialmente en generaciones sucesivas.
@@ -87,7 +87,7 @@ export function Slide09Crossover({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive CrossoverDemoSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <CrossoverDemoSVG mode={mode} onModeChange={setMode} />
       </div>
     </SlideLayout>

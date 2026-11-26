@@ -80,10 +80,10 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
       {/* Header + Controls */}
       <div className="flex items-center justify-between gap-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wider text-emerald-300">
+          <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700">
             Convergencia en 30 Generaciones
           </span>
-          <h3 className="text-lg font-bold text-slate-100">
+          <h3 className="text-lg font-bold text-slate-900">
             {elitismOn
               ? 'Elitismo ON: Escalera Monótona No Degradante'
               : 'Elitismo OFF: Pérdida Estocástica de Líderes'}
@@ -97,8 +97,8 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
             onKeyDown={(e) => e.stopPropagation()}
             className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
               elitismOn
-                ? 'border-emerald-400 bg-emerald-500/20 text-emerald-100'
-                : 'border-rose-400 bg-rose-500/20 text-rose-100'
+                ? 'border-emerald-500 bg-emerald-50 text-emerald-800 shadow-xs'
+                : 'border-rose-500 bg-rose-50 text-rose-800 shadow-xs'
             }`}
           >
             <ShieldCheck className="h-3.5 w-3.5" />
@@ -109,7 +109,7 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
             type="button"
             onClick={() => setRunSeed((s) => s + 1)}
             onKeyDown={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs font-semibold text-slate-200 hover:border-cyan-400/60 hover:text-cyan-200 cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-xs hover:border-cyan-500 hover:text-cyan-800 cursor-pointer"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Nueva Simulación
@@ -118,7 +118,7 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
       </div>
 
       {/* Animated SVG Chart */}
-      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-800 bg-[#050816] p-2">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-2">
         <svg viewBox="0 0 420 212" className="h-full w-full">
           {/* Grid lines */}
           {[25, 50, 75, 100].map((v) => (
@@ -128,23 +128,23 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
                 y1={toY(v)}
                 x2="398"
                 y2={toY(v)}
-                stroke="rgba(148,163,184,0.12)"
+                stroke="rgba(15,23,42,0.1)"
                 strokeDasharray="3 3"
               />
-              <text x="36" y={toY(v) + 3.5} textAnchor="end" fill="#64748b" fontSize="9">
+              <text x="36" y={toY(v) + 3.5} textAnchor="end" fill="#475569" fontSize="9">
                 {v}
               </text>
             </g>
           ))}
 
-          <line x1="42" y1="24" x2="42" y2="182" stroke="#475569" strokeWidth="1.2" />
-          <line x1="42" y1="182" x2="400" y2="182" stroke="#475569" strokeWidth="1.2" />
+          <line x1="42" y1="24" x2="42" y2="182" stroke="#64748b" strokeWidth="1.2" />
+          <line x1="42" y1="182" x2="400" y2="182" stroke="#64748b" strokeWidth="1.2" />
 
           {/* Ghost Reference */}
           <path
             d={ghostPath}
             fill="none"
-            stroke="rgba(148,163,184,0.28)"
+            stroke="rgba(100,116,139,0.4)"
             strokeWidth="1.6"
             strokeDasharray="4 4"
           />
@@ -157,7 +157,7 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
             animate={{ pathLength: 1 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
             fill="none"
-            stroke="#22d3ee"
+            stroke="#0891b2"
             strokeWidth="2.2"
           />
 
@@ -169,7 +169,7 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
             animate={{ pathLength: 1 }}
             transition={{ duration: 0.75, ease: 'easeOut' }}
             fill="none"
-            stroke={elitismOn ? '#34d399' : '#fb7185'}
+            stroke={elitismOn ? '#059669' : '#e11d48'}
             strokeWidth="3"
           />
 
@@ -185,16 +185,16 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
                     cx={toX(pt.gen)}
                     cy={toY(pt.withoutElitismMax)}
                     r="4"
-                    fill="#fb7185"
-                    stroke="#fff"
-                    strokeWidth="1"
+                    fill="#e11d48"
+                    stroke="#ffffff"
+                    strokeWidth="1.2"
                   />
                 );
               }
               return null;
             })}
 
-          <text x="220" y="201" textAnchor="middle" fill="#94a3b8" fontSize="10.5">
+          <text x="220" y="201" textAnchor="middle" fill="#475569" fontSize="10.5">
             Generación g (0 → 30) · Semilla #{runSeed}
           </text>
         </svg>
@@ -202,23 +202,23 @@ export function ElitismChartSVG({ elitismOn, onToggleElitism }: ElitismChartSVGP
 
       {/* Legend & Telemetry */}
       <div className="grid grid-cols-3 gap-2 text-xs">
-        <div className="rounded-xl border border-slate-800 bg-slate-950/75 px-3 py-2">
-          <span className={`block font-semibold ${elitismOn ? 'text-emerald-300' : 'text-rose-300'}`}>
+        <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+          <span className={`block font-semibold ${elitismOn ? 'text-emerald-700' : 'text-rose-700'}`}>
             Aptitud Máxima
           </span>
-          <span className="font-mono text-sm font-bold text-slate-100">
+          <span className="font-mono text-sm font-bold text-slate-900">
             {finalMax.toFixed(1)} pts
           </span>
         </div>
-        <div className="rounded-xl border border-slate-800 bg-slate-950/75 px-3 py-2">
-          <span className="block font-semibold text-cyan-300">Aptitud Promedio</span>
-          <span className="font-mono text-sm font-bold text-slate-100">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+          <span className="block font-semibold text-cyan-700">Aptitud Promedio</span>
+          <span className="font-mono text-sm font-bold text-slate-900">
             {finalPt.avgFitness.toFixed(1)} pts
           </span>
         </div>
-        <div className="rounded-xl border border-slate-800 bg-slate-950/75 px-3 py-2">
-          <span className="block font-semibold text-slate-400">Comportamiento</span>
-          <span className="font-semibold text-slate-200">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+          <span className="block font-semibold text-slate-500">Comportamiento</span>
+          <span className="font-semibold text-slate-800">
             {elitismOn ? 'Monótono seguro' : 'Retrocesos activos'}
           </span>
         </div>

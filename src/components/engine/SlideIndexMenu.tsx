@@ -30,7 +30,7 @@ export function SlideIndexMenu({
     <AnimatePresence>
       {isOpen ? (
         <motion.div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-slate-950/75 p-6 pt-16 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-start justify-center bg-slate-900/35 p-6 pt-16 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -46,21 +46,21 @@ export function SlideIndexMenu({
             exit={{ opacity: 0, y: -12, scale: 0.98 }}
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="flex max-h-[82vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-slate-700/80 bg-[#090d1f]/95 shadow-2xl"
+            className="flex max-h-[82vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-2xl shadow-slate-900/15 backdrop-blur-md"
           >
-            <div className="flex items-center justify-between border-b border-slate-800 px-6 py-4">
+            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
               <div>
-                <h2 className="text-lg font-bold text-slate-50">
+                <h2 className="text-lg font-bold text-slate-900">
                   Índice General de la Presentación
                 </h2>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-600">
                   5 bloques temáticos · {slides.length} diapositivas · Haz clic para navegar
                 </p>
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-lg border border-slate-700/80 bg-slate-900 p-2 text-slate-300 transition-colors hover:border-slate-500 hover:text-white cursor-pointer"
+                className="rounded-lg border border-slate-200 bg-slate-50 p-2 text-slate-600 transition-colors hover:border-slate-300 hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
                 aria-label="Cerrar índice"
               >
                 <X className="h-4 w-4" />
@@ -78,7 +78,7 @@ export function SlideIndexMenu({
                 return (
                   <section
                     key={block}
-                    className="rounded-xl border border-slate-800/90 bg-slate-900/50 p-4"
+                    className="rounded-xl border border-slate-200 bg-slate-50/90 p-4"
                   >
                     <div className="mb-3 flex items-center justify-between">
                       <span
@@ -104,8 +104,8 @@ export function SlideIndexMenu({
                             }}
                             className={`flex w-full items-center gap-3 rounded-lg border px-3 py-2 text-left transition-colors cursor-pointer ${
                               isActive
-                                ? `${accentStyle.activeBorder} bg-slate-800/95 text-slate-50`
-                                : 'border-transparent bg-slate-950/40 text-slate-300 hover:border-slate-700 hover:bg-slate-800/60 hover:text-slate-100'
+                                ? `${accentStyle.activeBorder} bg-white text-slate-900`
+                                : 'border-transparent bg-white/70 text-slate-700 hover:border-slate-200 hover:bg-white hover:text-slate-900'
                             }`}
                           >
                             <span

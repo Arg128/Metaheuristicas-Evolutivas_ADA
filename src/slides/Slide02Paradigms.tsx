@@ -143,40 +143,40 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
               onClick={() => setSelectedParadigm(p.id)}
               className="!p-3.5"
             >
-              <p className="text-xs text-slate-300 leading-snug">{p.summary}</p>
+              <p className="text-xs text-slate-700 leading-snug">{p.summary}</p>
             </InteractiveCard>
           ))}
         </div>
 
-        <div className="flex-1 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/80 backdrop-blur-md">
+        <div className="flex-1 overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-sm shadow-slate-900/5 backdrop-blur-md">
           <table className="w-full border-collapse text-left text-sm">
             <thead>
-              <tr className="border-b border-slate-800 bg-slate-950/70 text-xs uppercase tracking-wider text-slate-400">
+              <tr className="border-b border-slate-200 bg-slate-100/90 text-xs uppercase tracking-wider text-slate-600">
                 <th className="px-4 py-3 font-semibold">Criterio</th>
                 <th
                   className={`px-4 py-3 font-semibold ${
-                    selectedParadigm === 'exact' ? 'text-rose-300 bg-rose-500/10' : ''
+                    selectedParadigm === 'exact' ? 'text-rose-700 bg-rose-50' : ''
                   }`}
                 >
                   Exacto
                 </th>
                 <th
                   className={`px-4 py-3 font-semibold ${
-                    selectedParadigm === 'heuristic' ? 'text-amber-300 bg-amber-500/10' : ''
+                    selectedParadigm === 'heuristic' ? 'text-amber-700 bg-amber-50' : ''
                   }`}
                 >
                   Heurística
                 </th>
                 <th
                   className={`px-4 py-3 font-semibold ${
-                    selectedParadigm === 'evolutionary' ? 'text-cyan-300 bg-cyan-500/10' : ''
+                    selectedParadigm === 'evolutionary' ? 'text-cyan-700 bg-cyan-50' : ''
                   }`}
                 >
                   Metaheurística Evolutiva
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/80">
+            <tbody className="divide-y divide-slate-200">
               {ROWS.map((row, idx) => {
                 const isActive = highlightRow === idx;
                 return (
@@ -185,17 +185,17 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
                     onClick={() => setHighlightRow(idx)}
                     onMouseEnter={() => setHighlightRow(idx)}
                     className={`cursor-pointer transition-colors ${
-                      isActive ? 'bg-slate-800/55' : 'hover:bg-slate-800/30'
+                      isActive ? 'bg-slate-100/75' : 'hover:bg-slate-50'
                     }`}
                   >
-                    <td className="px-4 py-3.5 font-semibold text-slate-100 align-top">
+                    <td className="px-4 py-3.5 font-semibold text-slate-900 align-top">
                       {row.criterion}
                     </td>
                     <td
                       className={`px-4 py-3.5 text-xs leading-relaxed align-top ${
                         selectedParadigm === 'exact'
-                          ? 'bg-rose-500/10 text-rose-100 font-medium'
-                          : 'text-slate-300'
+                          ? 'bg-rose-50/80 text-rose-900 font-medium'
+                          : 'text-slate-700'
                       }`}
                     >
                       {row.exact}
@@ -203,8 +203,8 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
                     <td
                       className={`px-4 py-3.5 text-xs leading-relaxed align-top ${
                         selectedParadigm === 'heuristic'
-                          ? 'bg-amber-500/10 text-amber-100 font-medium'
-                          : 'text-slate-300'
+                          ? 'bg-amber-50/80 text-amber-900 font-medium'
+                          : 'text-slate-700'
                       }`}
                     >
                       {row.heuristic}
@@ -212,8 +212,8 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
                     <td
                       className={`px-4 py-3.5 text-xs leading-relaxed align-top ${
                         selectedParadigm === 'evolutionary'
-                          ? 'bg-cyan-500/10 text-cyan-100 font-medium'
-                          : 'text-slate-300'
+                          ? 'bg-cyan-50/80 text-cyan-900 font-medium'
+                          : 'text-slate-700'
                       }`}
                     >
                       {row.evolutionary}
@@ -228,17 +228,17 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
 
       {/* Right 5 Cols: Interactive Complexity Growth Chart + MathFormula */}
       <div className="col-span-5 flex flex-col gap-3">
-        <div className="flex flex-1 flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+        <div className="flex flex-1 flex-col justify-between rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
           <div className="flex items-center justify-between gap-2">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
+              <span className="text-xs font-semibold uppercase tracking-wider text-cyan-700">
                 Escalabilidad Empírica
               </span>
-              <h3 className="text-base font-bold text-slate-100">
+              <h3 className="text-base font-bold text-slate-900">
                 Explosión O(2ⁿ) vs. Presupuesto Evolutivo
               </h3>
             </div>
-            <div className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-950/80 px-2.5 py-1 font-mono text-xs text-cyan-300">
+            <div className="flex items-center gap-1.5 rounded-lg border border-cyan-200 bg-cyan-50 px-2.5 py-1 font-mono text-xs font-semibold text-cyan-800">
               <Cpu className="h-3.5 w-3.5" />
               n = {nDimension}
             </div>
@@ -251,7 +251,7 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
               y1={chartGeometry.padT}
               x2={chartGeometry.padL}
               y2={chartGeometry.padT + chartGeometry.innerH}
-              stroke="#475569"
+              stroke="#94a3b8"
               strokeWidth="1.5"
             />
             <line
@@ -259,22 +259,22 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
               y1={chartGeometry.padT + chartGeometry.innerH}
               x2={chartGeometry.padL + chartGeometry.innerW}
               y2={chartGeometry.padT + chartGeometry.innerH}
-              stroke="#475569"
+              stroke="#94a3b8"
               strokeWidth="1.5"
             />
 
             {/* Curves */}
-            <path d={chartGeometry.exactPath} fill="none" stroke="#fb7185" strokeWidth="3" />
+            <path d={chartGeometry.exactPath} fill="none" stroke="#e11d48" strokeWidth="3" />
             <path
               d={chartGeometry.evoPath}
               fill="none"
-              stroke="#22d3ee"
+              stroke="#0891b2"
               strokeWidth="3"
             />
             <path
               d={chartGeometry.heurPath}
               fill="none"
-              stroke="#fbbf24"
+              stroke="#d97706"
               strokeWidth="2"
               strokeDasharray="5 4"
             />
@@ -285,24 +285,24 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
               y1={chartGeometry.padT}
               x2={chartGeometry.markerX}
               y2={chartGeometry.padT + chartGeometry.innerH}
-              stroke="rgba(148,163,184,0.45)"
+              stroke="rgba(71,85,105,0.45)"
               strokeDasharray="3 3"
             />
-            <circle cx={chartGeometry.markerX} cy={chartGeometry.markerExactY} r="5" fill="#fb7185" />
-            <circle cx={chartGeometry.markerX} cy={chartGeometry.markerEvoY} r="5" fill="#22d3ee" />
+            <circle cx={chartGeometry.markerX} cy={chartGeometry.markerExactY} r="5" fill="#e11d48" />
+            <circle cx={chartGeometry.markerX} cy={chartGeometry.markerEvoY} r="5" fill="#0891b2" />
 
             {/* Labels */}
-            <text x={chartGeometry.padL + 8} y={chartGeometry.padT + 14} fill="#fb7185" fontSize="11" fontWeight="600">
+            <text x={chartGeometry.padL + 8} y={chartGeometry.padT + 14} fill="#e11d48" fontSize="11" fontWeight="700">
               Exacto: O(2^n)
             </text>
-            <text x={chartGeometry.padL + 8} y={chartGeometry.padT + 30} fill="#22d3ee" fontSize="11" fontWeight="600">
+            <text x={chartGeometry.padL + 8} y={chartGeometry.padT + 30} fill="#0891b2" fontSize="11" fontWeight="700">
               Evolutivo: O(g_max · N · C_fit)
             </text>
             <text
               x={chartGeometry.padL + chartGeometry.innerW / 2}
               y={chartGeometry.H - 8}
               textAnchor="middle"
-              fill="#94a3b8"
+              fill="#475569"
               fontSize="11"
             >
               Dimensión del problema (n variables)
@@ -310,14 +310,14 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
           </svg>
 
           {/* Interactive Dimension Scrubber */}
-          <div className="space-y-2 rounded-xl border border-slate-800 bg-slate-950/75 p-3">
+          <div className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-3">
             <div className="flex items-center justify-between text-xs">
-              <span className="flex items-center gap-1.5 font-medium text-slate-300">
-                <Activity className="h-3.5 w-3.5 text-cyan-300" />
+              <span className="flex items-center gap-1.5 font-medium text-slate-700">
+                <Activity className="h-3.5 w-3.5 text-cyan-700" />
                 Explorar tamaño de instancia (n)
               </span>
-              <span className="font-mono text-slate-400">
-                2ⁿ ≈ <strong className="text-rose-300">{chartGeometry.exactLabel}</strong> ops
+              <span className="font-mono text-slate-600">
+                2ⁿ ≈ <strong className="text-rose-700">{chartGeometry.exactLabel}</strong> ops
               </span>
             </div>
             <input
@@ -330,9 +330,9 @@ export function Slide02Paradigms({ meta, totalSlides }: SlideProps) {
               onKeyDown={(e) => e.stopPropagation()}
               className="meta-slider w-full"
             />
-            <div className="flex justify-between text-[11px] text-slate-400">
+            <div className="flex justify-between text-[11px] text-slate-600">
               <span>Exacto: colapso exponencial</span>
-              <span className="flex items-center gap-1 text-cyan-300">
+              <span className="flex items-center gap-1 font-medium text-cyan-700">
                 <Compass className="h-3 w-3" /> Evolutivo acotado: ~{chartGeometry.evoLabel} evals
               </span>
             </div>

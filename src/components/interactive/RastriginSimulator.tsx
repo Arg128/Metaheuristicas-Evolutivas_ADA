@@ -66,18 +66,18 @@ function clampDomain(v: number) {
 }
 
 function thermalColor(fitness: number, evaluated: boolean): string {
-  if (!evaluated) return '#94a3b8';
+  if (!evaluated) return '#64748b';
   const norm = Math.min(1, Math.max(0, fitness / 45));
   if (norm < 0.25) {
-    // Near global optimum: cold bright cyan/blue
-    return '#38bdf8';
+    // Near global optimum: crisp deep sky/cyan
+    return '#0284c7';
   }
   if (norm < 0.55) {
-    // Intermediate: warm gold/amber
-    return '#fbbf24';
+    // Intermediate: rich amber
+    return '#d97706';
   }
-  // High energy: hot red/orange
-  return '#fb7185';
+  // High energy: vivid crimson
+  return '#e11d48';
 }
 
 function toSvg(val: number): number {
@@ -468,9 +468,9 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
     <div className="grid min-h-0 flex-1 grid-cols-12 gap-4">
       {/* Left 5 Cols: 12-Line Pseudocode Debugger + Live Sliders + Formula */}
       <div className="col-span-5 flex min-h-0 flex-col justify-between gap-2">
-        <div className="rounded-2xl border border-slate-800 bg-slate-950/90 p-3 backdrop-blur-md">
+        <div className="rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-sm shadow-slate-900/5 backdrop-blur-md">
           <div className="mb-1.5 flex items-center justify-between gap-2">
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-300">
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
               Depurador 12 Líneas · Gen {generation}/{G_MAX}
             </span>
             <div className="flex items-center gap-1">
@@ -478,10 +478,10 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                 type="button"
                 onClick={() => setIsPlaying((p) => !p)}
                 onKeyDown={(e) => e.stopPropagation()}
-                className={`inline-flex items-center gap-1 rounded-lg border px-2 py-1 text-[11px] font-semibold cursor-pointer ${
+                className={`inline-flex items-center gap-1 rounded-lg border px-2 py-1 text-[11px] font-semibold shadow-xs cursor-pointer ${
                   isPlaying
-                    ? 'border-amber-400 bg-amber-500/20 text-amber-100'
-                    : 'border-emerald-400 bg-emerald-500/20 text-emerald-100'
+                    ? 'border-amber-500 bg-amber-50 text-amber-800'
+                    : 'border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700'
                 }`}
               >
                 {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
@@ -494,7 +494,7 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                   stepSingleLine();
                 }}
                 onKeyDown={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 rounded-lg border border-cyan-500/40 bg-cyan-500/15 px-2 py-1 text-[11px] font-semibold text-cyan-200 hover:bg-cyan-500/25 cursor-pointer"
+                className="inline-flex items-center gap-1 rounded-lg border border-cyan-200 bg-cyan-50 px-2 py-1 text-[11px] font-semibold text-cyan-800 hover:bg-cyan-100 cursor-pointer"
               >
                 <StepForward className="h-3 w-3" />
                 Paso
@@ -506,7 +506,7 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                   stepOneGeneration();
                 }}
                 onKeyDown={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 rounded-lg border border-violet-500/40 bg-violet-500/15 px-2 py-1 text-[11px] font-semibold text-violet-200 hover:bg-violet-500/25 cursor-pointer"
+                className="inline-flex items-center gap-1 rounded-lg border border-violet-200 bg-violet-50 px-2 py-1 text-[11px] font-semibold text-violet-800 hover:bg-violet-100 cursor-pointer"
               >
                 <FastForward className="h-3 w-3" />
                 +1 Gen
@@ -515,7 +515,7 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                 type="button"
                 onClick={() => resetSimulation(popSize, seedInput)}
                 onKeyDown={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center rounded-lg border border-slate-700 bg-slate-900 p-1 text-slate-300 hover:text-white cursor-pointer"
+                className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-1 text-slate-600 hover:bg-slate-100 hover:text-slate-900 cursor-pointer"
                 aria-label="Reiniciar simulador"
               >
                 <RotateCcw className="h-3 w-3" />
@@ -532,8 +532,8 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                   key={lineNum}
                   className={`rounded px-2 py-[3px] transition-colors ${
                     isCurrent
-                      ? 'border border-emerald-400/80 bg-emerald-500/20 font-bold text-emerald-100 shadow-[0_0_12px_rgba(52,211,153,0.22)]'
-                      : 'border border-transparent text-slate-400'
+                      ? 'border border-emerald-400 bg-emerald-50 font-bold text-emerald-900 shadow-xs'
+                      : 'border border-transparent text-slate-600'
                   }`}
                 >
                   {text}
@@ -603,23 +603,23 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
       </div>
 
       {/* Right 7 Cols: Rastrigin 2D Heatmap Canvas + SVG Overlay + Telemetry + Convergence Chart */}
-      <div className="col-span-7 flex min-h-0 flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/80 p-3.5 backdrop-blur-md">
+      <div className="col-span-7 flex min-h-0 flex-col justify-between rounded-2xl border border-slate-200 bg-white/95 p-3.5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <div className="flex items-center justify-between gap-2">
           <div>
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-300">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-emerald-700">
               Rastrigin 2D [-5.12, 5.12]² · Mulberry32 Determinista
             </span>
-            <h3 className="text-base font-bold text-slate-100">
+            <h3 className="text-base font-bold text-slate-900">
               Línea {String(activeLine).padStart(2, '0')} Activa · Mejor f ={' '}
-              <span className="font-mono text-amber-300">
+              <span className="font-mono text-amber-700">
                 {bestInd ? bestInd.fitness.toFixed(4) : '0.0000'}
               </span>
             </h3>
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 text-[11px] text-slate-300">
-              <span className="font-semibold text-cyan-300">Seed:</span>
+            <label className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] text-slate-700">
+              <span className="font-semibold text-cyan-700">Seed:</span>
               <input
                 type="text"
                 value={seedInput}
@@ -632,11 +632,11 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                   e.stopPropagation();
                   if (e.key === 'Enter') resetSimulation(popSize, seedInput);
                 }}
-                className="w-16 bg-transparent font-mono font-bold text-slate-100 focus:outline-none"
+                className="w-16 bg-transparent font-mono font-bold text-slate-900 focus:outline-none"
                 aria-label="Semilla Mulberry32"
               />
             </label>
-            <span className="rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1 font-mono text-[11px] text-slate-300">
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 font-mono text-[11px] font-semibold text-slate-700">
               Evals: {evaluations}
             </span>
           </div>
@@ -648,11 +648,11 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
             <motion.div
               animate={
                 isLoopPulse
-                  ? { boxShadow: ['0 0 0px rgba(52,211,153,0)', '0 0 24px rgba(52,211,153,0.45)', '0 0 0px rgba(52,211,153,0)'] }
+                  ? { boxShadow: ['0 0 0px rgba(5,150,105,0)', '0 0 18px rgba(5,150,105,0.35)', '0 0 0px rgba(5,150,105,0)'] }
                   : { boxShadow: '0 0 0px rgba(0,0,0,0)' }
               }
               transition={{ duration: 0.7 }}
-              className="relative aspect-square h-full max-h-[380px] w-full max-w-[380px] overflow-hidden rounded-xl border border-slate-700/80 bg-[#050816]"
+              className="relative aspect-square h-full max-h-[380px] w-full max-w-[380px] overflow-hidden rounded-xl border border-slate-300 bg-white shadow-inner"
             >
               {/* Static 2D Heatmap Canvas */}
               <RastriginHeatmapCanvas
@@ -663,10 +663,10 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
               {/* 60 FPS SVG Overlay */}
               <svg viewBox="0 0 320 320" className="relative z-10 h-full w-full">
                 {/* Axes & Global Optimum Crosshair */}
-                <line x1="15" y1="160" x2="305" y2="160" stroke="rgba(226,232,240,0.22)" strokeWidth="1" />
-                <line x1="160" y1="15" x2="160" y2="305" stroke="rgba(226,232,240,0.22)" strokeWidth="1" />
-                <circle cx="160" cy="160" r="10" fill="none" stroke="rgba(52,211,153,0.75)" strokeWidth="1.2" strokeDasharray="3 2" />
-                <circle cx="160" cy="160" r="2.8" fill="#34d399" />
+                <line x1="15" y1="160" x2="305" y2="160" stroke="rgba(15,23,42,0.22)" strokeWidth="1" />
+                <line x1="160" y1="15" x2="160" y2="305" stroke="rgba(15,23,42,0.22)" strokeWidth="1" />
+                <circle cx="160" cy="160" r="10" fill="none" stroke="#047857" strokeWidth="1.4" strokeDasharray="3 2" />
+                <circle cx="160" cy="160" r="3" fill="#059669" />
 
                 {/* L5: Tournament flash lines */}
                 {activeLine === 5 &&
@@ -679,9 +679,9 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                           y1={toSvg(c.y)}
                           x2={toSvg(tf.winner.x)}
                           y2={toSvg(tf.winner.y)}
-                          stroke="#fbbf24"
-                          strokeWidth="1.3"
-                          strokeOpacity="0.85"
+                          stroke="#b45309"
+                          strokeWidth="1.5"
+                          strokeOpacity="0.9"
                         />
                       ))}
                       <circle
@@ -689,8 +689,8 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                         cy={toSvg(tf.winner.y)}
                         r="8"
                         fill="none"
-                        stroke="#fde047"
-                        strokeWidth="1.8"
+                        stroke="#d97706"
+                        strokeWidth="2"
                       />
                     </g>
                   ))}
@@ -704,12 +704,12 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                         y1={toSvg(arc.p1y)}
                         x2={toSvg(arc.p2x)}
                         y2={toSvg(arc.p2y)}
-                        stroke="#22d3ee"
-                        strokeWidth="1.2"
+                        stroke="#0e7490"
+                        strokeWidth="1.5"
                         strokeDasharray="3 2"
-                        opacity="0.8"
+                        opacity="0.85"
                       />
-                      <circle cx={toSvg(arc.cx)} cy={toSvg(arc.cy)} r="4" fill="#22d3ee" />
+                      <circle cx={toSvg(arc.cx)} cy={toSvg(arc.cy)} r="4" fill="#0891b2" stroke="#ffffff" strokeWidth="1" />
                     </g>
                   ))}
 
@@ -722,16 +722,16 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                         y1={toSvg(jmp.fromY)}
                         x2={toSvg(jmp.toX)}
                         y2={toSvg(jmp.toY)}
-                        stroke="#a78bfa"
-                        strokeWidth="1.8"
+                        stroke="#7c3aed"
+                        strokeWidth="2"
                       />
                       <circle
                         cx={toSvg(jmp.toX)}
                         cy={toSvg(jmp.toY)}
                         r="8"
-                        fill="rgba(167,139,250,0.22)"
-                        stroke="#c4b5fd"
-                        strokeWidth="1.4"
+                        fill="rgba(124,58,237,0.18)"
+                        stroke="#7c3aed"
+                        strokeWidth="1.5"
                       />
                     </g>
                   ))}
@@ -743,24 +743,24 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                   const isBest = bestInd && ind.id === bestInd.id;
                   const fill = thermalColor(ind.fitness, ind.evaluated);
                   return (
-                    <g key={ind.id} opacity={ind.discarded ? 0.22 : 0.94}>
+                    <g key={ind.id} opacity={ind.discarded ? 0.25 : 0.96}>
                       {(isBest && ind.evaluated) || ind.isElite ? (
                         <circle
                           cx={cx}
                           cy={cy}
                           r={activeLine === 12 && isBest ? 14 : 9}
                           fill="none"
-                          stroke="#fbbf24"
-                          strokeWidth={activeLine === 12 && isBest ? 2.5 : 1.7}
+                          stroke="#b45309"
+                          strokeWidth={activeLine === 12 && isBest ? 2.6 : 1.8}
                         />
                       ) : null}
                       <circle
                         cx={cx}
                         cy={cy}
-                        r={isBest ? 4.8 : 3.4}
-                        fill={isBest && ind.evaluated ? '#fbbf24' : fill}
-                        stroke="#050816"
-                        strokeWidth="0.9"
+                        r={isBest ? 5 : 3.6}
+                        fill={isBest && ind.evaluated ? '#f59e0b' : fill}
+                        stroke={isBest && ind.evaluated ? '#0f172a' : '#ffffff'}
+                        strokeWidth="1.1"
                       />
                     </g>
                   );
@@ -772,11 +772,11 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                     key={`off-${child.id}`}
                     cx={toSvg(child.x)}
                     cy={toSvg(child.y)}
-                    r="3.2"
-                    fill={child.evaluated ? thermalColor(child.fitness, true) : '#67e8f9'}
-                    stroke="#f8fafc"
-                    strokeWidth="0.8"
-                    opacity="0.88"
+                    r="3.4"
+                    fill={child.evaluated ? thermalColor(child.fitness, true) : '#0891b2'}
+                    stroke="#ffffff"
+                    strokeWidth="1"
+                    opacity="0.92"
                   />
                 ))}
 
@@ -787,10 +787,10 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
                       key={`par-${idx}`}
                       cx={toSvg(p.x)}
                       cy={toSvg(p.y)}
-                      r="5.5"
+                      r="5.8"
                       fill="none"
-                      stroke="#fde047"
-                      strokeWidth="1.3"
+                      stroke="#b45309"
+                      strokeWidth="1.5"
                     />
                   ))}
               </svg>
@@ -812,46 +812,46 @@ export function RastriginSimulator({ formulaTex, formulaLabel }: { formulaTex?: 
             />
 
             <div className="grid grid-cols-2 gap-1.5 text-[11px]">
-              <div className="rounded-xl border border-slate-800 bg-slate-950/80 p-2">
-                <span className="text-slate-400">Óptimo Hallado</span>
-                <p className="mt-0.5 font-mono font-bold text-amber-300">
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
+                <span className="text-slate-600">Óptimo Hallado</span>
+                <p className="mt-0.5 font-mono font-bold text-amber-700">
                   ({bestInd ? bestInd.x.toFixed(2) : '0.00'}, {bestInd ? bestInd.y.toFixed(2) : '0.00'})
                 </p>
               </div>
-              <div className="rounded-xl border border-slate-800 bg-slate-950/80 p-2">
-                <span className="text-slate-400">Promedio f(x,y)</span>
-                <p className="mt-0.5 font-mono font-bold text-cyan-300">
+              <div className="rounded-xl border border-slate-200 bg-slate-50 p-2">
+                <span className="text-slate-600">Promedio f(x,y)</span>
+                <p className="mt-0.5 font-mono font-bold text-cyan-700">
                   {avgFitness.toFixed(2)}
                 </p>
               </div>
             </div>
 
             {/* Live Convergence SVG Chart */}
-            <div className="flex flex-1 flex-col justify-between rounded-xl border border-slate-800 bg-[#050816] p-2.5">
+            <div className="flex flex-1 flex-col justify-between rounded-xl border border-slate-200 bg-slate-50 p-2.5">
               <div className="flex items-center justify-between text-[10.5px]">
-                <span className="font-semibold text-emerald-300">Curva de Convergencia</span>
-                <span className="font-mono text-slate-400">
-                  <span className="text-amber-300">● Mejor</span> ·{' '}
-                  <span className="text-cyan-300">● Prom</span>
+                <span className="font-semibold text-emerald-700">Curva de Convergencia</span>
+                <span className="font-mono text-slate-600">
+                  <span className="font-semibold text-amber-700">● Mejor</span> ·{' '}
+                  <span className="font-semibold text-cyan-700">● Prom</span>
                 </span>
               </div>
 
               <svg viewBox="0 0 242 90" className="w-full flex-1">
-                <line x1="28" y1="12" x2="28" y2="76" stroke="#475569" strokeWidth="1" />
-                <line x1="28" y1="76" x2="232" y2="76" stroke="#475569" strokeWidth="1" />
+                <line x1="28" y1="12" x2="28" y2="76" stroke="#64748b" strokeWidth="1" />
+                <line x1="28" y1="76" x2="232" y2="76" stroke="#64748b" strokeWidth="1" />
                 {avgPath ? (
-                  <path d={avgPath} fill="none" stroke="#22d3ee" strokeWidth="1.8" opacity="0.85" />
+                  <path d={avgPath} fill="none" stroke="#0891b2" strokeWidth="1.8" opacity="0.9" />
                 ) : null}
                 {bestPath ? (
-                  <path d={bestPath} fill="none" stroke="#fbbf24" strokeWidth="2.4" />
+                  <path d={bestPath} fill="none" stroke="#d97706" strokeWidth="2.4" />
                 ) : null}
-                <text x="130" y="87" textAnchor="middle" fill="#64748b" fontSize="8.5">
+                <text x="130" y="87" textAnchor="middle" fill="#475569" fontSize="8.5" fontWeight="600">
                   Generación 0 → {G_MAX}
                 </text>
               </svg>
             </div>
 
-            <div className="rounded-xl border border-slate-800 bg-slate-950/75 px-3 py-1.5 text-[11px] text-slate-300">
+            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] text-slate-700">
               {activeLine === 1 && 'L1: Población inicial dispersa en gris uniforme.'}
               {(activeLine === 2 || activeLine === 8) &&
                 'Evaluación térmica: azul frío (bajo error) → oro/rojo (alto error).'}

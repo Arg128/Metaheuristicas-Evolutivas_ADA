@@ -35,10 +35,10 @@ export function Slide17HammingGray({ meta, totalSlides }: SlideProps) {
           active={distBin >= 3}
           onClick={() => setValue(7)}
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
-            Aunque <strong className="text-slate-100">7</strong> y <strong className="text-slate-100">8</strong> son vecinos en el fenotipo, sus genotipos{' '}
-            <code className="font-mono text-rose-200">0111</code> y <code className="font-mono text-rose-200">1000</code> exigen invertir{' '}
-            <strong className="text-rose-300">4 bits simultáneamente</strong> (probabilidad <MathFormula tex="p_m^4" />).
+          <p className="text-xs text-slate-700 leading-relaxed">
+            Aunque <strong className="text-slate-900">7</strong> y <strong className="text-slate-900">8</strong> son vecinos en el fenotipo, sus genotipos{' '}
+            <code className="rounded bg-rose-50 px-1 font-mono font-semibold text-rose-700">0111</code> y <code className="rounded bg-rose-50 px-1 font-mono font-semibold text-rose-700">1000</code> exigen invertir{' '}
+            <strong className="text-rose-700">4 bits simultáneamente</strong> (probabilidad <MathFormula tex="p_m^4" />).
           </p>
         </InteractiveCard>
 
@@ -50,9 +50,9 @@ export function Slide17HammingGray({ meta, totalSlides }: SlideProps) {
           accent="emerald"
           active
         >
-          <p className="text-xs text-slate-300 leading-relaxed">
+          <p className="text-xs text-slate-700 leading-relaxed">
             Con <MathFormula tex="G = B \oplus (B \gg 1)" />, todo paso <MathFormula tex="n \rightarrow n+1" /> requiere invertir un{' '}
-            <strong className="text-emerald-300">solo bit</strong>. Un bit-flip simple cruza de 7 (<code>0100</code>) a 8 (<code>1100</code>).
+            <strong className="text-emerald-700">solo bit</strong>. Un bit-flip simple cruza de 7 (<code className="rounded bg-emerald-50 px-1 font-mono font-semibold text-emerald-800">0100</code>) a 8 (<code className="rounded bg-emerald-50 px-1 font-mono font-semibold text-emerald-800">1100</code>).
           </p>
         </InteractiveCard>
 
@@ -68,7 +68,7 @@ export function Slide17HammingGray({ meta, totalSlides }: SlideProps) {
       </div>
 
       {/* Right 6 Cols: Interactive HammingGrayDemoSVG */}
-      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-800 bg-slate-900/80 p-5 backdrop-blur-md">
+      <div className="col-span-6 flex min-h-0 flex-col rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-sm shadow-slate-900/5 backdrop-blur-md">
         <HammingGrayDemoSVG value={currVal} onChange={setValue} />
       </div>
     </SlideLayout>

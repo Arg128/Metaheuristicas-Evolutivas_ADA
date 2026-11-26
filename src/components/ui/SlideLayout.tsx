@@ -33,7 +33,7 @@ export function SlideLayout({
   return (
     <div className={`relative flex h-full w-full flex-col ${containerPadding}`}>
       {!isCover && isFullInteractive ? (
-        <header className="mb-3 shrink-0 border-b border-slate-800/80 pb-2.5">
+        <header className="mb-3 shrink-0 border-b border-slate-200 pb-2.5">
           <div className="flex items-center justify-between gap-4">
             <div className="flex min-w-0 items-center gap-3">
               <span
@@ -41,15 +41,15 @@ export function SlideLayout({
               >
                 {meta.block}
               </span>
-              <span className="shrink-0 font-mono text-[11px] font-semibold tracking-widest text-slate-400">
+              <span className="shrink-0 font-mono text-[11px] font-semibold tracking-widest text-slate-500">
                 DIAPOSITIVA {slideNumber} / {totalNumber}
               </span>
-              <span className="text-slate-700">·</span>
-              <h1 className="truncate text-2xl font-bold tracking-tight text-slate-50 leading-tight">
+              <span className="text-slate-300">·</span>
+              <h1 className="truncate text-2xl font-bold tracking-tight text-slate-900 leading-tight">
                 {meta.title}
               </h1>
             </div>
-            <p className="hidden max-w-md shrink-0 truncate text-xs text-slate-400 xl:block">
+            <p className="hidden max-w-md shrink-0 truncate text-xs text-slate-600 xl:block">
               {meta.subtitle}
             </p>
           </div>
@@ -65,14 +65,14 @@ export function SlideLayout({
               >
                 {meta.block}
               </span>
-              <span className="font-mono text-xs font-semibold tracking-widest text-slate-400">
+              <span className="font-mono text-xs font-semibold tracking-widest text-slate-500">
                 DIAPOSITIVA {slideNumber} / {totalNumber}
               </span>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight text-slate-50 leading-tight">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 leading-tight">
               {meta.title}
             </h1>
-            <p className="mt-1.5 max-w-5xl text-base text-slate-300 leading-snug">
+            <p className="mt-1.5 max-w-5xl text-base text-slate-600 leading-snug">
               {meta.subtitle}
             </p>
           </div>
@@ -100,10 +100,10 @@ export function SlideLayout({
           <div
             className={`inline-flex max-w-5xl items-center gap-3 rounded-xl border ${
               isFullInteractive ? 'px-3.5 py-2' : 'px-4 py-2.5'
-            } bg-slate-900/85 backdrop-blur-md ${accentStyle.border}`}
+            } bg-white/95 shadow-sm shadow-slate-900/5 backdrop-blur-md ${accentStyle.border}`}
           >
             <Sparkles className={`h-4 w-4 shrink-0 ${accentStyle.text}`} />
-            <p className="text-sm font-medium text-slate-200 leading-snug">
+            <p className="text-sm font-medium text-slate-700 leading-snug">
               <span className={`mr-1.5 font-semibold ${accentStyle.text}`}>
                 Idea clave:
               </span>

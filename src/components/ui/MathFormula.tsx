@@ -35,7 +35,7 @@ export function MathFormula({
   if (!block && !highlight && !label) {
     return (
       <span
-        className={`inline-flex items-baseline align-baseline text-slate-100 ${className}`}
+        className={`inline-flex items-baseline align-baseline text-slate-900 ${className}`}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     );
@@ -46,8 +46,8 @@ export function MathFormula({
       <span
         className={`inline-flex items-center gap-2 rounded-lg border px-2.5 py-1 ${
           highlight
-            ? `${accentStyle.border} ${accentStyle.bgSoft} text-slate-50`
-            : 'border-slate-700/70 bg-slate-900/75 text-slate-100'
+            ? `${accentStyle.border} ${accentStyle.bgSoft} text-slate-900`
+            : 'border-slate-200 bg-slate-50 text-slate-900'
         } ${className}`}
       >
         {label ? (
@@ -62,10 +62,10 @@ export function MathFormula({
 
   return (
     <div
-      className={`rounded-2xl border px-5 py-4 backdrop-blur-md transition-colors ${
+      className={`rounded-2xl border px-5 py-4 shadow-sm shadow-slate-900/5 backdrop-blur-md transition-colors ${
         highlight
-          ? `${accentStyle.activeBorder} bg-slate-900/90`
-          : 'border-slate-700/70 bg-slate-900/75'
+          ? `${accentStyle.activeBorder} bg-white`
+          : 'border-slate-200 bg-slate-50/90'
       } ${className}`}
     >
       {label ? (
@@ -80,7 +80,7 @@ export function MathFormula({
         </div>
       ) : null}
       <div
-        className="overflow-x-auto py-1 text-center text-slate-50"
+        className="overflow-x-auto py-1 text-center text-slate-900"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
