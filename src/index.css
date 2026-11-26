@@ -107,3 +107,11 @@ input[type='range'].meta-slider::-moz-range-thumb {
   color: inherit;
   font-size: 1.1em;
 }
+
+/* Hide native OS arrow when minimalist PresentationCursor is active */
+@media (pointer: fine) {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: none !important;
+  }
+}

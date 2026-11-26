@@ -4,6 +4,7 @@ import { useDeckNavigation } from '../../hooks/useDeckNavigation';
 import { useViewportScale } from '../../hooks/useViewportScale';
 import type { SlideMeta } from '../../types/presentation';
 import { BottomControls } from './BottomControls';
+import { PresentationCursor } from './PresentationCursor';
 import { PresenterNotesModal } from './PresenterNotesModal';
 import { ShortcutsLegendModal } from './ShortcutsLegendModal';
 import { SlideIndexMenu } from './SlideIndexMenu';
@@ -136,6 +137,9 @@ export function DeckShell({ slides, renderSlide }: DeckShellProps) {
         slides={slides}
         onClose={nav.closeOverlays}
       />
+
+      {/* Minimalist Presentation Cursor */}
+      <PresentationCursor />
     </div>
   );
 }
